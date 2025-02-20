@@ -16,7 +16,7 @@ public:
     bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
     QHash<int, QByteArray> roleNames() const override { return roles; }
 
-    int createNode(const QString& title, const QString& url,
+    int createNote(const QString& title, const QString& url,
                    const QString& username,
                    const QString& email, const QString& password);
     void editNote(const int noteId, const QString& title, const QString& url,

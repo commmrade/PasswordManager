@@ -38,7 +38,7 @@ bool SqlNoteModel::setData(const QModelIndex &index, const QVariant &value, int 
     }
 }
 
-int SqlNoteModel::createNode(const QString& title, const QString& url,
+int SqlNoteModel::createNote(const QString& title, const QString& url,
                              const QString& username, const QString& email, const QString& password)
 {
     if (titleExists(title)) {

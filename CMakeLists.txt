@@ -27,12 +27,15 @@ set(PROJECT_SOURCES
     common/mainwindow.ui
     crypt/cipher.h crypt/cipher.cpp
     models/notemodel.h models/notemodel.cpp
+    dialogs/notecreatedialog.h dialogs/notecreatedialog.cpp dialogs/notecreatedialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(PasswordManager
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        models/notecontroller.h models/notecontroller.cpp
+        widgets/noteswidget.h widgets/noteswidget.cpp widgets/noteswidget.ui
     )
 else()
     if(ANDROID)
