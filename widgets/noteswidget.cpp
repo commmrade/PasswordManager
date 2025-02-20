@@ -6,9 +6,6 @@ NotesWidget::NotesWidget(QWidget *parent)
     , ui(new Ui::NotesWidget)
 {
     ui->setupUi(this);
-
-
-
 }
 
 NotesWidget::~NotesWidget()
