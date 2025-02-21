@@ -37,6 +37,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         models/notecontroller.h models/notecontroller.cpp
         widgets/noteswidget.h widgets/noteswidget.cpp widgets/noteswidget.ui
         crypt/passwordgenerator.h crypt/passwordgenerator.cpp
+        widgets/infowidget.h widgets/infowidget.cpp widgets/infowidget.ui
+        common/Note.h
     )
 else()
     if(ANDROID)

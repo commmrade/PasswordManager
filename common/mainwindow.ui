@@ -26,8 +26,20 @@
      <height>19</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuManager">
+    <property name="title">
+     <string>Manager</string>
+    </property>
+    <addaction name="actionOpen_settings"/>
+   </widget>
+   <addaction name="menuManager"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen_settings">
+   <property name="text">
+    <string>Open settings</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

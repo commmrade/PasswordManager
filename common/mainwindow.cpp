@@ -8,10 +8,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setCentralWidget(new NotesWidget);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+void MainWindow::on_actionOpen_settings_triggered()
+{
+    qDebug() << "fuck niggas yo";
 }
 
