@@ -33,6 +33,8 @@ private slots:
 
     void on_passwordEdit_editingFinished();
 
+    void on_deleteButton_clicked();
+
 private:
     Ui::InfoWidget *ui;
     int currentNoteIndex{-1};

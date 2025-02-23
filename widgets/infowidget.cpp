@@ -71,3 +71,15 @@ void InfoWidget::on_passwordEdit_editingFinished()
     NoteController::instance().setPassword(currentNoteIndex, ui->passwordEdit->text());
 }
 
+
+void InfoWidget::on_deleteButton_clicked()
+{
+    qDebug() << currentNoteIndex;
+    if (currentNoteIndex < 0) {
+        qDebug() << "note not set";
+        return;
+    }
+    NoteController::instance().deleteNote(currentNoteIndex);
+    sendNote(Note{});
+}
+
