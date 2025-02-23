@@ -9,6 +9,7 @@ QString PasswordGenerator::generatePassword(unsigned int len)
     std::random_device rd;
     std::mt19937_64 engine{rd()};
     std::string result;
+    result.reserve(len);
 
     const char digits[] = {"0123456789"};
     const char symbols[] = {"]+[-)_("};
