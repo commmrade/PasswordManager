@@ -3,6 +3,9 @@
 #include <QSqlRecord>
 #include <QDate>
 #include <QSqlError>
+#include "../common/consts.h"
+
+
 
 SqlNoteModel::SqlNoteModel(QObject *parent)
     : QSqlTableModel{parent, SqlNoteModel::makeDatabase()}
@@ -163,7 +166,7 @@ QSqlDatabase SqlNoteModel::makeDatabase()
 {
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
     database.setHostName("klewy");
-    database.setDatabaseName("pmanager.sqlite");
+    database.setDatabaseName(PasswordManager::PM_FILENAME);
     database.setUserName("root");
     database.setPassword("root"); // TODO: may be set password
 
@@ -183,6 +186,7 @@ QSqlDatabase SqlNoteModel::makeDatabase()
         ");";
     QSqlQuery query(creationQuery);
     if (!query.exec()) {
+        qDebug() << query.lastError();
         throw std::runtime_error("Could not create a table damn fuck cock");
     }
 

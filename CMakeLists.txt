@@ -39,6 +39,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         crypt/passwordgenerator.h crypt/passwordgenerator.cpp
         widgets/infowidget.h widgets/infowidget.cpp widgets/infowidget.ui
         common/Note.h
+        widgets/secretpasswidget.h widgets/secretpasswidget.cpp widgets/secretpasswidget.ui
+        resources.qrc
+        dialogs/loaderpasswords.h dialogs/loaderpasswords.cpp dialogs/loaderpasswords.ui
+        common/consts.h
     )
 else()
     if(ANDROID)

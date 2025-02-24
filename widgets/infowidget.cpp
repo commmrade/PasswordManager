@@ -74,7 +74,6 @@ void InfoWidget::on_passwordEdit_editingFinished()
 
 void InfoWidget::on_deleteButton_clicked()
 {
-    qDebug() << currentNoteIndex;
     if (currentNoteIndex < 0) {
         qDebug() << "note not set";
         return;

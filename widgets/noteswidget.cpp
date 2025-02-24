@@ -13,6 +13,11 @@ NotesWidget::NotesWidget(QWidget *parent)
     ui->setupUi(this);
     ui->notesView->setModel(NoteController::instance().getModel());
     ui->notesView->setModelColumn(1);
+
+
+    infoWidget = new InfoWidget();
+    infoWidget->resize(1920, 1080);
+    ui->stackedWidget->addWidget(infoWidget);
 }
 
 NotesWidget::~NotesWidget()
@@ -22,25 +27,19 @@ NotesWidget::~NotesWidget()
 
 void NotesWidget::on_notesView_clicked(const QModelIndex &index)
 {
-    qDebug() << "begin";
-    if (!index.isValid()) {
+    if (!index.isValid() || ui->notesView->model()->index(index.row(), 0).data().toInt() == infoWidget->getCurrentNoteId()) {
         return;
     }
-    if (infoWidget == nullptr) {
-        infoWidget = new InfoWidget();
-        infoWidget->resize(1920, 1080);
-        ui->stackedWidget->addWidget(infoWidget);
+    if (infoWidget->getCurrentNoteId() == -1) {
         ui->stackedWidget->setCurrentWidget(infoWidget);
     }
-    qDebug() << "after checks";
-
     Note note;
     note.id = ui->notesView->model()->index(index.row(), 0).data().toInt();
     note.title = ui->notesView->model()->index(index.row(), 1).data().toString();
     note.url = ui->notesView->model()->index(index.row(), 2).data().toString();
     note.username = ui->notesView->model()->index(index.row(), 3).data().toString();
     note.email = ui->notesView->model()->index(index.row(), 4).data().toString();
-    note.password = ui->notesView->model()->index(index.row(), 5).data().toString();
+    note.password = NoteController::instance().getPassword(note.id);
     infoWidget->sendNote(note);
 }
 
@@ -61,7 +60,6 @@ void NotesWidget::on_deleteButton_clicked()
     int noteId = ui->notesView->model()->index(row, 0).data().toInt();
 
     NoteController::instance().deleteNote(noteId);
-    ui->notesView->selectAll();
 
     if (noteId == infoWidget->getCurrentNoteId()) {
         infoWidget->sendNote(Note{});

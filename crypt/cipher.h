@@ -14,15 +14,25 @@
 
 class Cipher {
 public:
-    Cipher();
 
-    static QString aesEncrypt(const QString& plainText);
-    static QString aesDecrypt(const QString& encryptedText);
+    Cipher(const Cipher&) = delete;
+    Cipher& operator=(const Cipher&) = delete;
+
+    static Cipher& instance() {
+        static Cipher controller;
+        return controller;
+    }
+
+
+    QString aesEncrypt(const QString& plainText);
+    QString aesDecrypt(const QString& encryptedText);
 
 private:
+    Cipher();
+
     // Static key and IV initialized directly
-    static inline CryptoPP::SecByteBlock key{CryptoPP::AES::DEFAULT_KEYLENGTH};
-    static inline CryptoPP::byte iv[CryptoPP::AES::BLOCKSIZE];
+    CryptoPP::SecByteBlock key{32};
+    CryptoPP::byte iv[16];
 
 };
 
