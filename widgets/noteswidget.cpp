@@ -34,20 +34,22 @@ void NotesWidget::on_notesView_clicked(const QModelIndex &index)
         ui->stackedWidget->setCurrentWidget(infoWidget);
     }
     Note note;
+
+    auto& instance = NoteController::instance();
     note.id = ui->notesView->model()->index(index.row(), 0).data().toInt();
-    note.title = ui->notesView->model()->index(index.row(), 1).data().toString();
-    note.url = ui->notesView->model()->index(index.row(), 2).data().toString();
-    note.username = ui->notesView->model()->index(index.row(), 3).data().toString();
-    note.email = ui->notesView->model()->index(index.row(), 4).data().toString();
-    note.password = NoteController::instance().getPassword(note.id);
+    note.title = instance.getTitle(note.id);
+    note.url = instance.getUrl(note.id);
+    note.username = instance.getUsername(note.id);
+    note.email = instance.getEmail(note.id);
+    note.password = instance.getPassword(note.id);
     infoWidget->sendNote(note);
 }
 
 
 void NotesWidget::on_createButton_clicked()
 {
-    NoteCreateDialog* dialog = new NoteCreateDialog(this);
-    dialog->exec();
+    NoteCreateDialog dialog(this);
+    dialog.exec();
 }
 
 void NotesWidget::on_deleteButton_clicked()

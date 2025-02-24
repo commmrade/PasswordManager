@@ -58,7 +58,7 @@ void SecretPassWidget::on_ackButton_clicked()
 
 void SecretPassWidget::on_pushButton_clicked()
 {
-    LoaderPasswords dialog;
+    LoaderPasswords dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         isCopied = true;
         close();
