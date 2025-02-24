@@ -19,6 +19,8 @@ public:
 
 private slots:
 
+    void on_actionOpen_settings_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

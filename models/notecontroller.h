@@ -37,6 +37,12 @@ public:
     void setPassword(const int noteId, const QString& password);
     QString getPassword(const int noteId) const;
     QDate getCreatedDatetime(const int noteId) const;
+
+
+    QAbstractItemModel* getModel() {
+        return &model;
+    }
+
 signals:
 };
 

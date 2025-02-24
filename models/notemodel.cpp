@@ -2,6 +2,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QDate>
+#include <QSqlError>
 
 SqlNoteModel::SqlNoteModel(QObject *parent)
     : QSqlTableModel{parent, SqlNoteModel::makeDatabase()}
@@ -41,11 +42,6 @@ bool SqlNoteModel::setData(const QModelIndex &index, const QVariant &value, int 
 int SqlNoteModel::createNote(const QString& title, const QString& url,
                              const QString& username, const QString& email, const QString& password)
 {
-    if (titleExists(title)) {
-        throw std::runtime_error("A note with such title already exists");
-        return -1;
-    }
-
     auto record = this->record();
     record.remove(0);
     record.setValue("title", title);
@@ -89,13 +85,11 @@ void SqlNoteModel::deleteNote(const int noteId)
     if (!removeRow(row)) {
         throw std::runtime_error("Could not delete a note");
     }
+    select();
 }
 
 void SqlNoteModel::setTitle(const int noteId, const QString& title)
 {
-    if (titleExists(title)) {
-        throw std::runtime_error("Cant set title: Such title exists");
-    }
     setFieldValue(noteId, "title", QVariant{title});
 }
 
@@ -144,6 +138,7 @@ QString SqlNoteModel::getEmail(const int noteId) const
 
 void SqlNoteModel::setPassword(const int noteId, const QString &password)
 {
+    // Encrypt TODO
     setFieldValue(noteId, "password", password);
 }
 
@@ -151,6 +146,7 @@ QString SqlNoteModel::getPassword(const int noteId) const
 {
     auto value = getFieldValue(noteId, "password");
     assert(!value.isNull() && "Could not get password");
+    // Decrypt TODO
     return value.toString();
 }
 
@@ -201,11 +197,14 @@ void SqlNoteModel::setFieldValue(const int noteId, QAnyStringView fieldName, con
         auto record = this->record(row);
         record.setValue(fieldName, fieldValue);
         if (!setRecord(row, record)) {
+            qDebug() << lastError() << "could set";
             QString errorStr = QString{"Could not set %1 with value %2"}.arg(fieldName.toString()).arg(fieldValue.toString());
             throw std::runtime_error(errorStr.toStdString());
         }
+        select();
+        return;
     }
-    qDebug() << "field was not found";
+    qDebug() << "field was not found" << fieldName;
 }
 
 QVariant SqlNoteModel::getFieldValue(const int noteId, QAnyStringView fieldName) const
@@ -229,8 +228,3 @@ void SqlNoteModel::generateRoles()
     }
 }
 
-bool SqlNoteModel::titleExists(QStringView title) const
-{
-    auto start = index(0, fieldIndex("title"));
-    return this->match(start, Qt::EditRole, title.toString()).size() > 0;
-}

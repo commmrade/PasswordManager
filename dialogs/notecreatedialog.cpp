@@ -2,6 +2,7 @@
 #include "ui_notecreatedialog.h"
 #include "../models/notecontroller.h"
 #include <QMessageBox>
+#include "../crypt/passwordgenerator.h"
 
 NoteCreateDialog::NoteCreateDialog(QWidget *parent)
     : QDialog(parent)
@@ -25,5 +26,11 @@ void NoteCreateDialog::on_createButton_clicked()
     auto& controller = NoteController::instance();
     controller.createNote(ui->titleEdit->text(), ui->urlEdit->text(), ui->usernameEdit->text(), ui->emailEdit->text(), ui->passwordEdit->text());
     accept();
+}
+
+
+void NoteCreateDialog::on_pushButton_clicked()
+{
+    ui->passwordEdit->setText(PasswordGenerator::generatePassword());
 }
 

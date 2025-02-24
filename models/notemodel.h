@@ -46,7 +46,7 @@ private:
     void generateRoles();
     QHash<int, QByteArray> roles;
 
-    bool titleExists(QStringView title) const;
+
 signals:
 };
 
