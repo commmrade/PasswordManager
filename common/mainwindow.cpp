@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "../widgets/noteswidget.h"
+#include "noteswidget.h"
 #include <QDialog>
+#include "settingsdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +20,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_settings_triggered()
 {
-    qDebug() << "fuck niggas yo";
+    SettingsDialog dialog;
+    dialog.exec();
 }
 

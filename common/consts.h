@@ -2,7 +2,7 @@
 #define CONSTS_H
 
 namespace PasswordManager {
-    constexpr inline const char* PM_FILENAME = "pmanager.pm";
+    constexpr inline const char* PM_FILENAME = "/pmanager.pm";
 }
 
 

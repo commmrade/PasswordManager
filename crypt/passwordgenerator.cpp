@@ -12,7 +12,7 @@ QString PasswordGenerator::generatePassword(unsigned int len)
     result.reserve(len);
 
     const char digits[] = {"0123456789"};
-    const char symbols[] = {"]+[-)_("};
+    const char symbols[] = {"!@#$%^&*()-_+=[]{}`~;:'\"<>,.?/\\"};
     const char letters[] = {"abcdefghijklmnopqrstuvwxyz"};
 
     std::uniform_int_distribution<> action_dist{1, 100};

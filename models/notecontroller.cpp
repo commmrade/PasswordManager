@@ -1,6 +1,6 @@
 #include "notecontroller.h"
 #include <QDate>
-#include "../crypt/cipher.h"
+#include "cipher.h"
 
 NoteController::NoteController()
 {

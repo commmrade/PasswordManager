@@ -1,8 +1,8 @@
 #include "notecreatedialog.h"
 #include "ui_notecreatedialog.h"
-#include "../models/notecontroller.h"
+#include "notecontroller.h"
 #include <QMessageBox>
-#include "../crypt/passwordgenerator.h"
+#include "passwordgenerator.h"
 
 NoteCreateDialog::NoteCreateDialog(QWidget *parent)
     : QDialog(parent)

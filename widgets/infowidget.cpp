@@ -1,6 +1,6 @@
 #include "infowidget.h"
 #include "ui_infowidget.h"
-#include "../models/notecontroller.h"
+#include "notecontroller.h"
 
 InfoWidget::InfoWidget(QWidget *parent)
     : QWidget(parent)
@@ -41,6 +41,7 @@ void InfoWidget::on_urlEdit_editingFinished()
         return;
     }
     NoteController::instance().setUrl(currentNoteIndex, ui->urlEdit->text());
+    emit urlChanged(currentNoteIndex);
 }
 
 

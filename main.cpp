@@ -6,13 +6,16 @@
 #include <QFile>
 #include "widgets/secretpasswidget.h"
 #include <QSettings>
-
+#include <QStandardPaths>
+#include <QDir>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir().mkdir(appDataLoc);
 
-    QFile file("../../style.qss"); // Save the QSS above in a file named "styles.qss"
+    QFile file(QApplication::applicationDirPath() + "/style.qss");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         a.setStyleSheet(file.readAll());
         file.close();
@@ -20,12 +23,13 @@ int main(int argc, char *argv[])
     a.setStyle(QStyleFactory::create("Fusion"));
 
     QSettings settings;
-    //settings.clear();
+
     auto isFirstTime = settings.value("firstTime").toBool();
     if (!isFirstTime) {
         SecretPassWidget w;
         w.resize(1280, 720);
         w.exec();
+        settings.setValue("firstTime", true);
     }
 
     MainWindow w;

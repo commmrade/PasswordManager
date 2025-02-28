@@ -1,11 +1,11 @@
 #include "secretpasswidget.h"
 #include "ui_secretpasswidget.h"
 #include <QClipboard>
-#include "../crypt/passwordgenerator.h"
+#include "passwordgenerator.h"
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QSettings>
-#include "../dialogs/loaderpasswords.h"
+#include "loaderpasswords.h"
 
 SecretPassWidget::SecretPassWidget(QWidget *parent)
     : QDialog(parent)
@@ -40,7 +40,6 @@ void SecretPassWidget::closeEvent(QCloseEvent *event)
         int ret = msgBox.exec();
         if (ret == QMessageBox::Yes) {
             QSettings settings;
-            settings.setValue("firstTime", true);
             settings.setValue("security/password", ui->passwordEdit->text());
             event->accept();
         } else {

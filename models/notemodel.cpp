@@ -3,9 +3,11 @@
 #include <QSqlRecord>
 #include <QDate>
 #include <QSqlError>
-#include "../common/consts.h"
-
-
+#include "consts.h"
+#include <QStandardPaths>
+#include <QDir>
+#include <QPixmap>
+#include <QIcon>
 
 SqlNoteModel::SqlNoteModel(QObject *parent)
     : QSqlTableModel{parent, SqlNoteModel::makeDatabase()}
@@ -21,14 +23,22 @@ SqlNoteModel::SqlNoteModel(QObject *parent)
 
 QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
 {
-    if (role < Qt::UserRole) {
+    if (role == Qt::DecorationRole) {
+        QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+        QPixmap pixmap;
+        auto record = this->record(index.row());
+        if (!pixmap.load(appDataLoc + "/images/" + record.value("id").toString() + ".ico")) {
+            //qDebug() << "not there why?" << record.value("id").toString();
+            return QVariant{};
+        }
+        return QIcon{pixmap};
+    } else if (role < Qt::UserRole) {
         return QSqlTableModel::data(index, role);
     } else {
         int columnIdx = role - Qt::UserRole - 1;
         QModelIndex modelIndex = this->index(index.row(), columnIdx);
         return QSqlTableModel::data(modelIndex, Qt::DisplayRole);
     }
-
 }
 
 bool SqlNoteModel::setData(const QModelIndex &index, const QVariant &value, int role /* = Qt::EditRole */)
@@ -164,9 +174,10 @@ QDate SqlNoteModel::getCreatedDatetime(const int noteId) const
 
 QSqlDatabase SqlNoteModel::makeDatabase()
 {
+    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
     database.setHostName("klewy");
-    database.setDatabaseName(PasswordManager::PM_FILENAME);
+    database.setDatabaseName(appDataLoc + PasswordManager::PM_FILENAME);
     database.setUserName("root");
     database.setPassword("root"); // TODO: may be set password
 

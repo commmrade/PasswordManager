@@ -5,7 +5,7 @@
 
 
 class InfoWidget;
-
+class IconDownloader;
 namespace Ui {
 class NotesWidget;
 }
@@ -25,9 +25,12 @@ private slots:
 
     void on_deleteButton_clicked();
 
+    void on_url_changed(int id);
+
 private:
     Ui::NotesWidget *ui;
     InfoWidget* infoWidget{nullptr};
+    IconDownloader* downloader{nullptr};
 };
 
 #endif // NOTESWIDGET_H

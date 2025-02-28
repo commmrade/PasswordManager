@@ -38,6 +38,9 @@ private slots:
 private:
     Ui::InfoWidget *ui;
     int currentNoteIndex{-1};
+
+signals:
+    void urlChanged(int id);
 };
 
 #endif // INFOWIDGET_H

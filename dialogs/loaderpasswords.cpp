@@ -3,10 +3,10 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QDir>
-#include "../common/consts.h"
+#include "consts.h"
 #include <QSettings>
 #include <QMessageBox>
-
+#include <QStandardPaths>
 LoaderPasswords::LoaderPasswords(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::LoaderPasswords)
@@ -21,7 +21,7 @@ LoaderPasswords::~LoaderPasswords()
 
 void LoaderPasswords::on_chooseFileButton_clicked()
 {
-    QString filePath = QFileDialog::getOpenFileName(this, "Open password manager file", "/home/", "PM files (*.pm);; All files (*.*)");
+    QString filePath = QFileDialog::getOpenFileName(this, "Open password manager file", QDir::homePath(), "PM files (*.pm);; All files (*.*)");
     ui->chooseFileButton->setText(filePath);
 }
 
@@ -42,7 +42,8 @@ void LoaderPasswords::on_loadButton_clicked()
         return;
     }
 
-    QFile currentFile(PasswordManager::PM_FILENAME);
+    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QFile currentFile(appDataLoc + PasswordManager::PM_FILENAME);
     if (!currentFile.open(QIODevice::WriteOnly)) {
         QMessageBox::warning(nullptr, "Warning", "File in cur dir is not accessible. Perhaps run the app as an administrator", QMessageBox::Ok);
         qDebug() << "Could not open current file";
@@ -52,7 +53,6 @@ void LoaderPasswords::on_loadButton_clicked()
     char buf[256];
     int bytes{0};
     while ((bytes = file.read(buf, 256)) > 0) {
-        qDebug() << bytes;
         currentFile.write(buf, bytes);
     }
     currentFile.flush();
