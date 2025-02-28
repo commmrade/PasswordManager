@@ -25,6 +25,7 @@ private slots:
 private:
     Ui::SecretPassWidget *ui;
     bool isCopied{false};
+    bool isLoaded{false};
 
     void closeEvent(QCloseEvent* event) override;
 };

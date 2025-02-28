@@ -6,29 +6,25 @@
 #include "Note.h"
 #include <QDir>
 #include <QStandardPaths>
-#include "../icondownloader.h"
+#include "../iconmanager.h"
 
 NotesWidget::NotesWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::NotesWidget)
-    , downloader(new IconDownloader(this))
+    , iconManager(new IconManager(this))
 {
     ui->setupUi(this);
     ui->notesView->setModel(NoteController::instance().getModel());
     ui->notesView->setModelColumn(1);
 
+    // Loading icons
+    // for (int i = 0; i < ui->notesView->model()->rowCount(); ++i) {
+    //     auto id = ui->notesView->model()->index(i, 0).data().toInt();
+    //     auto link = ui->notesView->model()->index(i, 2).data().toString();
 
-
-
-
-
-    for (int i = 0; i < ui->notesView->model()->rowCount(); ++i) {
-        auto id = ui->notesView->model()->index(i, 0).data().toInt();
-        auto link = ui->notesView->model()->index(i, 2).data().toString();
-
-        QUrl url = QString(link + "/favicon.ico");
-        downloader->downloadImage(url, id);
-    }
+    //     QUrl url = QString(link + "/favicon.ico");
+    //     iconManager->downloadImage(url, id);
+    // }
 
     infoWidget = new InfoWidget();
     infoWidget->resize(1920, 1080);
@@ -66,7 +62,12 @@ void NotesWidget::on_notesView_clicked(const QModelIndex &index)
 void NotesWidget::on_createButton_clicked()
 {
     NoteCreateDialog dialog(this);
-    dialog.exec();
+    if (dialog.exec() == QDialog::Accepted) {
+        auto &controller = NoteController::instance();
+        auto lastId = controller.getLastInsertId();
+        auto lastUrl = controller.getUrl(lastId);
+        iconManager->downloadImage(lastUrl + "/favicon.ico", lastId);
+    }
 }
 
 void NotesWidget::on_deleteButton_clicked()
@@ -90,5 +91,5 @@ void NotesWidget::on_url_changed(int id)
 
     auto url = NoteController::instance().getUrl(id);
     QUrl urlIcon = QString(url + "/favicon.ico");
-    downloader->downloadImage(urlIcon, id);
+    iconManager->downloadImage(urlIcon, id);
 }

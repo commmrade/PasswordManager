@@ -40,11 +40,18 @@ void SecretPassWidget::closeEvent(QCloseEvent *event)
         int ret = msgBox.exec();
         if (ret == QMessageBox::Yes) {
             QSettings settings;
-            settings.setValue("security/password", ui->passwordEdit->text());
+            settings.setValue("security/password", ui->passwordEdit->text().toUtf8());
             event->accept();
         } else {
             event->ignore();
         }
+    } else {
+        QSettings settings;
+        if (!isLoaded) {
+            settings.setValue("security/password", ui->passwordEdit->text().toUtf8());
+        }
+
+        event->accept();
     }
 }
 
@@ -60,6 +67,7 @@ void SecretPassWidget::on_pushButton_clicked()
     LoaderPasswords dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         isCopied = true;
+        isLoaded = true;
         close();
     }
 }

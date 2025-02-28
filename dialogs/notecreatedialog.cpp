@@ -19,7 +19,6 @@ NoteCreateDialog::~NoteCreateDialog()
 void NoteCreateDialog::on_createButton_clicked()
 {
     if (ui->titleEdit->text().isEmpty() || ui->passwordEdit->text().isEmpty()) {
-        qDebug() << "One of the fields empty...Abort";
         int ret = QMessageBox::warning(this, "Title or password empty", "Please, make sure both fields are filled with text");
         return;
     }

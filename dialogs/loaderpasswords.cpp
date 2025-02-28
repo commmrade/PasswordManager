@@ -61,7 +61,7 @@ void LoaderPasswords::on_loadButton_clicked()
     file.close();
 
     QSettings settings;
-    settings.setValue("security/password", password);
+    settings.setValue("security/password", password.toUtf8());
     accept();
 }
 

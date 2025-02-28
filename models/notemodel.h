@@ -35,7 +35,9 @@ public:
     QString getPassword(const int noteId) const;
     QDate getCreatedDatetime(const int noteId) const;
 
+    int getLastInsertId() const;
 
+    void resetStorage();
 
     static QSqlDatabase makeDatabase();
 

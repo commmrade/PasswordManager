@@ -18,10 +18,11 @@ public:
     ~MainWindow();
 
 private slots:
-
     void on_actionOpen_settings_triggered();
+    void onStorageLoaded();
 
 private:
     Ui::MainWindow *ui;
+
 };
 #endif // MAINWINDOW_H

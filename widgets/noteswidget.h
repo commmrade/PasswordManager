@@ -5,7 +5,7 @@
 
 
 class InfoWidget;
-class IconDownloader;
+class IconManager;
 namespace Ui {
 class NotesWidget;
 }
@@ -30,7 +30,7 @@ private slots:
 private:
     Ui::NotesWidget *ui;
     InfoWidget* infoWidget{nullptr};
-    IconDownloader* downloader{nullptr};
+    IconManager* iconManager{nullptr};
 };
 
 #endif // NOTESWIDGET_H

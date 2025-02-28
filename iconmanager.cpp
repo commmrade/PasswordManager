@@ -1,17 +1,17 @@
-#include "icondownloader.h"
+#include "iconmanager.h"
 #include <QNetworkReply>
 #include <QPixmap>
 #include <QStandardPaths>
 #include <QDir>
 #include <QFile>
 
-IconDownloader::IconDownloader(QObject *parent)
+IconManager::IconManager(QObject *parent)
     : QObject{parent}, manager(new QNetworkAccessManager(this))
 {
 
 }
 
-void IconDownloader::downloadImage(const QUrl &url, int id)
+void IconManager::downloadImage(const QUrl &url, int id)
 {
     QNetworkRequest request(url);
     auto* reply = manager->get(request);

@@ -1,16 +1,16 @@
-#ifndef ICONDOWNLOADER_H
-#define ICONDOWNLOADER_H
+#ifndef ICONMANAGER_H
+#define ICONMANAGER_H
 
 #include <QObject>
 #include <QNetworkAccessManager>
 
-class IconDownloader : public QObject
+class IconManager : public QObject
 {
     Q_OBJECT
 
     QNetworkAccessManager* manager{nullptr};
 public:
-    explicit IconDownloader(QObject *parent = nullptr);
+    explicit IconManager(QObject *parent = nullptr);
 
     void downloadImage(const QUrl& url, int id);
 
@@ -20,4 +20,4 @@ signals:
     void downloadFinished(int id);
 };
 
-#endif // ICONDOWNLOADER_H
+#endif // ICONMANAGER_H

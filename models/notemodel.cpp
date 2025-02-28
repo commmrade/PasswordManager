@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QPixmap>
 #include <QIcon>
+#include <QtLogging>
 
 SqlNoteModel::SqlNoteModel(QObject *parent)
     : QSqlTableModel{parent, SqlNoteModel::makeDatabase()}
@@ -64,8 +65,10 @@ int SqlNoteModel::createNote(const QString& title, const QString& url,
     record.setValue("password", password);
 
     if (!insertRecord(-1, record)) {
-        throw std::runtime_error("Could not create a new note");
+        qWarning("Warning: Could not create a note");
+        return -1;
     }
+    select();
     return this->query().lastInsertId().toInt();
 }
 
@@ -77,7 +80,8 @@ void SqlNoteModel::editNote(const int noteId, const QString &title, const QStrin
     auto startIndex = this->index(0, 0);
     auto modelList = this->match(startIndex, Qt::EditRole, noteId);
     if (modelList.size() <= 0) {
-        throw std::runtime_error("Note doesnt exist");
+        qWarning("Warning: Note doesn't exist, can't edit");
+        return;
     }
     int row = modelList.first().row();
     auto record = this->record(row);
@@ -87,7 +91,7 @@ void SqlNoteModel::editNote(const int noteId, const QString &title, const QStrin
     record.setValue("email", email);
     record.setValue("password", password);
     if (!setRecord(row, record)) {
-        throw std::runtime_error("could not set record in edit note");
+        qWarning("Warning: Could not edit the note");
     }
 }
 
@@ -96,7 +100,7 @@ void SqlNoteModel::deleteNote(const int noteId)
     auto startModel = index(0, fieldIndex("id"));
     auto row = this->match(startModel, Qt::EditRole, noteId)[0].row();
     if (!removeRow(row)) {
-        throw std::runtime_error("Could not delete a note");
+        qWarning("Warning: Could not delete the note");
     }
     select();
 }
@@ -171,6 +175,18 @@ QDate SqlNoteModel::getCreatedDatetime(const int noteId) const
     return date;
 }
 
+int SqlNoteModel::getLastInsertId() const
+{
+    return query().lastInsertId().toInt();
+}
+
+void SqlNoteModel::resetStorage()
+{
+    beginResetModel();
+    select();
+    endResetModel();
+}
+
 
 QSqlDatabase SqlNoteModel::makeDatabase()
 {
@@ -198,7 +214,7 @@ QSqlDatabase SqlNoteModel::makeDatabase()
     QSqlQuery query(creationQuery);
     if (!query.exec()) {
         qDebug() << query.lastError();
-        throw std::runtime_error("Could not create a table damn fuck cock");
+        throw std::runtime_error("Could not create a table");
     }
 
     return database;
@@ -214,7 +230,7 @@ void SqlNoteModel::setFieldValue(const int noteId, QAnyStringView fieldName, con
         if (!setRecord(row, record)) {
             qDebug() << lastError() << "could set";
             QString errorStr = QString{"Could not set %1 with value %2"}.arg(fieldName.toString()).arg(fieldValue.toString());
-            throw std::runtime_error(errorStr.toStdString());
+            qWarning("Warning: " + errorStr);
         }
         select();
         return;

@@ -38,6 +38,11 @@ public:
     QString getPassword(const int noteId) const;
     QDate getCreatedDatetime(const int noteId) const;
 
+    int getLastInsertId() const {
+        return model.getLastInsertId();
+    }
+
+    void resetStorage();
 
     QAbstractItemModel* getModel() {
         return &model;

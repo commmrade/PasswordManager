@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkdir(appDataLoc);
+    QDir().mkdir(appDataLoc + "/images");
 
     QFile file(QApplication::applicationDirPath() + "/style.qss");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {

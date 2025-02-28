@@ -3,6 +3,7 @@
 #include "noteswidget.h"
 #include <QDialog>
 #include "settingsdialog.h"
+#include "notecontroller.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -21,6 +22,12 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionOpen_settings_triggered()
 {
     SettingsDialog dialog;
+    connect(&dialog, &SettingsDialog::storageLoaded, this, &MainWindow::onStorageLoaded);
     dialog.exec();
+}
+
+void MainWindow::onStorageLoaded()
+{
+    NoteController::instance().resetStorage();
 }
 

@@ -43,7 +43,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dialogs/loaderpasswords.h dialogs/loaderpasswords.cpp dialogs/loaderpasswords.ui
         common/consts.h
         dialogs/settingsdialog.h dialogs/settingsdialog.cpp dialogs/settingsdialog.ui
-        icondownloader.h icondownloader.cpp
+        iconmanager.h iconmanager.cpp
     )
 else()
     if(ANDROID)

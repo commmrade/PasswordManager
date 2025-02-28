@@ -79,3 +79,8 @@ QDate NoteController::getCreatedDatetime(const int noteId) const
 {
     return model.getCreatedDatetime(noteId);
 }
+
+void NoteController::resetStorage()
+{
+    model.resetStorage();
+}

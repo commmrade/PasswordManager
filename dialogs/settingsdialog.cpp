@@ -56,6 +56,18 @@ void SettingsDialog::on_resetButton_clicked()
         return;
     }
 
+    QDir dir(appDataLoc);
+    if (!dir.removeRecursively()) {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Warning); // Set the icon to Critical
+        msgBox.setWindowTitle(tr("Error")); // Set the title of the message box
+        msgBox.setText(tr("Application could not be reset.")); // Set the main message
+        msgBox.setStandardButtons(QMessageBox::Ok); // Add an OK button
+        msgBox.setDefaultButton(QMessageBox::Ok); // Set the default button
+        msgBox.exec();
+        return;
+    }
+
     QSettings settings;
     settings.clear();
 
@@ -68,6 +80,7 @@ void SettingsDialog::on_loadButton_clicked()
     LoaderPasswords loader(this);
     if (loader.exec() == QDialog::Accepted) {
         qDebug() << "loaded";
+        emit storageLoaded();
     }
 }
 
