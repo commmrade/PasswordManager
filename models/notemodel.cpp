@@ -230,7 +230,7 @@ void SqlNoteModel::setFieldValue(const int noteId, QAnyStringView fieldName, con
         if (!setRecord(row, record)) {
             qDebug() << lastError() << "could set";
             QString errorStr = QString{"Could not set %1 with value %2"}.arg(fieldName.toString()).arg(fieldValue.toString());
-            qWarning("Warning: " + errorStr);
+            qWarning() << "Warning: " + errorStr;
         }
         select();
         return;

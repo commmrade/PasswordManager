@@ -33,4 +33,10 @@ void IconManager::downloadImage(const QUrl &url, int id)
     });
 }
 
+bool IconManager::hasIcon(int id) const
+{
+    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    return QFile::exists(appDataLoc + "/images/" + QString::number(id) + ".ico");
+}
+
 

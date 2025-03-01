@@ -129,12 +129,12 @@
           <widget class="QComboBox" name="guiTypeBox">
            <item>
             <property name="text">
-             <string>Quick</string>
+             <string>Widgets</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Widgets</string>
+             <string>Quick</string>
             </property>
            </item>
           </widget>

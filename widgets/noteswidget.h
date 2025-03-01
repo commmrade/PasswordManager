@@ -31,6 +31,9 @@ private:
     Ui::NotesWidget *ui;
     InfoWidget* infoWidget{nullptr};
     IconManager* iconManager{nullptr};
+
+
+    void loadIcons();
 };
 
 #endif // NOTESWIDGET_H

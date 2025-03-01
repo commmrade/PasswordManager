@@ -21,7 +21,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpen_settings_triggered()
 {
-    SettingsDialog dialog;
+    SettingsDialog dialog(this);
     connect(&dialog, &SettingsDialog::storageLoaded, this, &MainWindow::onStorageLoaded);
     dialog.exec();
 }

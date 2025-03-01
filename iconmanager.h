@@ -14,6 +14,8 @@ public:
 
     void downloadImage(const QUrl& url, int id);
 
+
+    bool hasIcon(int id) const;
 public slots:
 
 signals:
