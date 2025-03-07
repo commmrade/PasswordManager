@@ -19,7 +19,7 @@ public:
 public slots:
 
 signals:
-    void downloadFinished(int id);
+
 };
 
 #endif // ICONMANAGER_H

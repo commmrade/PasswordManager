@@ -50,7 +50,6 @@ void SecretPassWidget::closeEvent(QCloseEvent *event)
         if (!isLoaded) {
             settings.setValue("security/password", ui->passwordEdit->text().toUtf8());
         }
-
         event->accept();
     }
 }

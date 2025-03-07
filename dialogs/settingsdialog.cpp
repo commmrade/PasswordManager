@@ -14,6 +14,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     , ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
+    // Loading settings...
+    // ui->languageBox->setCurrentText("Russian");
 }
 
 SettingsDialog::~SettingsDialog()
@@ -33,10 +35,8 @@ void SettingsDialog::on_guiTypeBox_activated(int index)
 void SettingsDialog::on_languageBox_activated(int index)
 {
     QString language = ui->languageBox->itemText(index);
-    qDebug() << language;
     QSettings settings;
     settings.setValue("gui/language", language);
-    qDebug() << "change gui interface in runtime";
 }
 
 
@@ -55,20 +55,8 @@ void SettingsDialog::on_resetButton_clicked()
 
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QFile file(appDataLoc + PasswordManager::PM_FILENAME);
-
-    if (!file.remove()) {
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle(tr("Error"));
-        msgBox.setText(tr("Application could not be reset."));
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.setDefaultButton(QMessageBox::Ok);
-        msgBox.exec();
-        return;
-    }
-
     QDir dir(appDataLoc);
-    if (!dir.removeRecursively()) {
+    if (!file.remove() || !dir.removeRecursively()) {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle(tr("Error"));
@@ -78,7 +66,6 @@ void SettingsDialog::on_resetButton_clicked()
         msgBox.exec();
         return;
     }
-
     QSettings settings;
     settings.clear();
 
@@ -89,17 +76,13 @@ void SettingsDialog::on_resetButton_clicked()
 void SettingsDialog::on_loadButton_clicked()
 {
     LoaderPasswords loader(this);
-    if (loader.exec() == QDialog::Accepted) {
-        qDebug() << "loaded";
-        emit storageLoaded();
-    }
+    loader.exec();
 }
 
 
 void SettingsDialog::on_exportButton_clicked()
 {
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-
 
     QString saveFilePath = QFileDialog::getSaveFileName(this, tr("Save storage file"), QDir::homePath(), "PM files (*.pm)");
     QFile curStorageFile(appDataLoc + PasswordManager::PM_FILENAME);
@@ -112,15 +95,13 @@ void SettingsDialog::on_exportButton_clicked()
         msgBox.exec();
         return;
     }
-    if (QFile::exists(saveFilePath)) {
-        if (!QFile::remove(saveFilePath)) {
-            QMessageBox msgBox;
-            msgBox.setWindowTitle("Error");
-            msgBox.setText("Could not save storage file:");
-            msgBox.setIcon(QMessageBox::Critical);
-            msgBox.setStandardButtons(QMessageBox::Ok);
-            msgBox.exec();
-        }
+    if (QFile::exists(saveFilePath) && !QFile::remove(saveFilePath)) {
+        QMessageBox msgBox;
+        msgBox.setWindowTitle("Error");
+        msgBox.setText("Could not save storage file");
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.exec();
     }
     if (!curStorageFile.copy(saveFilePath)) { // File is closed before being copied
         QMessageBox msgBox;

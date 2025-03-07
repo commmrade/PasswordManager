@@ -22,13 +22,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionOpen_settings_triggered()
 {
     SettingsDialog dialog(this);
-    // dialog.resize(900, 600);
-    connect(&dialog, &SettingsDialog::storageLoaded, this, &MainWindow::onStorageLoaded);
     dialog.exec();
 }
 
-void MainWindow::onStorageLoaded()
-{
-    NoteController::instance().resetStorage();
-}
 

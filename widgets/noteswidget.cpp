@@ -6,7 +6,7 @@
 #include "Note.h"
 #include <QDir>
 #include <QStandardPaths>
-#include "../iconmanager.h"
+#include "iconmanager.h"
 
 NotesWidget::NotesWidget(QWidget *parent)
     : QWidget(parent)
@@ -78,7 +78,6 @@ void NotesWidget::on_deleteButton_clicked()
 
 void NotesWidget::on_url_changed(int id)
 {
-
     auto url = NoteController::instance().getUrl(id);
     QString urlIcon{url + "/favicon.ico"};
     iconManager->downloadImage(urlIcon, id);

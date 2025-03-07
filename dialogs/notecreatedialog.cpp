@@ -22,11 +22,16 @@ void NoteCreateDialog::on_createButton_clicked()
         int ret = QMessageBox::warning(this, "Title or password empty", "Please, make sure both fields are filled with text");
         return;
     }
-    auto& controller = NoteController::instance();
-    controller.createNote(ui->titleEdit->text(), ui->urlEdit->text(), ui->usernameEdit->text(), ui->emailEdit->text(), ui->passwordEdit->text());
+    QString url = ui->urlEdit->text();
+    NoteController::instance().createNote(
+        ui->titleEdit->text(),
+        url,
+        ui->usernameEdit->text(),
+        ui->emailEdit->text(),
+        ui->passwordEdit->text()
+        );
     accept();
 }
-
 
 void NoteCreateDialog::on_pushButton_clicked()
 {

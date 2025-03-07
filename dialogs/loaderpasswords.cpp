@@ -7,6 +7,9 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QStandardPaths>
+
+#include "notecontroller.h"
+
 LoaderPasswords::LoaderPasswords(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::LoaderPasswords)
@@ -62,6 +65,7 @@ void LoaderPasswords::on_loadButton_clicked()
 
     QSettings settings;
     settings.setValue("security/password", password.toUtf8());
+    NoteController::instance().resetStorage();
     accept();
 }
 

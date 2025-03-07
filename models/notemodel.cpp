@@ -13,31 +13,32 @@
 SqlNoteModel::SqlNoteModel(QObject *parent)
     : QSqlTableModel{parent, SqlNoteModel::makeDatabase()}
 {
-    setEditStrategy(QSqlTableModel::OnFieldChange);
-    setTable("notes");
+    QSqlTableModel::setEditStrategy(QSqlTableModel::OnFieldChange);
+    QSqlTableModel::setTable("notes");
     generateRoles();
-    if (!select()) {
+    if (!QSqlTableModel::select()) {
         throw std::runtime_error("Data could not be set in the model");
     }
-
 }
 
 QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
 {
     if (role == Qt::DecorationRole) {
-        QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+        const QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+        const auto record = this->record(index.row());
+
         QPixmap pixmap;
-        auto record = this->record(index.row());
-        if (!pixmap.load(appDataLoc + "/images/" + record.value("id").toString() + ".ico")) {
-            //qDebug() << "not there why?" << record.value("id").toString();
+        const QDir appDataDir(appDataLoc);
+        const QString iconPath = appDataDir.filePath("images/" + record.value("id").toString() + ".ico");
+        if (!pixmap.load(iconPath)) {
             return QVariant{};
         }
         return QIcon{pixmap};
     } else if (role < Qt::UserRole) {
         return QSqlTableModel::data(index, role);
     } else {
-        int columnIdx = role - Qt::UserRole - 1;
-        QModelIndex modelIndex = this->index(index.row(), columnIdx);
+        const int columnIdx = role - Qt::UserRole - 1;
+        const QModelIndex modelIndex = this->index(index.row(), columnIdx);
         return QSqlTableModel::data(modelIndex, Qt::DisplayRole);
     }
 }
@@ -47,8 +48,8 @@ bool SqlNoteModel::setData(const QModelIndex &index, const QVariant &value, int 
     if (role == Qt::EditRole) {
         return QSqlTableModel::setData(index, value, role);
     } else {
-        int columnIdx = role - Qt::UserRole - 1;
-        QModelIndex modelIndex = this->index(index.row(), columnIdx);
+        const int columnIdx = role - Qt::UserRole - 1;
+        const QModelIndex modelIndex = this->index(index.row(), columnIdx);
         return QSqlTableModel::setData(modelIndex, value, Qt::EditRole);
     }
 }
@@ -77,13 +78,13 @@ void SqlNoteModel::editNote(const int noteId, const QString &title, const QStrin
                             const QString &password)
 {
     // TODO: add check if note exists
-    auto startIndex = this->index(0, 0);
+    const auto startIndex = this->index(0, 0);
     auto modelList = this->match(startIndex, Qt::EditRole, noteId);
     if (modelList.size() <= 0) {
         qWarning("Warning: Note doesn't exist, can't edit");
         return;
     }
-    int row = modelList.first().row();
+    const int row = modelList.first().row();
     auto record = this->record(row);
     record.setValue("title", title);
     record.setValue("url", url);
@@ -97,9 +98,8 @@ void SqlNoteModel::editNote(const int noteId, const QString &title, const QStrin
 
 void SqlNoteModel::deleteNote(const int noteId)
 {
-    auto startModel = index(0, fieldIndex("id"));
-    auto row = this->match(startModel, Qt::EditRole, noteId)[0].row();
-    if (!removeRow(row)) {
+    const auto startModel = index(0, fieldIndex("id"));
+    if (const auto row = this->match(startModel, Qt::EditRole, noteId)[0].row(); !removeRow(row)) {
         qWarning("Warning: Could not delete the note");
     }
     select();
@@ -112,7 +112,7 @@ void SqlNoteModel::setTitle(const int noteId, const QString& title)
 
 QString SqlNoteModel::getTitle(const int noteId) const
 {
-    auto value = getFieldValue(noteId, "title");
+    const auto value = getFieldValue(noteId, "title");
     assert(!value.isNull() && "Could note get title");
     return value.toString();
 }
@@ -124,7 +124,7 @@ void SqlNoteModel::setUrl(const int noteId, const QString& url)
 
 QString SqlNoteModel::getUrl(const int noteId) const
 {
-    auto value = getFieldValue(noteId, "url");
+    const auto value = getFieldValue(noteId, "url");
     assert(!value.isNull() && "Could note get url");
     return value.toString();
 }
@@ -136,7 +136,7 @@ void SqlNoteModel::setUsername(const int noteId, const QString &username)
 
 QString SqlNoteModel::getUsername(const int noteId) const
 {
-    auto value = getFieldValue(noteId, "username");
+    const auto value = getFieldValue(noteId, "username");
     assert(!value.isNull() && "Could note get username");
     return value.toString();
 }
@@ -148,7 +148,7 @@ void SqlNoteModel::setEmail(const int noteId, const QString &email)
 
 QString SqlNoteModel::getEmail(const int noteId) const
 {
-    auto value = getFieldValue(noteId, "email");
+    const auto value = getFieldValue(noteId, "email");
     assert(!value.isNull() && "Could note get email");
     return value.toString();
 }
@@ -161,7 +161,7 @@ void SqlNoteModel::setPassword(const int noteId, const QString &password)
 
 QString SqlNoteModel::getPassword(const int noteId) const
 {
-    auto value = getFieldValue(noteId, "password");
+    const auto value = getFieldValue(noteId, "password");
     assert(!value.isNull() && "Could not get password");
     // Decrypt TODO
     return value.toString();
@@ -169,7 +169,7 @@ QString SqlNoteModel::getPassword(const int noteId) const
 
 QDate SqlNoteModel::getCreatedDatetime(const int noteId) const
 {
-    auto value = getFieldValue(noteId, "created_at");
+    const auto value = getFieldValue(noteId, "created_at");
     assert(!value.isNull() && "Could not get created_at");
     QDate date = QDate::fromString(value.toString(), Qt::DateFormat::ISODate);
     return date;
@@ -190,7 +190,7 @@ void SqlNoteModel::resetStorage()
 
 QSqlDatabase SqlNoteModel::makeDatabase()
 {
-    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    const QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
     database.setHostName("klewy");
     database.setDatabaseName(appDataLoc + PasswordManager::PM_FILENAME);
@@ -201,7 +201,7 @@ QSqlDatabase SqlNoteModel::makeDatabase()
         throw std::runtime_error("Could not setup a connection with the database");
     }
 
-    QString creationQuery =
+    const QString creationQuery =
         "CREATE TABLE IF NOT EXISTS notes ("
         "    id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "    title TEXT NOT NULL,"
@@ -211,8 +211,7 @@ QSqlDatabase SqlNoteModel::makeDatabase()
         "    password TEXT NOT NULL,"
         "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
         ");";
-    QSqlQuery query(creationQuery);
-    if (!query.exec()) {
+    if (QSqlQuery query(creationQuery); !query.exec()) {
         qDebug() << query.lastError();
         throw std::runtime_error("Could not create a table");
     }
@@ -222,14 +221,14 @@ QSqlDatabase SqlNoteModel::makeDatabase()
 
 void SqlNoteModel::setFieldValue(const int noteId, QAnyStringView fieldName, const QVariant &fieldValue)
 {
-    auto startIndex = index(0, 0);
+    const auto startIndex = index(0, 0);
     if (auto modelList = this->match(startIndex, Qt::EditRole, noteId); modelList.size() > 0) {
-        int row = modelList.first().row();
+        const int row = modelList.first().row();
         auto record = this->record(row);
         record.setValue(fieldName, fieldValue);
         if (!setRecord(row, record)) {
             qDebug() << lastError() << "could set";
-            QString errorStr = QString{"Could not set %1 with value %2"}.arg(fieldName.toString()).arg(fieldValue.toString());
+            const QString errorStr = QString{"Could not set %1 with value %2"}.arg(fieldName.toString()).arg(fieldValue.toString());
             qWarning() << "Warning: " + errorStr;
         }
         select();
@@ -240,10 +239,10 @@ void SqlNoteModel::setFieldValue(const int noteId, QAnyStringView fieldName, con
 
 QVariant SqlNoteModel::getFieldValue(const int noteId, QAnyStringView fieldName) const
 {
-    auto startIndex = index(0, 0);
+    const auto startIndex = index(0, 0);
     if (auto modelList = this->match(startIndex, Qt::EditRole, noteId); modelList.size() != 0) {
-        int row = modelList[0].row();
-        auto record = this->record(row);
+        const int row = modelList[0].row();
+        const auto record = this->record(row);
         QVariant value = record.value(fieldName);
         return value;
     }
@@ -253,7 +252,7 @@ QVariant SqlNoteModel::getFieldValue(const int noteId, QAnyStringView fieldName)
 void SqlNoteModel::generateRoles()
 {
     roles.clear();
-    int nCols = this->columnCount();
+    int const nCols = this->columnCount();
     for (auto i = 0; i < nCols; ++i) {
         roles[Qt::UserRole + i + 1] = QVariant(headerData(i, Qt::Horizontal).toString()).toByteArray();
     }

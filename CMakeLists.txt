@@ -44,7 +44,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dialogs/loaderpasswords.h dialogs/loaderpasswords.cpp dialogs/loaderpasswords.ui
         common/consts.h
         dialogs/settingsdialog.h dialogs/settingsdialog.cpp dialogs/settingsdialog.ui
-        iconmanager.h iconmanager.cpp
+        net/iconmanager.h net/iconmanager.cpp
     )
 else()
     if(ANDROID)
@@ -70,6 +70,7 @@ include_directories(dialogs)
 include_directories(widgets)
 include_directories(crypt)
 include_directories(models)
+include_directories(net)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

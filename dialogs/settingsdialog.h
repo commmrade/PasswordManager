@@ -34,9 +34,6 @@ private slots:
     void on_exportButton_clicked();
 
 
-signals:
-    void storageLoaded();
-
 private:
     Ui::SettingsDialog *ui;
 };

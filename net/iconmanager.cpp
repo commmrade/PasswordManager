@@ -34,8 +34,7 @@ void IconManager::downloadImage(QString urlStr, int id)
             return;
         }
         pixmap.save(appDataLoc + "/images/" + QString::number(id) + ".ico");
-        qDebug() << "saved?";
-        emit downloadFinished(id);
+        qDebug() << "saved icon";
         reply->deleteLater();
     });
 }
