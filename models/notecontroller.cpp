@@ -1,5 +1,7 @@
 #include "notecontroller.h"
 #include <QDate>
+#include "cipher.h"
+
 NoteController::NoteController()
 {
 
@@ -7,7 +9,8 @@ NoteController::NoteController()
 
 int NoteController::createNote(const QString &title, const QString &url, const QString &username, const QString &email, const QString &password)
 {
-    return model.createNote(title, url, username, email, password);
+    auto passwordEncrypted = Cipher::instance().aesEncrypt(password);
+    return model.createNote(title, url, username, email, passwordEncrypted);
 }
 
 void NoteController::editNote(const int noteId, const QString &title, const QString &url, const QString &username, const QString &email, const QString &password)
@@ -62,15 +65,22 @@ QString NoteController::getEmail(const int noteId) const
 
 void NoteController::setPassword(const int noteId, const QString &password)
 {
-    model.setPassword(noteId, password);
+    QString passwordEncrypted = Cipher::instance().aesEncrypt(password);
+    model.setPassword(noteId, passwordEncrypted);
 }
 
 QString NoteController::getPassword(const int noteId) const
 {
-    return model.getPassword(noteId);
+    QString passwordEncrypted = model.getPassword(noteId);
+    return Cipher::instance().aesDecrypt(passwordEncrypted);
 }
 
 QDate NoteController::getCreatedDatetime(const int noteId) const
 {
     return model.getCreatedDatetime(noteId);
+}
+
+void NoteController::resetStorage()
+{
+    model.resetStorage();
 }

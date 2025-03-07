@@ -18,8 +18,9 @@ public:
     ~MainWindow();
 
 private slots:
-
+    void on_actionOpen_settings_triggered();
 private:
     Ui::MainWindow *ui;
+
 };
 #endif // MAINWINDOW_H

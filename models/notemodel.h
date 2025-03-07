@@ -35,7 +35,9 @@ public:
     QString getPassword(const int noteId) const;
     QDate getCreatedDatetime(const int noteId) const;
 
+    int getLastInsertId() const;
 
+    void resetStorage();
 
     static QSqlDatabase makeDatabase();
 
@@ -46,7 +48,7 @@ private:
     void generateRoles();
     QHash<int, QByteArray> roles;
 
-    bool titleExists(QStringView title) const;
+
 signals:
 };
 

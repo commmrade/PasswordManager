@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "../widgets/noteswidget.h"
+#include "noteswidget.h"
+#include <QDialog>
+#include "settingsdialog.h"
+#include "notecontroller.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -13,4 +17,12 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+void MainWindow::on_actionOpen_settings_triggered()
+{
+    SettingsDialog dialog(this);
+    dialog.exec();
+}
+
 

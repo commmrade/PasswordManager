@@ -15,12 +15,13 @@ class NoteCreateDialog : public QDialog
 public:
     explicit NoteCreateDialog(QWidget *parent = nullptr);
     ~NoteCreateDialog();
-
 private slots:
     void on_createButton_clicked();
 
-private:
+    void on_pushButton_clicked();
 
+
+private:
     Ui::NoteCreateWidget *ui;
 };
 
