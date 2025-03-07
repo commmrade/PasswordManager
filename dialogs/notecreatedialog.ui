@@ -132,7 +132,7 @@
           </font>
          </property>
          <property name="text">
-          <string>(enter a link with http/https to have an icon)</string>
+          <string/>
          </property>
         </widget>
        </item>

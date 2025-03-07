@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     QDir().mkdir(appDataLoc);
     QDir().mkdir(appDataLoc + "/images");
 
-    QFile file(QApplication::applicationDirPath() + "/style.qss");
+    QFile file(QApplication::applicationDirPath() + "/general.qss");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         a.setStyleSheet(file.readAll());
         file.close();
