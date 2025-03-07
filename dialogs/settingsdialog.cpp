@@ -42,16 +42,27 @@ void SettingsDialog::on_languageBox_activated(int index)
 
 void SettingsDialog::on_resetButton_clicked()
 {
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("Confirm Reset"));
+    msgBox.setText(tr("Are you sure you want to reset the app?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    if (msgBox.exec() == QMessageBox::No) {
+        qDebug() << "reset cancelled";
+        return;
+    }
+
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QFile file(appDataLoc + PasswordManager::PM_FILENAME);
 
     if (!file.remove()) {
         QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Warning); // Set the icon to Critical
-        msgBox.setWindowTitle(tr("Error")); // Set the title of the message box
-        msgBox.setText(tr("Application could not be reset.")); // Set the main message
-        msgBox.setStandardButtons(QMessageBox::Ok); // Add an OK button
-        msgBox.setDefaultButton(QMessageBox::Ok); // Set the default button
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setText(tr("Application could not be reset."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
         return;
     }
@@ -59,11 +70,11 @@ void SettingsDialog::on_resetButton_clicked()
     QDir dir(appDataLoc);
     if (!dir.removeRecursively()) {
         QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Warning); // Set the icon to Critical
-        msgBox.setWindowTitle(tr("Error")); // Set the title of the message box
-        msgBox.setText(tr("Application could not be reset.")); // Set the main message
-        msgBox.setStandardButtons(QMessageBox::Ok); // Add an OK button
-        msgBox.setDefaultButton(QMessageBox::Ok); // Set the default button
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setText(tr("Application could not be reset."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
         return;
     }

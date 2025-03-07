@@ -19,7 +19,6 @@ NotesWidget::NotesWidget(QWidget *parent)
 
     loadIcons(); // Downloads icons in case if STORAGE was loaded from somewhere
     infoWidget = new InfoWidget();
-    infoWidget->resize(1920, 1080);
     ui->stackedWidget->addWidget(infoWidget);
     connect(infoWidget, &InfoWidget::urlChanged, this, &NotesWidget::on_url_changed);
 }
@@ -81,7 +80,7 @@ void NotesWidget::on_url_changed(int id)
 {
 
     auto url = NoteController::instance().getUrl(id);
-    QUrl urlIcon = QString(url + "/favicon.ico");
+    QString urlIcon{url + "/favicon.ico"};
     iconManager->downloadImage(urlIcon, id);
 }
 
@@ -92,7 +91,7 @@ void NotesWidget::loadIcons()
         auto id = ui->notesView->model()->index(i, 0).data().toInt();
         if (!iconManager->hasIcon(id)) {
             auto link = ui->notesView->model()->index(i, 2).data().toString();
-            QUrl url = QString(link + "/favicon.ico");
+            QString url{link + "/favicon.ico"};
             iconManager->downloadImage(url, id);
         }
     }

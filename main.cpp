@@ -28,13 +28,11 @@ int main(int argc, char *argv[])
     auto isFirstTime = settings.value("firstTime").toBool();
     if (!isFirstTime) {
         SecretPassWidget w;
-        w.resize(1280, 720);
         w.exec();
         settings.setValue("firstTime", true);
     }
 
     MainWindow w;
-    w.resize(1920, 1080);
     w.show();
     return a.exec();
 }

@@ -12,7 +12,7 @@ class IconManager : public QObject
 public:
     explicit IconManager(QObject *parent = nullptr);
 
-    void downloadImage(const QUrl& url, int id);
+    void downloadImage(QString urlStr, int id);
 
 
     bool hasIcon(int id) const;
