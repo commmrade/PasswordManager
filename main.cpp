@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     a.setStyle(QStyleFactory::create("Fusion"));
 
     QSettings settings;
+    // Handle settings like language, ui type and etc.
 
     auto isFirstTime = settings.value("firstTime").toBool();
     if (!isFirstTime) {

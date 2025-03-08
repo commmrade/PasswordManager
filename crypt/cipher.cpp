@@ -49,7 +49,7 @@ QString Cipher::aesDecrypt(const QString &encryptedText)
         CryptoPP::StringSource(cipher, true, new CryptoPP::StreamTransformationFilter(d, new CryptoPP::StringSink(output)));
     } catch (CryptoPP::Exception &exception) {
         qDebug() << "Decrypting" << exception.what();
-        // TODO: Meang password is incorrect
+        // TODO: Password is incorrect, propose to reset the app
     }
     return QString::fromStdString(output);
 }

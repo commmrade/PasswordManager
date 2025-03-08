@@ -3,7 +3,7 @@
 
 #include <QSqlTableModel>
 #include <QHash>
-
+#include <QCache>
 
 class SqlNoteModel : public QSqlTableModel
 {
@@ -48,6 +48,7 @@ private:
     void generateRoles();
     QHash<int, QByteArray> roles;
 
+    mutable QCache<int, QByteArray> icons;
 
 signals:
 };

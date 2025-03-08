@@ -78,6 +78,7 @@ void NotesWidget::on_deleteButton_clicked()
 
 void NotesWidget::on_url_changed(int id)
 {
+    iconManager->deleteIcon(id);
     auto url = NoteController::instance().getUrl(id);
     QString urlIcon{url + "/favicon.ico"};
     iconManager->downloadImage(urlIcon, id);

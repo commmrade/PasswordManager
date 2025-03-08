@@ -24,7 +24,7 @@ LoaderPasswords::~LoaderPasswords()
 
 void LoaderPasswords::on_chooseFileButton_clicked()
 {
-    QString filePath = QFileDialog::getOpenFileName(this, "Open password manager file", QDir::homePath(), "PM files (*.pm);; All files (*.*)");
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Open password manager file"), QDir::homePath(), "PM files (*.pm);; All files (*.*)");
     ui->chooseFileButton->setText(filePath);
 }
 
@@ -34,21 +34,21 @@ void LoaderPasswords::on_loadButton_clicked()
     QString loadFromPath = ui->chooseFileButton->text();
     QString password = ui->passwordEdit->text();
     if (loadFromPath.isEmpty() || password.isEmpty()) {
-        QMessageBox::warning(nullptr, "Warning", "Path/Password is empty", QMessageBox::Ok);
+        QMessageBox::warning(nullptr, tr("Warning"), tr("Path/Password is empty"), QMessageBox::Ok);
         return;
     }
 
     QFile file(loadFromPath);
     if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "Could not open";
-        QMessageBox::warning(nullptr, "Warning", "File you entered is not accessible", QMessageBox::Ok);
+        qDebug() << "Could not open load from storage";
+        QMessageBox::warning(nullptr, tr("Warning"), tr("File you entered is not accessible"), QMessageBox::Ok);
         return;
     }
 
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QFile currentFile(appDataLoc + PasswordManager::PM_FILENAME);
     if (!currentFile.open(QIODevice::WriteOnly)) {
-        QMessageBox::warning(nullptr, "Warning", "File in cur dir is not accessible. Perhaps run the app as an administrator", QMessageBox::Ok);
+        QMessageBox::warning(nullptr, tr("Warning"), tr("File in cur dir is not accessible. Perhaps run the app as an administrator"), QMessageBox::Ok);
         qDebug() << "Could not open current file";
         return;
     }

@@ -32,8 +32,8 @@ void SecretPassWidget::closeEvent(QCloseEvent *event)
     if (!isCopied) {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Question);
-        msgBox.setWindowTitle("Confirmation");
-        msgBox.setText("Do you really want to close this? Save the password!");
+        msgBox.setWindowTitle(tr("Confirmation"));
+        msgBox.setText(tr("Do you really want to close this? Save the password!"));
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
         msgBox.setDefaultButton(QMessageBox::No);
 

@@ -7,12 +7,14 @@
 class IconManager : public QObject
 {
     Q_OBJECT
+    const static inline int MAX_DOWNLOAD_SIZE = 100000;
 
     QNetworkAccessManager* manager{nullptr};
 public:
     explicit IconManager(QObject *parent = nullptr);
 
     void downloadImage(QString urlStr, int id);
+    void deleteIcon(int id);
 
 
     bool hasIcon(int id) const;

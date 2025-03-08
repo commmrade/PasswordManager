@@ -9,7 +9,7 @@
 #include <QPixmap>
 #include <QIcon>
 #include <QtLogging>
-
+#include <QBuffer>
 SqlNoteModel::SqlNoteModel(QObject *parent)
     : QSqlTableModel{parent, SqlNoteModel::makeDatabase()}
 {
@@ -24,16 +24,34 @@ SqlNoteModel::SqlNoteModel(QObject *parent)
 QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
 {
     if (role == Qt::DecorationRole) {
-        const QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
         const auto record = this->record(index.row());
+        {
+            QByteArray* pixmapBytes = icons.object(record.value("id").toInt());
+            if (pixmapBytes) {
+                QPixmap pixmap;
+                if (!pixmap.loadFromData(*pixmapBytes, "png")) {
+                    return {};
+                }
+                return QIcon{pixmap};
+            }
+        }
 
+        const QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
         QPixmap pixmap;
         const QDir appDataDir(appDataLoc);
         const QString iconPath = appDataDir.filePath("images/" + record.value("id").toString() + ".ico");
         if (!pixmap.load(iconPath)) {
             return QVariant{};
         }
-        return QIcon{pixmap};
+
+        auto* byteArray = new QByteArray;
+        QBuffer buffer(byteArray);
+        buffer.open(QIODevice::WriteOnly);
+        pixmap.save(&buffer, "png");
+        buffer.close();
+
+        icons.insert(record.value("id").toInt(), byteArray);
+        return QVariant{QIcon{pixmap}};
     } else if (role < Qt::UserRole) {
         return QSqlTableModel::data(index, role);
     } else {

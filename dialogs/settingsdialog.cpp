@@ -15,6 +15,13 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     ui->setupUi(this);
     // Loading settings...
+    QSettings settings;
+    QString language = settings.value("gui/language").isValid() ? settings.value("gui/language").toString() : QString("English");
+    ui->languageBox->setCurrentText(language);
+
+    QString guiType = settings.value("gui/type").isValid() ? settings.value("gui/type").toString() : QString("Widgets");
+    ui->guiTypeBox->setCurrentText(guiType);
+
     // ui->languageBox->setCurrentText("Russian");
 }
 
@@ -49,7 +56,6 @@ void SettingsDialog::on_resetButton_clicked()
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
     if (msgBox.exec() == QMessageBox::No) {
-        qDebug() << "reset cancelled";
         return;
     }
 
@@ -88,8 +94,8 @@ void SettingsDialog::on_exportButton_clicked()
     QFile curStorageFile(appDataLoc + PasswordManager::PM_FILENAME);
     if (!curStorageFile.open(QIODevice::ReadOnly)) {
         QMessageBox msgBox;
-        msgBox.setWindowTitle("Error");
-        msgBox.setText("Could not open file:");
+        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setText(tr("Could not open storage file"));
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
@@ -97,16 +103,16 @@ void SettingsDialog::on_exportButton_clicked()
     }
     if (QFile::exists(saveFilePath) && !QFile::remove(saveFilePath)) {
         QMessageBox msgBox;
-        msgBox.setWindowTitle("Error");
-        msgBox.setText("Could not save storage file");
+        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setText(tr("Could not save storage file"));
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
     }
     if (!curStorageFile.copy(saveFilePath)) { // File is closed before being copied
         QMessageBox msgBox;
-        msgBox.setWindowTitle("Error");
-        msgBox.setText("Could not save storage file:");
+        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setText(tr("Could not save storage file"));
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();

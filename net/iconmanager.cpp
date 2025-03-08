@@ -24,17 +24,30 @@ void IconManager::downloadImage(QString urlStr, int id)
     }
     QNetworkRequest request(url);
     auto* reply = manager->get(request);
-    QObject::connect(reply, &QNetworkReply::finished, this, [this, reply, id]{
-        QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-        QFile::remove(appDataLoc + "/images/" + QString::number(id) + ".ico");
-        QPixmap pixmap;
-        if (!pixmap.loadFromData(reply->readAll())) {
-            qDebug() << "The return from the url is not an image";
-            reply->deleteLater();
-            return;
+
+
+   QObject::connect(reply, &QNetworkReply::downloadProgress, this, [this, reply] (qint64 bytesReceived, qint64 bytesTotal) {
+       qDebug() << "Bytes received: " << bytesReceived;
+        if (bytesReceived > MAX_DOWNLOAD_SIZE) {
+            reply->abort();
         }
-        pixmap.save(appDataLoc + "/images/" + QString::number(id) + ".ico");
-        qDebug() << "saved icon";
+   });
+
+    QObject::connect(reply, &QNetworkReply::finished, this, [this, reply, id]{
+        if (reply->error() == QNetworkReply::NoError) {
+            QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+            QFile::remove(appDataLoc + "/images/" + QString::number(id) + ".ico");
+            QPixmap pixmap;
+            if (!pixmap.loadFromData(reply->readAll())) {
+                qDebug() << "The return from the url is not an image";
+                reply->deleteLater();
+                return;
+            }
+            pixmap.save(appDataLoc + "/images/" + QString::number(id) + ".ico");
+            qDebug() << "saved icon";
+        } else {
+            qDebug() << "Download failed" << reply->errorString();
+        }
         reply->deleteLater();
     });
 }
@@ -43,6 +56,14 @@ bool IconManager::hasIcon(int id) const
 {
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     return QFile::exists(appDataLoc + "/images/" + QString::number(id) + ".ico");
+}
+
+void IconManager::deleteIcon(int id) {
+    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir appDataDir{appDataLoc};
+    if (!QFile::remove(appDataDir.filePath("images/" + QString::number(id) + ".ico"))) {
+        qDebug() << "Could not remove the icon";
+    }
 }
 
 

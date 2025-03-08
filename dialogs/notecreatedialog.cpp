@@ -19,7 +19,7 @@ NoteCreateDialog::~NoteCreateDialog()
 void NoteCreateDialog::on_createButton_clicked()
 {
     if (ui->titleEdit->text().isEmpty() || ui->passwordEdit->text().isEmpty()) {
-        int ret = QMessageBox::warning(this, "Title or password empty", "Please, make sure both fields are filled with text");
+        int ret = QMessageBox::warning(this, tr("Title or password empty"), tr("Please, make sure both fields are filled with text"));
         return;
     }
     QString url = ui->urlEdit->text();
