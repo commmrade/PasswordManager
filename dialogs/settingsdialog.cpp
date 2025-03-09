@@ -8,6 +8,8 @@
 #include "loaderpasswords.h"
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QApplication>
+
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -44,6 +46,16 @@ void SettingsDialog::on_languageBox_activated(int index)
     QString language = ui->languageBox->itemText(index);
     QSettings settings;
     settings.setValue("gui/language", language);
+
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("Language changed"));
+    msgBox.setText(tr("Restart the app to apply settings?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    if (msgBox.exec() == QMessageBox::Yes) {
+        QApplication::quit();
+    }
 }
 
 
@@ -91,6 +103,10 @@ void SettingsDialog::on_exportButton_clicked()
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
     QString saveFilePath = QFileDialog::getSaveFileName(this, tr("Save storage file"), QDir::homePath(), "PM files (*.pm)");
+    if (saveFilePath.isEmpty()) {
+        return;
+    }
+
     QFile curStorageFile(appDataLoc + PasswordManager::PM_FILENAME);
     if (!curStorageFile.open(QIODevice::ReadOnly)) {
         QMessageBox msgBox;

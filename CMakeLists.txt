@@ -11,7 +11,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Network)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Network LinguistTools)
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} translation.ts)
+configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR} COPYONLY)
 
 # Manually specify the path to Crypto++ headers and libraries
 # Adjust these paths to where Crypto++ is installed on your system
@@ -34,6 +36,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(PasswordManager
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ${QM_FILES}
         models/notecontroller.h models/notecontroller.cpp
         widgets/noteswidget.h widgets/noteswidget.cpp widgets/noteswidget.ui
         crypt/passwordgenerator.h crypt/passwordgenerator.cpp
@@ -45,6 +48,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         common/consts.h
         dialogs/settingsdialog.h dialogs/settingsdialog.cpp dialogs/settingsdialog.ui
         net/iconmanager.h net/iconmanager.cpp
+        translations.qrc
     )
 else()
     if(ANDROID)
