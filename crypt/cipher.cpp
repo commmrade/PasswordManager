@@ -10,18 +10,23 @@
 #include <cryptopp/osrng.h>
 #include <QDebug>
 #include <QSettings>
+#include "passwordgenerator.h"
 
 Cipher::Cipher() {
     QSettings settings;
     auto rawPassword = settings.value("security/password").toString().toUtf8();
     std::memcpy(key, rawPassword.data(), rawPassword.length());
-    std::memcpy(iv, rawPassword.data(), 16);
 }
 
-QString Cipher::aesEncrypt(const QString &plain)
+std::pair<QString, QString> Cipher::aesEncrypt(const QString &plain)
 {
     std::string cipher;
     std::string output;
+
+
+    auto ivStr = PasswordGenerator::generatePassword();
+    CryptoPP::byte iv[16];
+    std::memcpy(iv, ivStr.toUtf8().constData(), 16);
 
     std::string plainStd = plain.toStdString();
     try {
@@ -31,17 +36,19 @@ QString Cipher::aesEncrypt(const QString &plain)
         qDebug() << "Encrypting" << exception.what();
 
     }
-
     CryptoPP::StringSource(cipher, true, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output)));
-    return QString::fromStdString(output);
+    return {QString::fromStdString(output), ivStr};
 }
 
-QString Cipher::aesDecrypt(const QString &encryptedText)
+QString Cipher::aesDecrypt(const QString &encryptedText, const QString& salt)
 {
     std::string cipher;
     std::string output;
 
     std::string encoded = encryptedText.toStdString();
+
+    CryptoPP::byte iv[16];
+    std::memcpy(iv, salt.toUtf8().constData(), 16);
 
     CryptoPP::StringSource(encoded, true, new CryptoPP::HexDecoder(new CryptoPP::StringSink(cipher)));
     try {
@@ -51,6 +58,7 @@ QString Cipher::aesDecrypt(const QString &encryptedText)
         qDebug() << "Decrypting" << exception.what();
         // TODO: Password is incorrect, propose to reset the app
     }
-    return QString::fromStdString(output);
+    QString outputStr = QString::fromStdString(output);
+    return outputStr;
 }
 

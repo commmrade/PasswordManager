@@ -18,7 +18,7 @@ public:
 
     int createNote(const QString& title, const QString& url,
                    const QString& username,
-                   const QString& email, const QString& password);
+                   const QString& email, const QString& password, const QString& salt);
     void editNote(const int noteId, const QString& title, const QString& url,
                    const QString& username,
                    const QString& email, const QString& password);
@@ -31,8 +31,8 @@ public:
     QString getUsername(const int noteId) const;
     void setEmail(const int noteId, const QString& email);
     QString getEmail(const int noteId) const;
-    void setPassword(const int noteId, const QString& password);
-    QString getPassword(const int noteId) const;
+    void setPassword(const int noteId, const QString& password, const QString& salt);
+    std::pair<QString, QString> getPassword(const int noteId) const;
     QDate getCreatedDatetime(const int noteId) const;
 
     int getLastInsertId() const;

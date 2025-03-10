@@ -24,16 +24,13 @@ public:
     }
 
 
-    QString aesEncrypt(const QString& plainText);
-    QString aesDecrypt(const QString& encryptedText);
+    std::pair<QString, QString> aesEncrypt(const QString& plainText);
+    QString aesDecrypt(const QString& encryptedText, const QString& salt);
 
 private:
     Cipher();
 
-    // Static key and IV initialized directly
     CryptoPP::SecByteBlock key{32};
-    CryptoPP::byte iv[16];
-
 };
 
 

@@ -9,8 +9,8 @@ NoteController::NoteController()
 
 int NoteController::createNote(const QString &title, const QString &url, const QString &username, const QString &email, const QString &password)
 {
-    auto passwordEncrypted = Cipher::instance().aesEncrypt(password);
-    return model.createNote(title, url, username, email, passwordEncrypted);
+    auto passwordSalt = Cipher::instance().aesEncrypt(password);
+    return model.createNote(title, url, username, email, passwordSalt.first, passwordSalt.second);
 }
 
 void NoteController::editNote(const int noteId, const QString &title, const QString &url, const QString &username, const QString &email, const QString &password)
@@ -65,14 +65,14 @@ QString NoteController::getEmail(const int noteId) const
 
 void NoteController::setPassword(const int noteId, const QString &password)
 {
-    QString passwordEncrypted = Cipher::instance().aesEncrypt(password);
-    model.setPassword(noteId, passwordEncrypted);
+    auto passwordSalt = Cipher::instance().aesEncrypt(password);
+    model.setPassword(noteId, passwordSalt.first, passwordSalt.second);
 }
 
 QString NoteController::getPassword(const int noteId) const
 {
-    QString passwordEncrypted = model.getPassword(noteId);
-    return Cipher::instance().aesDecrypt(passwordEncrypted);
+    auto passwordSalt = model.getPassword(noteId);
+    return Cipher::instance().aesDecrypt(passwordSalt.first, passwordSalt.second);
 }
 
 QDate NoteController::getCreatedDatetime(const int noteId) const

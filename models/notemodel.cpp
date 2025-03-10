@@ -26,7 +26,6 @@ QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
     if (role == Qt::DecorationRole) {
         const auto record = this->record(index.row());
         {
-            qDebug() << "here\n";
             QByteArray* pixmapBytes = icons.object(record.value("id").toInt());
             if (pixmapBytes) {
                 QPixmap pixmap;
@@ -75,7 +74,7 @@ bool SqlNoteModel::setData(const QModelIndex &index, const QVariant &value, int 
 }
 
 int SqlNoteModel::createNote(const QString& title, const QString& url,
-                             const QString& username, const QString& email, const QString& password)
+                             const QString& username, const QString& email, const QString& password, const QString& salt)
 {
     auto record = this->record();
     record.remove(0);
@@ -84,6 +83,7 @@ int SqlNoteModel::createNote(const QString& title, const QString& url,
     record.setValue("username", username);
     record.setValue("email", email);
     record.setValue("password", password);
+    record.setValue("salt", salt);
 
     if (!insertRecord(-1, record)) {
         qWarning("Warning: Could not create a note");
@@ -173,18 +173,18 @@ QString SqlNoteModel::getEmail(const int noteId) const
     return value.toString();
 }
 
-void SqlNoteModel::setPassword(const int noteId, const QString &password)
+void SqlNoteModel::setPassword(const int noteId, const QString &password, const QString& salt)
 {
-    // Encrypt TODO
+    setFieldValue(noteId, "salt", salt);
     setFieldValue(noteId, "password", password);
 }
 
-QString SqlNoteModel::getPassword(const int noteId) const
+std::pair<QString, QString> SqlNoteModel::getPassword(const int noteId) const
 {
     const auto value = getFieldValue(noteId, "password");
-    assert(!value.isNull() && "Could not get password");
-    // Decrypt TODO
-    return value.toString();
+    const auto saltValue = getFieldValue(noteId, "salt");
+    assert((!value.isNull() || !saltValue.isNull()) && "Could not get password");
+    return {value.toString(), saltValue.toString()};
 }
 
 QDate SqlNoteModel::getCreatedDatetime(const int noteId) const
@@ -234,6 +234,7 @@ QSqlDatabase SqlNoteModel::makeDatabase()
         "    username TEXT NOT NULL,"
         "    email TEXT,"
         "    password TEXT NOT NULL,"
+        "    salt TEXT NOT NULL,"
         "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
         ");";
     if (QSqlQuery query(creationQuery); !query.exec()) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>InfoWidget</name>
     <message>
@@ -309,7 +309,7 @@
         <location filename="dialogs/settingsdialog.ui" line="132"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="312"/>
         <source>Widgets</source>
-        <translation>Виджеты</translation>
+        <translation>Widgets</translation>
     </message>
     <message>
         <location filename="dialogs/settingsdialog.ui" line="137"/>
@@ -333,13 +333,13 @@
         <location filename="dialogs/settingsdialog.ui" line="191"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="317"/>
         <source>English</source>
-        <translation>Английский</translation>
+        <translation>English</translation>
     </message>
     <message>
         <location filename="dialogs/settingsdialog.ui" line="196"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="318"/>
         <source>Russian</source>
-        <translation>Русский</translation>
+        <translation>Russian</translation>
     </message>
     <message>
         <location filename="dialogs/settingsdialog.ui" line="215"/>
