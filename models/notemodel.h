@@ -38,6 +38,7 @@ public:
     int getLastInsertId() const;
 
     void resetStorage();
+    void removeFromCache(int id);
 
     static QSqlDatabase makeDatabase();
 

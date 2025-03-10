@@ -23,8 +23,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     QString guiType = settings.value("gui/type").isValid() ? settings.value("gui/type").toString() : QString("Widgets");
     ui->guiTypeBox->setCurrentText(guiType);
-
-    // ui->languageBox->setCurrentText("Russian");
 }
 
 SettingsDialog::~SettingsDialog()

@@ -43,6 +43,7 @@ public:
     }
 
     void resetStorage();
+    void removeFromCache(int id);
 
     QAbstractItemModel* getModel() {
         return &model;

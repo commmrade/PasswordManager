@@ -4,6 +4,7 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QFile>
+#include "notecontroller.h"
 
 IconManager::IconManager(QObject *parent)
     : QObject{parent}, manager(new QNetworkAccessManager(this))
@@ -13,7 +14,7 @@ IconManager::IconManager(QObject *parent)
 
 void IconManager::downloadImage(QString urlStr, int id)
 {
-    if (!urlStr.contains("http://") || !urlStr.contains("https://")) {
+    if (!urlStr.contains("http://") && !urlStr.contains("https://")) {
         urlStr.insert(0, "http://");
     }
     qDebug() << "Link is:" << urlStr;
@@ -22,10 +23,9 @@ void IconManager::downloadImage(QString urlStr, int id)
         qDebug() << "Invalid url";
         return;
     }
+
     QNetworkRequest request(url);
     auto* reply = manager->get(request);
-
-
    QObject::connect(reply, &QNetworkReply::downloadProgress, this, [this, reply] (qint64 bytesReceived, qint64 bytesTotal) {
        qDebug() << "Bytes received: " << bytesReceived;
         if (bytesReceived > MAX_DOWNLOAD_SIZE) {
@@ -64,6 +64,7 @@ void IconManager::deleteIcon(int id) {
     if (!QFile::remove(appDataDir.filePath("images/" + QString::number(id) + ".ico"))) {
         qDebug() << "Could not remove the icon";
     }
+    NoteController::instance().removeFromCache(id);
 }
 
 

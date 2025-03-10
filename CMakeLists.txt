@@ -12,8 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Network)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Network LinguistTools)
-qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} translation.ts)
-configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR} COPYONLY)
+#qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} translation.ts)
+#configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR} COPYONLY)
 
 # Manually specify the path to Crypto++ headers and libraries
 # Adjust these paths to where Crypto++ is installed on your system

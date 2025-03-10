@@ -84,3 +84,8 @@ void NoteController::resetStorage()
 {
     model.resetStorage();
 }
+
+void NoteController::removeFromCache(int id)
+{
+    model.removeFromCache(id);
+}

@@ -26,10 +26,12 @@ QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
     if (role == Qt::DecorationRole) {
         const auto record = this->record(index.row());
         {
+            qDebug() << "here\n";
             QByteArray* pixmapBytes = icons.object(record.value("id").toInt());
             if (pixmapBytes) {
                 QPixmap pixmap;
                 if (!pixmap.loadFromData(*pixmapBytes, "png")) {
+
                     return {};
                 }
                 return QIcon{pixmap};
@@ -203,6 +205,11 @@ void SqlNoteModel::resetStorage()
     beginResetModel();
     select();
     endResetModel();
+}
+
+void SqlNoteModel::removeFromCache(int id)
+{
+    icons.remove(id);
 }
 
 
