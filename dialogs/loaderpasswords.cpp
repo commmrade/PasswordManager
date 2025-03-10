@@ -46,7 +46,9 @@ void LoaderPasswords::on_loadButton_clicked()
     }
 
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QFile currentFile(appDataLoc + PasswordManager::PM_FILENAME);
+    QDir appDataDir {appDataLoc};
+    QFile currentFile(appDataDir.filePath(PasswordManager::PM_FILENAME));
+
     if (!currentFile.open(QIODevice::WriteOnly)) {
         QMessageBox::warning(nullptr, tr("Warning"), tr("File in cur dir is not accessible. Perhaps run the app as an administrator"), QMessageBox::Ok);
         qDebug() << "Could not open current file";

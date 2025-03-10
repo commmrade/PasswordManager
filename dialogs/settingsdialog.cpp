@@ -70,9 +70,10 @@ void SettingsDialog::on_resetButton_clicked()
     }
 
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QFile file(appDataLoc + PasswordManager::PM_FILENAME);
-    QDir dir(appDataLoc);
-    if (!file.remove() || !dir.removeRecursively()) {
+    QDir appDataDir {appDataLoc};
+    QFile file(appDataDir.filePath(PasswordManager::PM_FILENAME));
+
+    if (!file.remove() || !appDataDir.removeRecursively()) {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle(tr("Error"));
@@ -99,13 +100,13 @@ void SettingsDialog::on_loadButton_clicked()
 void SettingsDialog::on_exportButton_clicked()
 {
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-
+    QDir appDataDir{appDataLoc};
     QString saveFilePath = QFileDialog::getSaveFileName(this, tr("Save storage file"), QDir::homePath(), "PM files (*.pm)");
     if (saveFilePath.isEmpty()) {
         return;
     }
 
-    QFile curStorageFile(appDataLoc + PasswordManager::PM_FILENAME);
+    QFile curStorageFile(appDataDir.filePath(PasswordManager::PM_FILENAME));
     if (!curStorageFile.open(QIODevice::ReadOnly)) {
         QMessageBox msgBox;
         msgBox.setWindowTitle(tr("Error"));
@@ -132,5 +133,13 @@ void SettingsDialog::on_exportButton_clicked()
         msgBox.exec();
         return;
     }
+}
+
+
+void SettingsDialog::on_guiThemeBox_currentIndexChanged(int index)
+{
+    QString theme = ui->guiThemeBox->itemText(index);
+    QSettings settings;
+    settings.setValue("gui/theme", theme);
 }
 

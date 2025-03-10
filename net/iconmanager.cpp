@@ -36,15 +36,15 @@ void IconManager::downloadImage(QString urlStr, int id)
     QObject::connect(reply, &QNetworkReply::finished, this, [this, reply, id]{
         if (reply->error() == QNetworkReply::NoError) {
             QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-            QFile::remove(appDataLoc + "/images/" + QString::number(id) + ".ico");
+            QDir appDataDir{appDataLoc};
+            QFile::remove(appDataDir.filePath("images/" + QString::number(id) + ".ico"));
             QPixmap pixmap;
             if (!pixmap.loadFromData(reply->readAll())) {
                 qDebug() << "The return from the url is not an image";
                 reply->deleteLater();
                 return;
             }
-            pixmap.save(appDataLoc + "/images/" + QString::number(id) + ".ico");
-            qDebug() << "saved icon";
+            pixmap.save(appDataDir.filePath("images/" + QString::number(id) + ".ico"));
         } else {
             qDebug() << "Download failed" << reply->errorString();
         }
@@ -55,7 +55,8 @@ void IconManager::downloadImage(QString urlStr, int id)
 bool IconManager::hasIcon(int id) const
 {
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    return QFile::exists(appDataLoc + "/images/" + QString::number(id) + ".ico");
+    QDir appDataDir{appDataLoc};
+    return QFile::exists(appDataDir.filePath("images/" + QString::number(id) + ".ico"));
 }
 
 void IconManager::deleteIcon(int id) {

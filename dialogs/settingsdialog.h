@@ -34,6 +34,8 @@ private slots:
     void on_exportButton_clicked();
 
 
+    void on_guiThemeBox_currentIndexChanged(int index);
+
 private:
     Ui::SettingsDialog *ui;
 };

@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QTranslator translator;
     QSettings settings;
+
     // TODO: сделать загрузку в зависимости от локали, если язык не установлен
     QString language = settings.value("gui/language").isValid() ? settings.value("gui/language").toString() : QString("English");
     if (language == "Russian") {

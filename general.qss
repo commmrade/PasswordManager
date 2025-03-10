@@ -16,7 +16,8 @@ QListView {
 QListView::item {
     padding: 8px;
     margin: 2px;
-    background-color: #312F2F; /* Matches QListView background for consistency */
+    height: 40px;
+    background-color: #403F3F; /* Matches QListView background for consistency */
     border-radius: 8px;
 }
 
@@ -26,7 +27,7 @@ QListView::item:selected {
 }
 
 QListView::item:hover {
-    background-color: #403F3F; /* Slightly lighter on hover, using the line edit color */
+    background-color: #292828; /* Slightly lighter on hover, using the line edit color */
 }
 
 /* Style for QLineEdit (input fields like Title, URL, User, Email, Passwd) */
@@ -99,3 +100,13 @@ QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
     background: none;
 }
+
+#titleLabel {
+    background-color: #393939;
+}
+
+#frame {
+    background-color: #393939;
+}
+
+
