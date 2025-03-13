@@ -154,7 +154,7 @@ void SettingsDialog::enableAccountSettings()
 {
     ui->accountDescription->setVisible(true);
     ui->accountTitle->setVisible(true);
-    ui->manageButton->setVisible(true);
+    ui->logOutButton->setVisible(true);
 
     ui->uploadButton->setVisible(true);
     ui->uploadDescription->setVisible(true);
@@ -163,7 +163,6 @@ void SettingsDialog::enableAccountSettings()
     ui->loadStorageTitle->setVisible(true);
     ui->loadStorageDescription->setVisible(true);
     ui->loadStorageButton->setVisible(true);
-    ui->authButton->setVisible(true);
     ui->authButton->setVisible(false);
 }
 
@@ -171,7 +170,7 @@ void SettingsDialog::disableAccountSettings()
 {
     ui->accountDescription->setVisible(false);
     ui->accountTitle->setVisible(false);
-    ui->manageButton->setVisible(false);
+    ui->logOutButton->setVisible(false);
 
     ui->uploadButton->setVisible(false);
     ui->uploadDescription->setVisible(false);
@@ -179,7 +178,8 @@ void SettingsDialog::disableAccountSettings()
 
     ui->loadStorageTitle->setVisible(false);
     ui->loadStorageDescription->setVisible(false);
-    ui->loadStorageButton->setVisible(true);
+    ui->loadStorageButton->setVisible(false);
+    ui->authButton->setVisible(true);
 }
 
 
@@ -187,7 +187,18 @@ void SettingsDialog::on_authButton_clicked()
 {
     AuthDialog authDialog(this);
     if (authDialog.exec() == QDialog::Accepted) {
-        accept();
+        enableAccountSettings();
     }
+}
+
+
+void SettingsDialog::on_logOutButton_clicked()
+{
+    QSettings settings;
+    settings.remove("account/email");
+    settings.remove("account/refreshToken");
+    settings.remove("account/jwtToken");
+
+    disableAccountSettings();
 }
 

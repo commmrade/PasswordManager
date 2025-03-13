@@ -519,7 +519,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Manage your account</string>
+              <string>Do stuff with your account</string>
              </property>
             </widget>
            </item>
@@ -539,12 +539,12 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="manageButton">
+          <widget class="QPushButton" name="logOutButton">
            <property name="enabled">
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>Manage</string>
+            <string>Log Out</string>
            </property>
           </widget>
          </item>

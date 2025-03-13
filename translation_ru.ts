@@ -516,13 +516,14 @@
     <message>
         <location filename="dialogs/settingsdialog.ui" line="522"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="515"/>
-        <source>Manage your account</source>
+        <source>Do stuff with your account</source>
+        <oldsource>Manage your account</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="dialogs/settingsdialog.ui" line="547"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="516"/>
-        <source>Manage</source>
+        <source>Log Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
