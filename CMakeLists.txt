@@ -49,6 +49,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dialogs/settingsdialog.h dialogs/settingsdialog.cpp dialogs/settingsdialog.ui
         net/iconmanager.h net/iconmanager.cpp
         translations.qrc
+        dialogs/authdialog.h dialogs/authdialog.cpp dialogs/authdialog.ui
+        authmanager.h authmanager.cpp
     )
 else()
     if(ANDROID)

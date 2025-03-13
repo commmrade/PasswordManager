@@ -9,7 +9,7 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QApplication>
-
+#include "authdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -23,6 +23,13 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     QString guiType = settings.value("gui/type").isValid() ? settings.value("gui/type").toString() : QString("Widgets");
     ui->guiTypeBox->setCurrentText(guiType);
+
+
+    if (settings.value("account/jwtToken").isNull() && settings.value("account/refreshToken").isNull()) {
+        disableAccountSettings();
+    } else {
+        enableAccountSettings();
+    }
 }
 
 SettingsDialog::~SettingsDialog()
@@ -73,11 +80,11 @@ void SettingsDialog::on_resetButton_clicked()
     QDir appDataDir {appDataLoc};
     QFile file(appDataDir.filePath(PasswordManager::PM_FILENAME));
 
-    if (!file.remove() || !appDataDir.removeRecursively()) {
+    if (!file.remove() && !appDataDir.removeRecursively()) {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle(tr("Error"));
-        msgBox.setText(tr("Application could not be reset."));
+        msgBox.setText(tr("Application could not be reset. A"));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
@@ -141,5 +148,46 @@ void SettingsDialog::on_guiThemeBox_currentIndexChanged(int index)
     QString theme = ui->guiThemeBox->itemText(index);
     QSettings settings;
     settings.setValue("gui/theme", theme);
+}
+
+void SettingsDialog::enableAccountSettings()
+{
+    ui->accountDescription->setVisible(true);
+    ui->accountTitle->setVisible(true);
+    ui->manageButton->setVisible(true);
+
+    ui->uploadButton->setVisible(true);
+    ui->uploadDescription->setVisible(true);
+    ui->uploadTitle->setVisible(true);
+
+    ui->loadStorageTitle->setVisible(true);
+    ui->loadStorageDescription->setVisible(true);
+    ui->loadStorageButton->setVisible(true);
+    ui->authButton->setVisible(true);
+    ui->authButton->setVisible(false);
+}
+
+void SettingsDialog::disableAccountSettings()
+{
+    ui->accountDescription->setVisible(false);
+    ui->accountTitle->setVisible(false);
+    ui->manageButton->setVisible(false);
+
+    ui->uploadButton->setVisible(false);
+    ui->uploadDescription->setVisible(false);
+    ui->uploadTitle->setVisible(false);
+
+    ui->loadStorageTitle->setVisible(false);
+    ui->loadStorageDescription->setVisible(false);
+    ui->loadStorageButton->setVisible(true);
+}
+
+
+void SettingsDialog::on_authButton_clicked()
+{
+    AuthDialog authDialog(this);
+    if (authDialog.exec() == QDialog::Accepted) {
+        accept();
+    }
 }
 
