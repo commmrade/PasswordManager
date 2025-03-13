@@ -36,8 +36,15 @@ private slots:
 
     void on_guiThemeBox_currentIndexChanged(int index);
 
+    void on_authButton_clicked();
+
+    void on_logOutButton_clicked();
+
 private:
     Ui::SettingsDialog *ui;
+
+    void enableAccountSettings();
+    void disableAccountSettings();
 };
 
 #endif // SETTINGSDIALOG_H
