@@ -109,6 +109,7 @@ QString AuthManager::updateToken() {
         settings.setValue("account/jwtToken", bytes);
         return bytes;
     } else {
+        // TODO: If 403 error then reset all tokens
         QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
         QJsonObject jsonObj = jsonDoc.object();
         QString errorMessage = jsonObj["message"].toString();
