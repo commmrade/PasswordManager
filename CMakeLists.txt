@@ -50,7 +50,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         net/iconmanager.h net/iconmanager.cpp
         translations.qrc
         dialogs/authdialog.h dialogs/authdialog.cpp dialogs/authdialog.ui
-        authmanager.h authmanager.cpp
+        net/authmanager.h net/authmanager.cpp
     )
 else()
     if(ANDROID)

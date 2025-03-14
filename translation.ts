@@ -70,7 +70,7 @@
 <context>
     <name>AuthManager</name>
     <message>
-        <location filename="authmanager.cpp" line="115"/>
+        <location filename="net/authmanager.cpp" line="115"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>

@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
-#include "../authmanager.h"
+#include "authmanager.h"
 
 namespace Ui {
 class AuthDialog;
