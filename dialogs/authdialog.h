@@ -15,8 +15,8 @@ class AuthDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AuthDialog(QWidget *parent = nullptr);
-    ~AuthDialog();
+    explicit AuthDialog(AuthManager &authManager, QWidget *parent = nullptr);
+    ~AuthDialog() override;
 
 private slots:
     void on_continueRegButton_clicked();
@@ -29,7 +29,7 @@ private:
     Ui::AuthDialog *ui;
 
     QNetworkAccessManager manager{};
-    AuthManager authManager{};
+    AuthManager &authManager;
 };
 
 #endif // AUTHDIALOG_H

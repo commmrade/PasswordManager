@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "authmanager.h"
+
 namespace Ui {
 class SettingsDialog;
 }
@@ -42,6 +44,7 @@ private slots:
 
 private:
     Ui::SettingsDialog *ui;
+    AuthManager authManager{};
 
     void enableAccountSettings();
     void disableAccountSettings();

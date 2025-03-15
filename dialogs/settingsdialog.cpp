@@ -185,7 +185,7 @@ void SettingsDialog::disableAccountSettings()
 
 void SettingsDialog::on_authButton_clicked()
 {
-    AuthDialog authDialog(this);
+    AuthDialog authDialog(authManager, this);
     if (authDialog.exec() == QDialog::Accepted) {
         enableAccountSettings();
     }

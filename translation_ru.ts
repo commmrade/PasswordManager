@@ -52,17 +52,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.cpp" line="33"/>
+        <location filename="dialogs/authdialog.cpp" line="35"/>
         <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.cpp" line="33"/>
+        <location filename="dialogs/authdialog.cpp" line="35"/>
         <source>Successfully authenticated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.cpp" line="39"/>
+        <location filename="dialogs/authdialog.cpp" line="41"/>
         <source>Warning</source>
         <translation type="unfinished">Предупреждение</translation>
     </message>
@@ -70,7 +70,7 @@
 <context>
     <name>AuthManager</name>
     <message>
-        <location filename="net/authmanager.cpp" line="115"/>
+        <location filename="net/authmanager.cpp" line="116"/>
         <source>Warning</source>
         <translation type="unfinished">Предупреждение</translation>
     </message>

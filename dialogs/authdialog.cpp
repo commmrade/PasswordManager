@@ -1,9 +1,11 @@
 #include "authdialog.h"
 #include "ui_authdialog.h"
 #include <QMessageBox>
-AuthDialog::AuthDialog(QWidget *parent)
+
+AuthDialog::AuthDialog(AuthManager &authManager, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AuthDialog)
+    , authManager(authManager)
 {
     ui->setupUi(this);
     QObject::connect(&authManager, &AuthManager::successAuth, this, &AuthDialog::successAuthenticated);
