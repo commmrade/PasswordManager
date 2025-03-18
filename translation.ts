@@ -5,49 +5,49 @@
     <name>AuthDialog</name>
     <message>
         <location filename="dialogs/authdialog.ui" line="14"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="203"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="197"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="dialogs/authdialog.ui" line="31"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="204"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="198"/>
         <source>Sign Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.ui" line="59"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="205"/>
+        <location filename="dialogs/authdialog.ui" line="56"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="199"/>
         <source>Username...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.ui" line="66"/>
-        <location filename="dialogs/authdialog.ui" line="175"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="206"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="210"/>
+        <location filename="dialogs/authdialog.ui" line="63"/>
+        <location filename="dialogs/authdialog.ui" line="169"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="200"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="204"/>
         <source>Email...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.ui" line="79"/>
-        <location filename="dialogs/authdialog.ui" line="188"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="207"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="211"/>
+        <location filename="dialogs/authdialog.ui" line="76"/>
+        <location filename="dialogs/authdialog.ui" line="182"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="201"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="205"/>
         <source>Password...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.ui" line="114"/>
-        <location filename="dialogs/authdialog.ui" line="223"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="208"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="212"/>
+        <location filename="dialogs/authdialog.ui" line="111"/>
+        <location filename="dialogs/authdialog.ui" line="217"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="202"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="206"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.ui" line="150"/>
-        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="209"/>
+        <location filename="dialogs/authdialog.ui" line="147"/>
+        <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="203"/>
         <source>Log In</source>
         <translation type="unfinished"></translation>
     </message>
@@ -70,7 +70,7 @@
 <context>
     <name>AuthManager</name>
     <message>
-        <location filename="net/authmanager.cpp" line="116"/>
+        <location filename="net/authmanager.cpp" line="122"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
@@ -547,53 +547,80 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="57"/>
+        <location filename="dialogs/settingsdialog.cpp" line="67"/>
         <source>Language changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="58"/>
+        <location filename="dialogs/settingsdialog.cpp" line="68"/>
+        <location filename="dialogs/settingsdialog.cpp" line="217"/>
         <source>Restart the app to apply settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="71"/>
+        <location filename="dialogs/settingsdialog.cpp" line="81"/>
         <source>Confirm Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="72"/>
+        <location filename="dialogs/settingsdialog.cpp" line="82"/>
         <source>Are you sure you want to reset the app?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="86"/>
-        <location filename="dialogs/settingsdialog.cpp" line="119"/>
-        <location filename="dialogs/settingsdialog.cpp" line="128"/>
-        <location filename="dialogs/settingsdialog.cpp" line="136"/>
+        <location filename="dialogs/settingsdialog.cpp" line="96"/>
+        <location filename="dialogs/settingsdialog.cpp" line="129"/>
+        <location filename="dialogs/settingsdialog.cpp" line="138"/>
+        <location filename="dialogs/settingsdialog.cpp" line="146"/>
+        <location filename="dialogs/settingsdialog.cpp" line="237"/>
+        <location filename="dialogs/settingsdialog.cpp" line="242"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="87"/>
+        <location filename="dialogs/settingsdialog.cpp" line="97"/>
         <source>Application could not be reset. A</source>
         <oldsource>Application could not be reset.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="111"/>
+        <location filename="dialogs/settingsdialog.cpp" line="121"/>
         <source>Save storage file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="120"/>
+        <location filename="dialogs/settingsdialog.cpp" line="130"/>
         <source>Could not open storage file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="129"/>
-        <location filename="dialogs/settingsdialog.cpp" line="137"/>
+        <location filename="dialogs/settingsdialog.cpp" line="139"/>
+        <location filename="dialogs/settingsdialog.cpp" line="147"/>
         <source>Could not save storage file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="dialogs/settingsdialog.cpp" line="216"/>
+        <source>Theme changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StorageManager</name>
+    <message>
+        <location filename="net/storagemanager.cpp" line="58"/>
+        <source>Authorization error. Try again</source>
+        <oldsource>Authorization error. Try to log in again</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/storagemanager.cpp" line="60"/>
+        <source>Server internal error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="net/storagemanager.cpp" line="62"/>
+        <source>Server is dead / No internet</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

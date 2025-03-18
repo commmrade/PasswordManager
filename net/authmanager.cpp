@@ -84,6 +84,7 @@ void AuthManager::loginUser(const QString& email, const QString& password) {
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
             emit errorAuth(statusCode, errorMessage);
         }
+        reply->deleteLater();
     });
 }
 
@@ -110,10 +111,16 @@ QString AuthManager::updateToken() {
         return bytes;
     } else {
         // TODO: If 403 error then reset all tokens
+        int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if (statusCode == 403) {
+            settings.remove("account/jwtToken");
+            settings.remove("account/refreshToken");
+        }
         QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
         QJsonObject jsonObj = jsonDoc.object();
         QString errorMessage = jsonObj["message"].toString();
         QMessageBox::warning(nullptr, tr("Warning"), errorMessage);
     }
+    delete reply;
     return "";
 }

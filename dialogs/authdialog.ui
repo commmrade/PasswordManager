@@ -38,10 +38,7 @@
        <item>
         <widget class="QFrame" name="signUpFrame">
          <property name="styleSheet">
-          <string notr="true">
-border-radius: 15%;
-margin: 10% 10%;
-background-color: #393939;</string>
+          <string notr="true"/>
          </property>
          <property name="frameShape">
           <enum>QFrame::Shape::StyledPanel</enum>
@@ -157,10 +154,7 @@ background-color: #393939;</string>
        <item>
         <widget class="QFrame" name="logInFrame">
          <property name="styleSheet">
-          <string notr="true">
-border-radius: 15%;
-margin: 10% 10%;
-background-color: #393939;</string>
+          <string notr="true"/>
          </property>
          <property name="frameShape">
           <enum>QFrame::Shape::StyledPanel</enum>

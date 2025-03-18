@@ -2,8 +2,8 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
-
 #include "authmanager.h"
+#include "storagemanager.h"
 
 namespace Ui {
 class SettingsDialog;
@@ -15,7 +15,7 @@ class SettingsDialog : public QDialog
 
 public:
     explicit SettingsDialog(QWidget *parent = nullptr);
-    ~SettingsDialog();
+    ~SettingsDialog() override;
 
 
 
@@ -36,15 +36,23 @@ private slots:
     void on_exportButton_clicked();
 
 
-    void on_guiThemeBox_currentIndexChanged(int index);
+    void on_guiThemeBox_activated(int index);
 
     void on_authButton_clicked();
 
     void on_logOutButton_clicked();
 
+    void on_loadStorageButton_clicked();
+
+    void on_uploadButton_clicked();
+
+    void on_request_error(int statusCode, const QString &errorMsg);
+
 private:
     Ui::SettingsDialog *ui;
     AuthManager authManager{};
+    StorageManager storageManager{};
+
 
     void enableAccountSettings();
     void disableAccountSettings();

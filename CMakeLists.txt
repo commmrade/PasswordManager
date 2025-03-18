@@ -51,6 +51,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         translations.qrc
         dialogs/authdialog.h dialogs/authdialog.cpp dialogs/authdialog.ui
         net/authmanager.h net/authmanager.cpp
+        net/storagemanager.h net/storagemanager.cpp
     )
 else()
     if(ANDROID)

@@ -10,6 +10,7 @@
 #include <QStandardPaths>
 #include <QApplication>
 #include "authdialog.h"
+#include <QTranslator>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -24,12 +25,20 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     QString guiType = settings.value("gui/type").isValid() ? settings.value("gui/type").toString() : QString("Widgets");
     ui->guiTypeBox->setCurrentText(guiType);
 
+    QString theme = settings.value("gui/theme").isValid() ? settings.value("gui/theme").toString() : QString("Dark");
+    ui->guiThemeBox->setCurrentText(theme);
 
     if (settings.value("account/jwtToken").isNull() && settings.value("account/refreshToken").isNull()) {
         disableAccountSettings();
     } else {
         enableAccountSettings();
     }
+
+    QObject::connect(&storageManager, &StorageManager::success, this, [this]() {
+        qDebug() << "successfully uploaded/downloaded";
+    });
+    QObject::connect(&storageManager, &StorageManager::error, this, &SettingsDialog::on_request_error);
+
 }
 
 SettingsDialog::~SettingsDialog()
@@ -51,6 +60,7 @@ void SettingsDialog::on_languageBox_activated(int index)
     QString language = ui->languageBox->itemText(index);
     QSettings settings;
     settings.setValue("gui/language", language);
+
 
     QMessageBox msgBox(this);
     msgBox.setIcon(QMessageBox::Question);
@@ -142,14 +152,6 @@ void SettingsDialog::on_exportButton_clicked()
     }
 }
 
-
-void SettingsDialog::on_guiThemeBox_currentIndexChanged(int index)
-{
-    QString theme = ui->guiThemeBox->itemText(index);
-    QSettings settings;
-    settings.setValue("gui/theme", theme);
-}
-
 void SettingsDialog::enableAccountSettings()
 {
     ui->accountDescription->setVisible(true);
@@ -200,5 +202,45 @@ void SettingsDialog::on_logOutButton_clicked()
     settings.remove("account/jwtToken");
 
     disableAccountSettings();
+}
+
+
+void SettingsDialog::on_guiThemeBox_activated(int index)
+{
+    QString theme = ui->guiThemeBox->itemText(index);
+    QSettings settings;
+    settings.setValue("gui/theme", theme);
+
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("Theme changed"));
+    msgBox.setText(tr("Restart the app to apply settings?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    if (msgBox.exec() == QMessageBox::Yes) {
+        QApplication::quit();
+    }
+}
+
+
+void SettingsDialog::on_loadStorageButton_clicked()
+{
+}
+
+
+void SettingsDialog::on_uploadButton_clicked()
+{
+    storageManager.saveStorage();
+}
+
+void SettingsDialog::on_request_error(int statusCode, const QString& errorMsg) {
+    QMessageBox::warning(this, tr("Error"), errorMsg);
+
+    if (statusCode == 401) {
+        if (authManager.updateToken().isEmpty()) {
+            disableAccountSettings();
+            QMessageBox::warning(this, tr("Error"), "Please, log in again!");
+        }
+    }
 }
 

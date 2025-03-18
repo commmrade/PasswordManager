@@ -27,7 +27,12 @@ int main(int argc, char *argv[])
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkdir(appDataLoc);
     QDir().mkdir(appDataLoc + "/images");
-    QFile file(QApplication::applicationDirPath() + "/general.qss");
+
+    QString themeStr = settings.value("gui/theme").isValid() ? settings.value("gui/theme").toString() : QString("Dark");
+    QString themeLoc = themeStr == "Dark" ? "/generalDark.qss" : "/generalLight.qss";
+
+
+    QFile file(QApplication::applicationDirPath() + themeLoc);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         a.setStyleSheet(file.readAll());
         file.close();
