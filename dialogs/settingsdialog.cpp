@@ -226,8 +226,15 @@ void SettingsDialog::on_guiThemeBox_activated(int index)
 
 void SettingsDialog::on_loadStorageButton_clicked()
 {
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle(tr("Warning"));
+    msgBox.setText(tr("Are you sure you want to load the storage backup? It will overwrite current storage"));
 
-    storageManager.loadStorage();
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+
+    if (msgBox.exec() == QMessageBox::Ok) {
+        storageManager.loadStorage();
+    }
 }
 
 
