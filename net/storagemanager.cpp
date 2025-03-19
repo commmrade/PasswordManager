@@ -68,4 +68,62 @@ void StorageManager::saveStorage() {
 }
 
 void StorageManager::loadStorage() {
+    QUrl url{"http://localhost:3000/download"};
+
+    QNetworkRequest request{url};
+    QHttpHeaders headers;
+    QSettings settings;
+    headers.append("Authorization", "Bearer " + settings.value("account/jwtToken").toString());
+    request.setHeaders(headers);
+
+    auto* reply = manager.get(request);
+    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+        if (reply->error() == QNetworkReply::NoError) {
+
+            QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+            QDir appDataDir {appDataLoc};
+            QFile storageFile{appDataDir.filePath("pmanager.pm")};
+            if (!storageFile.open(QIODevice::WriteOnly)) {
+                qDebug() << "Cant open";
+            }
+
+            QByteArray buf;
+            while ((buf = reply->read(4096)).size() > 0) {
+                storageFile.write(buf);
+            }
+            storageFile.flush();
+            storageFile.close();
+
+            auto passwordHeader = reply->rawHeader("Password");
+            QSettings settings;
+            settings.setValue("security/password", passwordHeader);
+
+            emit success();
+        } else {
+            int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+            qDebug() << statusCode;
+            if (statusCode == 401) {
+                emit error(statusCode, tr("Authorization error. Try again"));
+            } else if (statusCode >= 500) {
+                emit error(statusCode, tr("Server internal error"));
+            } else if (statusCode == 404) {
+                emit error(statusCode, tr("You haven't backed up anything"));
+            } else {
+                emit error(0, tr("Server is dead / No internet"));
+            }
+        }
+        reply->deleteLater();
+    });
 }
+
+
+
+
+
+
+
+
+
+
+
+

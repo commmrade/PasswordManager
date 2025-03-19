@@ -11,6 +11,7 @@
 #include <QApplication>
 #include "authdialog.h"
 #include <QTranslator>
+#include "notecontroller.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -34,8 +35,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         enableAccountSettings();
     }
 
-    QObject::connect(&storageManager, &StorageManager::success, this, [this]() {
-        qDebug() << "successfully uploaded/downloaded";
+    QObject::connect(&storageManager, &StorageManager::success, this, []() {
+        NoteController::instance().resetStorage();
     });
     QObject::connect(&storageManager, &StorageManager::error, this, &SettingsDialog::on_request_error);
 
@@ -93,7 +94,7 @@ void SettingsDialog::on_resetButton_clicked()
     if (!file.remove() && !appDataDir.removeRecursively()) {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setWindowTitle(tr("Warning"));
         msgBox.setText(tr("Application could not be reset. A"));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
@@ -225,6 +226,8 @@ void SettingsDialog::on_guiThemeBox_activated(int index)
 
 void SettingsDialog::on_loadStorageButton_clicked()
 {
+
+    storageManager.loadStorage();
 }
 
 
@@ -234,12 +237,12 @@ void SettingsDialog::on_uploadButton_clicked()
 }
 
 void SettingsDialog::on_request_error(int statusCode, const QString& errorMsg) {
-    QMessageBox::warning(this, tr("Error"), errorMsg);
+    QMessageBox::warning(this, tr("Warning"), errorMsg);
 
-    if (statusCode == 401) {
+    if (statusCode == 403) {
         if (authManager.updateToken().isEmpty()) {
             disableAccountSettings();
-            QMessageBox::warning(this, tr("Error"), "Please, log in again!");
+            QMessageBox::warning(this, tr("Warning"), "Please, log in again!");
         }
     }
 }
