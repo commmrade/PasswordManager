@@ -73,13 +73,3 @@ void InfoWidget::on_passwordEdit_editingFinished()
 }
 
 
-void InfoWidget::on_deleteButton_clicked()
-{
-    if (currentNoteIndex < 0) {
-        qDebug() << "note not set";
-        return;
-    }
-    NoteController::instance().deleteNote(currentNoteIndex);
-    sendNote(Note{});
-}
-

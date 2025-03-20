@@ -34,6 +34,7 @@ void NotesWidget::on_notesView_clicked(const QModelIndex &index)
         return;
     }
     if (infoWidget->getCurrentNoteId() == -1) {
+        infoWidget->show();
         ui->stackedWidget->setCurrentWidget(infoWidget);
     }
     Note note;
@@ -71,9 +72,9 @@ void NotesWidget::on_deleteButton_clicked()
 
     NoteController::instance().deleteNote(noteId);
 
-    if (noteId == infoWidget->getCurrentNoteId()) {
-        infoWidget->sendNote(Note{});
-    }
+    infoWidget->hide();
+    infoWidget->sendNote(Note{});
+    ui->stackedWidget->setCurrentIndex(-1);
 }
 
 void NotesWidget::on_url_changed(int id)
