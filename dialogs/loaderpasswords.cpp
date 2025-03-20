@@ -71,7 +71,6 @@ void LoaderPasswords::on_loadButton_clicked()
     accept();
 }
 
-
 void LoaderPasswords::on_pushButton_2_clicked()
 {
     reject();
