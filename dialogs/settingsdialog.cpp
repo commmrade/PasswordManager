@@ -95,7 +95,7 @@ void SettingsDialog::on_resetButton_clicked()
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle(tr("Warning"));
-        msgBox.setText(tr("Application could not be reset. A"));
+        msgBox.setText(tr("Application could not be reset."));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
