@@ -11,12 +11,10 @@
 #include <QQmlApplicationEngine>
 #include "notecontroller.h"
 #include <QQmlContext>
-
+#include "notemodel.h"
 
 int main(int argc, char *argv[])
 {
-
-
     QGuiApplication app(argc, argv);
     app.setOrganizationName("klewy");
     app.setOrganizationDomain("klewy.com");
@@ -30,7 +28,6 @@ int main(int argc, char *argv[])
     engine.addImportPath("qrc:/");
 
     auto& ins = NoteController::instance();
-
     engine.rootContext()->setContextProperty("noteController", &ins);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));

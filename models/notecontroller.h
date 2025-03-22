@@ -3,12 +3,13 @@
 
 #include <QObject>
 #include "notemodel.h"
+#include <QSqlError>
 
 class NoteController : public QObject
 {
     Q_OBJECT
 private:
-    SqlNoteModel model;
+    SqlNoteModel* model{nullptr};
 
     NoteController();
 public:
@@ -40,15 +41,19 @@ public:
     Q_INVOKABLE QDate getCreatedDatetime(const int noteId) const;
 
     Q_INVOKABLE int getLastInsertId() const {
-        return model.getLastInsertId();
+        return model->getLastInsertId();
     }
 
     Q_INVOKABLE void resetStorage();
     Q_INVOKABLE void removeFromCache(int id);
 
     Q_INVOKABLE QAbstractItemModel* getModel() {
-        qDebug() << model.rowCount();
-        return &model;
+        model->select();
+        qDebug() << model->database().databaseName();
+        qDebug() << model->database().isOpen();
+        qDebug() << model->rowCount();
+        qDebug() << model->lastError().text();
+        return model;
     }
 
 signals:

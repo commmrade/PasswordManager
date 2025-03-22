@@ -19,6 +19,7 @@ SqlNoteModel::SqlNoteModel(QObject *parent)
     if (!QSqlTableModel::select()) {
         throw std::runtime_error("Data could not be set in the model");
     }
+    select();
 }
 
 QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
@@ -218,7 +219,6 @@ QSqlDatabase SqlNoteModel::makeDatabase()
     qDebug() << "make db";
     const QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
-    // Ensure the directory exists
     QDir dir(appDataLoc);
     if (!dir.exists()) {
         if (!dir.mkpath(appDataLoc)) {
@@ -228,14 +228,8 @@ QSqlDatabase SqlNoteModel::makeDatabase()
     }
 
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
-    // Remove unnecessary settings for SQLite
-    // database.setHostName("klewy"); // Not needed for SQLite
-    // database.setUserName("root");  // Not needed for SQLite
-    // database.setPassword("root");  // Not needed for SQLite
-
-    // Set the database file path
     QString dbPath = appDataLoc + PasswordManager::PM_FILENAME;
-
+    qDebug() << dbPath;
     database.setDatabaseName(dbPath);
 
     if (!database.open()) {
