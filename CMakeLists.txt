@@ -32,10 +32,10 @@ set(PROJECT_SOURCES
     dialogs/notecreatedialog.h dialogs/notecreatedialog.cpp dialogs/notecreatedialog.ui
 )
 
-set(PROJ_QML_FILES
-    ${PROJ_QML_SINGLETON_FILES}
-    qml/Main.qml
-)
+# set(PROJ_QML_FILES
+#     ${PROJ_QML_SINGLETON_FILES}
+#     qml/Main.qml
+# )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(PasswordManager
@@ -57,7 +57,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dialogs/authdialog.h dialogs/authdialog.cpp dialogs/authdialog.ui
         net/authmanager.h net/authmanager.cpp
         net/storagemanager.h net/storagemanager.cpp
-        qml/Main.qml
+        qml/InfoNote.qml
     )
 
 else()
@@ -82,7 +82,11 @@ target_link_libraries(PasswordManager PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt$
 # Link Crypto++ library (shared .so)
 target_link_libraries(PasswordManager PRIVATE ${CRYPTOPP_LIBRARIES})
 
-
+qt_add_qml_module(PasswordManagerQML
+    URI PasswordManager
+    VERSION 1.0
+    QML_FILES qml/Main.qml qml/PMenubar.qml qml/PMenu.qml qml/Notes.qml qml/InfoNote.qml
+)
 
 include_directories(common)
 include_directories(dialogs)

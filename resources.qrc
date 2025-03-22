@@ -5,5 +5,9 @@
     </qresource>
     <qresource prefix="/">
         <file>qml/Main.qml</file>
+        <file>qml/PMenu.qml</file>
+        <file>qml/PMenubar.qml</file>
+        <file>qml/Notes.qml</file>
+        <file>qml/InfoNote.qml</file>
     </qresource>
 </RCC>

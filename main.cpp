@@ -20,10 +20,12 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("klewy.com");
     app.setApplicationName("Password Manager");
 
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Dense");
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", "Dark");
+
 
     QQmlApplicationEngine engine;
     engine.addImportPath("qrc:/");
-
     engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
     return app.exec();
