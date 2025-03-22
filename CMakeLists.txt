@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.29)
 
 project(PasswordManager VERSION 0.1 LANGUAGES CXX)
 
@@ -6,7 +6,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
+set(QT_VERSION_MAJOR 6)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -32,6 +32,11 @@ set(PROJECT_SOURCES
     dialogs/notecreatedialog.h dialogs/notecreatedialog.cpp dialogs/notecreatedialog.ui
 )
 
+set(PROJ_QML_FILES
+    ${PROJ_QML_SINGLETON_FILES}
+    qml/Main.qml
+)
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(PasswordManager
         MANUAL_FINALIZATION
@@ -52,7 +57,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dialogs/authdialog.h dialogs/authdialog.cpp dialogs/authdialog.ui
         net/authmanager.h net/authmanager.cpp
         net/storagemanager.h net/storagemanager.cpp
+        qml/Main.qml
     )
+
 else()
     if(ANDROID)
         add_library(PasswordManager SHARED
@@ -62,14 +69,19 @@ else()
         add_executable(PasswordManager
             ${PROJECT_SOURCES}
         )
+        set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/qml)
+        set(QML2_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/qml)
+       install(DIRECTORY qml DESTINATION ${CMAKE_INSTALL_PREFIX})
     endif()
 endif()
 
+find_package(Qt6 REQUIRED COMPONENTS Qml)
 # Link Qt libraries
-target_link_libraries(PasswordManager PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Network)
+target_link_libraries(PasswordManager PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Qml)
 
 # Link Crypto++ library (shared .so)
 target_link_libraries(PasswordManager PRIVATE ${CRYPTOPP_LIBRARIES})
+
 
 
 include_directories(common)

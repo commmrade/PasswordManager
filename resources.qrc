@@ -3,4 +3,7 @@
         <file>images/copy.png</file>
         <file>images/pm.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>qml/Main.qml</file>
+    </qresource>
 </RCC>

@@ -8,48 +8,65 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QTranslator>
+#include <QQmlApplicationEngine>
+
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    QTranslator translator;
-    QSettings settings;
-
-    // TODO: сделать загрузку в зависимости от локали, если язык не установлен
-    QString language = settings.value("gui/language").isValid() ? settings.value("gui/language").toString() : QString("English");
-    if (language == "Russian") {
-        if (!translator.load(":/translation_ru.qm")) {
-            qDebug() << "Could not load translation";
-        }
-    }
-    a.installTranslator(&translator);
-
-    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir().mkdir(appDataLoc);
-    QDir().mkdir(appDataLoc + "/images");
-
-    QString themeStr = settings.value("gui/theme").isValid() ? settings.value("gui/theme").toString() : QString("Dark");
-    QString themeLoc = themeStr == "Dark" ? "/generalDark.qss" : "/generalLight.qss";
 
 
-    QFile file(QApplication::applicationDirPath() + themeLoc);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        a.setStyleSheet(file.readAll());
-        file.close();
-    }
-    a.setStyle(QStyleFactory::create("Fusion"));
+    QGuiApplication app(argc, argv);
+    app.setOrganizationName("klewy");
+    app.setOrganizationDomain("klewy.com");
+    app.setApplicationName("Password Manager");
 
 
-    // Handle settings like language, ui type and etc.
+    QQmlApplicationEngine engine;
+    engine.addImportPath("qrc:/");
 
-    auto isFirstTime = settings.value("firstTime").toBool();
-    if (!isFirstTime) {
-        SecretPassWidget w;
-        w.exec();
-        settings.setValue("firstTime", true);
-    }
+    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
-    MainWindow w;
-    w.show();
-    return a.exec();
+    return app.exec();
+
+    // QApplication a(argc, argv);
+    // QTranslator translator;
+    // QSettings settings;
+
+    // // TODO: сделать загрузку в зависимости от локали, если язык не установлен
+    // QString language = settings.value("gui/language").isValid() ? settings.value("gui/language").toString() : QString("English");
+    // if (language == "Russian") {
+    //     if (!translator.load(":/translation_ru.qm")) {
+    //         qDebug() << "Could not load translation";
+    //     }
+    // }
+    // a.installTranslator(&translator);
+
+    // QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    // QDir().mkdir(appDataLoc);
+    // QDir().mkdir(appDataLoc + "/images");
+
+    // QString themeStr = settings.value("gui/theme").isValid() ? settings.value("gui/theme").toString() : QString("Dark");
+    // QString themeLoc = themeStr == "Dark" ? "/generalDark.qss" : "/generalLight.qss";
+
+
+    // QFile file(QApplication::applicationDirPath() + themeLoc);
+    // if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    //     a.setStyleSheet(file.readAll());
+    //     file.close();
+    // }
+    // a.setStyle(QStyleFactory::create("Fusion"));
+
+
+    // // Handle settings like language, ui type and etc.
+
+    // auto isFirstTime = settings.value("firstTime").toBool();
+    // if (!isFirstTime) {
+    //     SecretPassWidget w;
+    //     w.exec();
+    //     settings.setValue("firstTime", true);
+    // }
+
+    // MainWindow w;
+    // w.show();
+    // return a.exec();
 }
