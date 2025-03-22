@@ -12,6 +12,8 @@
 #include "notecontroller.h"
 #include <QQmlContext>
 #include "notemodel.h"
+#include "passwordgenerator.h"
+#include "iconmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +28,9 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.addImportPath("qrc:/");
+
+    qmlRegisterType<PasswordGenerator>("PasswordGenerator", 1, 0, "PasswordGenerator");
+    qmlRegisterType<IconManager>("IconManager", 1, 0, "IconManager");
 
     auto& ins = NoteController::instance();
     engine.rootContext()->setContextProperty("noteController", &ins);

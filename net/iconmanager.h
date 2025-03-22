@@ -13,11 +13,11 @@ class IconManager : public QObject
 public:
     explicit IconManager(QObject *parent = nullptr);
 
-    void downloadImage(QString urlStr, int id);
-    void deleteIcon(int id);
+    Q_INVOKABLE void downloadImage(QString urlStr, int id);
+    Q_INVOKABLE void deleteIcon(int id);
 
 
-    bool hasIcon(int id) const;
+    Q_INVOKABLE bool hasIcon(int id) const;
 public slots:
 
 signals:

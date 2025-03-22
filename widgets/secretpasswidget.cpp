@@ -12,7 +12,7 @@ SecretPassWidget::SecretPassWidget(QWidget *parent)
     , ui(new Ui::SecretPassWidget)
 {
     ui->setupUi(this);
-    ui->passwordEdit->setText(PasswordGenerator::generatePassword(32));
+    ui->passwordEdit->setText(PasswordGenerator{}.generatePassword(32));
 }
 
 SecretPassWidget::~SecretPassWidget()

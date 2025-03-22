@@ -9,5 +9,6 @@
         <file>qml/PMenubar.qml</file>
         <file>qml/Notes.qml</file>
         <file>qml/InfoNote.qml</file>
+        <file>qml/NoteCreator.qml</file>
     </qresource>
 </RCC>

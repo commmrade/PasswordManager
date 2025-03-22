@@ -1,13 +1,17 @@
 #ifndef PASSWORDGENERATOR_H
 #define PASSWORDGENERATOR_H
-class QString;
-class PasswordGenerator
+#include <QObject>
+#include <qqml.h>
+#include <qtmetamacros.h>
+#include <QString>
+
+class PasswordGenerator : public QObject
 {
-    PasswordGenerator();
+    Q_OBJECT
+    QML_ELEMENT
 public:
-    static QString generatePassword(unsigned int len = 16);
-
-
+    explicit PasswordGenerator(QObject* parent = nullptr) : QObject(parent) {};
+    Q_INVOKABLE QString generatePassword(unsigned int len = 16);
 };
 
 #endif // PASSWORDGENERATOR_H

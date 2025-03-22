@@ -2,23 +2,20 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import PasswordGenerator
+import QtQuick.Dialogs
 
-Item {
+Dialog {
     id: root
-    anchors.fill: parent  // Fill all available space in the parent
-
+    modal: true
     // Properties to access TextField values
-    property alias title: titleField.text
+    property alias titleNote: titleField.text
     property alias url: urlField.text
     property alias username: usernameField.text
     property alias email: emailField.text
     property alias password: passwordField.text
 
-    property int currentIndex: -1
 
-    // Signals for button clicks
-    signal urlFieldChanged(id: int, url: string)
-    signal closeRequested()
 
     // Ensure Material style is applied (can be overridden by parent)
     Material.theme: Material.Dark
@@ -30,23 +27,27 @@ Item {
         anchors.margins: 20
         spacing: 10
 
+        // Title
+        Text {
+            text: "Create your note"
+            color: "white"
+            font.pixelSize: 24
+            font.bold: true
+            Layout.alignment: Qt.AlignHCenter
+        }
+
         // Form fields
         ColumnLayout {
             spacing: 15
             Layout.fillWidth: true
-            Layout.fillHeight: true
 
             // Title field
             TextField {
                 id: titleField
                 placeholderText: "Title"
                 Layout.fillWidth: true
-
-                onAccepted: {
-                    if (currentIndex !== -1) {
-                        noteController.setTitle(currentIndex, titleField.text)
-                    }
-                }
+                Material.foreground: "white"
+                Material.background: "#403F3F"
             }
 
             // Url field
@@ -54,13 +55,8 @@ Item {
                 id: urlField
                 placeholderText: "Url"
                 Layout.fillWidth: true
-
-                onAccepted: {
-                    if (currentIndex !== -1) {
-                        noteController.setUrl(currentIndex, urlField.text)
-                        urlFieldChanged(currentIndex, urlField.text)
-                    }
-                }
+                Material.foreground: "white"
+                Material.background: "#403F3F"
             }
 
             // Username field
@@ -68,12 +64,8 @@ Item {
                 id: usernameField
                 placeholderText: "Username"
                 Layout.fillWidth: true
-
-                onAccepted: {
-                    if (currentIndex !== -1) {
-                        noteController.setUsername(currentIndex, usernameField.text)
-                    }
-                }
+                Material.foreground: "white"
+                Material.background: "#403F3F"
             }
 
             // Email field
@@ -81,12 +73,8 @@ Item {
                 id: emailField
                 placeholderText: "Email"
                 Layout.fillWidth: true
-
-                onAccepted: {
-                    if (currentIndex !== -1) {
-                        noteController.setEmail(currentIndex, emailField.text)
-                    }
-                }
+                Material.foreground: "white"
+                Material.background: "#403F3F"
             }
 
             // Password field
@@ -94,13 +82,9 @@ Item {
                 id: passwordField
                 placeholderText: "Password"
                 Layout.fillWidth: true
-                // echoMode: TextInput.Password
-
-                onAccepted: {
-                    if (currentIndex !== -1) {
-                        noteController.setPassword(currentIndex, passwordField.text)
-                    }
-                }
+                Material.foreground: "white"
+                Material.background: "#403F3F"
+                // echoMode: TextInput.PasswordEchoOnEdit
             }
         }
 
@@ -111,52 +95,49 @@ Item {
 
             Item { Layout.fillWidth: true }  // Spacer
 
-
-
-            Button {
-                text: "Save"
-                Material.elevation: 2
-                Material.background: "#403F3F"
-                Material.foreground: "white"
-                onClicked: {
-                    noteController.editNote(currentIndex, titleField.text, urlField.text, usernameField.text, emailField.text, passwordField.text)
-                }
-            }
             Button {
                 text: "Generate password"
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"
                 onClicked: {
-                    // TODO
+                    passwordField.text = passwordGenerator.generatePassword()
                 }
             }
-        }
 
-        RowLayout {
-            Layout.fillWidth: true
-            spacing: 10
+            Button {
+                text: "Create"
+                Material.elevation: 2
+                Material.background: "#403F3F"
+                Material.foreground: "white"
+                onClicked: {
+                    if (titleField.text === "" || passwordField.text === "") {
+                        warningDialog.open()
+                        return
+                    }
 
-            Item { Layout.fillWidth: true }  // Spacer
+                    noteController.createNote(titleField.text, urlField.text, usernameField.text, emailField.text, passwordField.text)
+                    root.close()
+                }
+            }
             Button {
                 text: "Close"
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"
                 onClicked: {
-                    closeRequested()
+                    root.close()
                 }
             }
         }
-
     }
-
-    function setNote(id, title, url, username, email, password) {
-        currentIndex = id
-        root.title = title
-        root.url = url
-        root.username = username
-        root.email = email
-        root.password = password
+    PasswordGenerator {
+        id: passwordGenerator
+    }
+    MessageDialog {
+        id: warningDialog
+        title: "Title or Password Empty"
+        text: "Please, make sure both fields are filled with text."
+        buttons: MessageDialog.Ok
     }
 }
