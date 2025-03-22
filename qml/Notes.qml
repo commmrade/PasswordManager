@@ -47,7 +47,7 @@ Item {
 
                         Text {
                             anchors.centerIn: parent
-                            text: model.title
+                            text: model.url
                             color: "white"  // Changed to white for dark theme
                             font.pixelSize: 20
                         }

@@ -47,6 +47,7 @@ public:
     Q_INVOKABLE void removeFromCache(int id);
 
     Q_INVOKABLE QAbstractItemModel* getModel() {
+        qDebug() << model.rowCount();
         return &model;
     }
 
