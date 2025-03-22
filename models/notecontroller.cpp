@@ -2,7 +2,7 @@
 #include <QDate>
 #include "cipher.h"
 
-NoteController::NoteController()
+NoteController::NoteController() : QObject(nullptr)
 {
 
 }

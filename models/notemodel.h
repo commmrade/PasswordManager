@@ -12,16 +12,16 @@ class SqlNoteModel : public QSqlTableModel
 public:
     explicit SqlNoteModel(QObject *parent = nullptr);
 
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
-    QHash<int, QByteArray> roleNames() const override { return roles; }
+    Q_INVOKABLE QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    Q_INVOKABLE bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
+    Q_INVOKABLE QHash<int, QByteArray> roleNames() const override { return roles; }
 
     int createNote(const QString& title, const QString& url,
                    const QString& username,
                    const QString& email, const QString& password, const QString& salt);
     void editNote(const int noteId, const QString& title, const QString& url,
-                   const QString& username,
-                   const QString& email, const QString& password);
+                  const QString& username,
+                  const QString& email, const QString& password);
     void deleteNote(const int noteId);
     void setTitle(const int noteId, const QString& title);
     QString getTitle(const int noteId) const;

@@ -215,14 +215,31 @@ void SqlNoteModel::removeFromCache(int id)
 
 QSqlDatabase SqlNoteModel::makeDatabase()
 {
+    qDebug() << "make db";
     const QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+
+    // Ensure the directory exists
+    QDir dir(appDataLoc);
+    if (!dir.exists()) {
+        if (!dir.mkpath(appDataLoc)) {
+            qDebug() << "Failed to create directory:" << appDataLoc;
+            throw std::runtime_error("Could not create database directory");
+        }
+    }
+
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
-    database.setHostName("klewy");
-    database.setDatabaseName(appDataLoc + PasswordManager::PM_FILENAME);
-    database.setUserName("root");
-    database.setPassword("root"); // TODO: may be set password
+    // Remove unnecessary settings for SQLite
+    // database.setHostName("klewy"); // Not needed for SQLite
+    // database.setUserName("root");  // Not needed for SQLite
+    // database.setPassword("root");  // Not needed for SQLite
+
+    // Set the database file path
+    QString dbPath = appDataLoc + PasswordManager::PM_FILENAME;
+
+    database.setDatabaseName(dbPath);
 
     if (!database.open()) {
+        qDebug() << "Database error:" << database.lastError();
         throw std::runtime_error("Could not setup a connection with the database");
     }
 
@@ -237,8 +254,9 @@ QSqlDatabase SqlNoteModel::makeDatabase()
         "    salt TEXT NOT NULL,"
         "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
         ");";
-    if (QSqlQuery query(creationQuery); !query.exec()) {
-        qDebug() << query.lastError();
+    QSqlQuery query(database); // Explicitly pass the database to the query
+    if (!query.exec(creationQuery)) {
+        qDebug() << "Query error:" << query.lastError();
         throw std::runtime_error("Could not create a table");
     }
 
@@ -283,4 +301,3 @@ void SqlNoteModel::generateRoles()
         roles[Qt::UserRole + i + 1] = QVariant(headerData(i, Qt::Horizontal).toString()).toByteArray();
     }
 }
-
