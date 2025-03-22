@@ -9,6 +9,8 @@
 #include <QDir>
 #include <QTranslator>
 #include <QQmlApplicationEngine>
+#include "notecontroller.h"
+#include <QQmlContext>
 
 
 int main(int argc, char *argv[])
@@ -26,7 +28,15 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.addImportPath("qrc:/");
+
+    auto& ins = NoteController::instance();
+
+    engine.rootContext()->setContextProperty("noteController", &ins);
+
     engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
+
+
+
 
     return app.exec();
 

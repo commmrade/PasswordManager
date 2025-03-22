@@ -38,12 +38,7 @@ Item {
                     Layout.fillHeight: true
                     spacing: 10
 
-                    model: ListModel {
-                        ListElement { name: "Item 1" }
-                        ListElement { name: "Item 2" }
-                        ListElement { name: "Item 3" }
-                    }
-
+                    model: noteController.getModel()
                     delegate: Rectangle {
                         width: parent.width
                         height: 50
@@ -52,7 +47,7 @@ Item {
 
                         Text {
                             anchors.centerIn: parent
-                            text: model.name
+                            text: model.title
                             color: "white"  // Changed to white for dark theme
                             font.pixelSize: 20
                         }
