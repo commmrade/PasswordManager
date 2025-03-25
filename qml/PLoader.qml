@@ -32,7 +32,7 @@ Dialog {
             spacing: 10
 
             Label {
-                text: "Choose a file"
+                text: qsTr("Choose a file")
                 color: "white"
                 font.pixelSize: 16
             }
@@ -42,7 +42,7 @@ Dialog {
                 Layout.fillWidth: true
                 readOnly: true
                 text: root.filePath
-                placeholderText: "Click to select a file"
+                placeholderText: qsTr("Click to select a file")
                 Material.foreground: "white"
 
                 MouseArea {
@@ -60,7 +60,7 @@ Dialog {
             spacing: 10
 
             Label {
-                text: "Enter password:"
+                text: qsTr("Enter password:")
                 color: "white"
                 font.pixelSize: 16
             }
@@ -68,7 +68,7 @@ Dialog {
             TextField {
                 id: passwordInput
                 Layout.fillWidth: true
-                placeholderText: "Password..."
+                placeholderText: qsTr("Password...")
                 echoMode: TextInput.Password // Режим пароля (точки вместо символов)
                 Material.foreground: "white"
             }
@@ -81,22 +81,21 @@ Dialog {
             spacing: 10
 
             Button {
-                text: "Load"
+                text: qsTr("Load")
                 highlighted: true
                 onClicked: {
-                    console.log("File:", filePathInput.text, "Password:", passwordInput.text)
                     if (!loaderController.loadStorage(filePathInput.text, passwordInput.text)) {
-                        console.log("Damn error");
+                        errorDialog.open();
                         return
                     }
                     AppSettings.firstTime = false
                     AppSettings.password = passwordInput.text
-                    root.accept()
+                    // root.accept()
                 }
             }
 
             Button {
-                text: "Close"
+                text: qsTr("Close")
                 onClicked: {
                     root.reject()
                 }
@@ -104,16 +103,47 @@ Dialog {
         }
     }
 
+    Popup {
+        id: errorDialog
+        width: 300
+        height: 150
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape
+
+        Material.theme: Material.Dark
+        Material.accent: Material.Purple
+        Material.primary: Material.Grey
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 10
+
+            Text {
+                text: qsTr("Could not load the storage")
+                color: "white"
+                font.pixelSize: 16
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            Button {
+                text: qsTr("OK")
+                onClicked: errorDialog.close()
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+    }
+
     FileDialog {
         id: fileDialog
-        title: "Select a File"
+        title: qsTr("Select a File")
         currentFolder: StandardPaths.standardLocations(StandardPaths.HomeLocation)[0] // Use first home location
         nameFilters: ["PM files (*.pm)"]
         onAccepted: {
             root.filePath = fileDialog.currentFile
         }
         onRejected: {
-            console.log("File selection canceled")
         }
     }
 

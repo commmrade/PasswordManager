@@ -40,7 +40,7 @@ Item {
             // Title field
             TextField {
                 id: titleField
-                placeholderText: "Title"
+                placeholderText: qsTr("Title")
                 Layout.fillWidth: true
 
                 onAccepted: {
@@ -53,7 +53,7 @@ Item {
             // Url field
             TextField {
                 id: urlField
-                placeholderText: "Url"
+                placeholderText: qsTr("Url")
                 Layout.fillWidth: true
 
                 onAccepted: {
@@ -67,7 +67,7 @@ Item {
             // Username field
             TextField {
                 id: usernameField
-                placeholderText: "Username"
+                placeholderText: qsTr("Username")
                 Layout.fillWidth: true
 
                 onAccepted: {
@@ -80,7 +80,7 @@ Item {
             // Email field
             TextField {
                 id: emailField
-                placeholderText: "Email"
+                placeholderText: qsTr("Email")
                 Layout.fillWidth: true
 
                 onAccepted: {
@@ -93,7 +93,7 @@ Item {
             // Password field
             TextField {
                 id: passwordField
-                placeholderText: "Password"
+                placeholderText: qsTr("Password")
                 Layout.fillWidth: true
                 // echoMode: TextInput.Password
 
@@ -115,7 +115,7 @@ Item {
 
 
             Button {
-                text: "Save"
+                text: qsTr("Save")
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"
@@ -124,7 +124,7 @@ Item {
                 }
             }
             Button {
-                text: "Generate new password"
+                text: qsTr("Generate new password")
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"
@@ -140,7 +140,7 @@ Item {
 
             Item { Layout.fillWidth: true }  // Spacer
             Button {
-                text: "Close"
+                text: qsTr("Close")
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"

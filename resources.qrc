@@ -13,5 +13,6 @@
         <file>qml/Welcome.qml</file>
         <file>qml/AppSettings.qml</file>
         <file>qml/PLoader.qml</file>
+        <file>qml/SettingsDialog.qml</file>
     </qresource>
 </RCC>

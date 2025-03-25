@@ -41,7 +41,7 @@ Item {
         id: confirmationDialog
         x: (root.width - width) / 2  // Center horizontally
         y: root.height / 2  // Center vertically
-        title: "Confirmation"
+        title: qsTr("Confirmation")
         modal: true
         Material.theme: Material.Dark
         Material.accent: Material.Purple
@@ -50,7 +50,7 @@ Item {
             spacing: 10
 
             Text {
-                text: "Do you really want to close this? Save the password!"
+                text: qsTr("Do you really want to close this? Save the password!")
                 wrapMode: Text.Wrap
                 color: "white"
                 font.pixelSize: 16
@@ -60,14 +60,14 @@ Item {
                 spacing: 10
 
                 Button {
-                    text: "Yes"
+                    text: qsTr("Yes")
                     onClicked: {
                         confirmationDialog.accept() // Use accept() instead of close()
                     }
                 }
 
                 Button {
-                    text: "No"
+                    text: qsTr("No")
                     onClicked: {
                         confirmationDialog.reject()
                     }
@@ -78,7 +78,6 @@ Item {
         onAccepted: {
             AppSettings.firstTime = false
             AppSettings.password = passwordText.text
-            console.log(AppSettings.password + " confirm")
             AppSettings.sync()
             Qt.callLater(function() { root.destroy() })
         }
@@ -100,7 +99,7 @@ Item {
 
             Label {
                 anchors.centerIn: parent
-                text: "Password Manager"
+                text: qsTr("Password Manager")
                 font.pixelSize: 20
                 color: "white"
             }
@@ -118,13 +117,13 @@ Item {
                 spacing: 10
 
                 Label {
-                    text: "Your password:"
+                    text: qsTr("Your password:")
                     font.pixelSize: 16
                     color: "white"
                     Layout.alignment: Qt.AlignHCenter
                 }
                 Label {
-                    text: "(Password is needed to be able to load storage on another device)"
+                    text: qsTr("(Password is needed to be able to load storage on another device)")
                     font.pixelSize: 16
                     color: "gray"
                     Layout.alignment: Qt.AlignHCenter
@@ -138,7 +137,7 @@ Item {
 
                     TextInput {
                         id: passwordText
-                        text: "Kqs9AeMuP23FkVdgTzlwE"
+                        text: ""
                         font.pixelSize: 14
                         color: "white"
                         anchors.centerIn: parent
@@ -158,7 +157,7 @@ Item {
                 }
 
                 Label {
-                    text: "Copy. You can't recover the password"
+                    text: qsTr("Copy. You can't recover the password")
                     font.pixelSize: 12
                     color: Material.hintTextColor
                     Layout.alignment: Qt.AlignHCenter
@@ -172,7 +171,7 @@ Item {
             spacing: 10
 
             Button {
-                text: "Continue"
+                text: qsTr("Continue")
                 Material.background: "#403F3F"
                 Material.foreground: "white"
                 Material.elevation: 2
@@ -183,13 +182,12 @@ Item {
             }
 
             Button {
-                text: "Load existing passwords"
+                text: qsTr("Load existing passwords")
                 Material.background: "#403F3F"
                 Material.foreground: "white"
                 Material.elevation: 2
                 Layout.fillWidth: true
                 onClicked: {
-                    console.log("clicked")
                     pLoader.open()
                 }
             }

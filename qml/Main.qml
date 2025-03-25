@@ -11,7 +11,7 @@ Window {
     height: 720
     visible: true
     color: "#292828"
-    title: qsTr("Hello World")
+    title: qsTr("Password Manager")
 
     Component.onCompleted: {
         console.log("Initial settings - firstTime: " + AppSettings.firstTime + ", password: " + AppSettings.password)
@@ -25,6 +25,15 @@ Window {
     }
 
 
+    SettingsDialog {
+        id: settingsDialog
+        anchors.centerIn: parent  // Center in the parent (root)
+
+        // width: parent.width - parent.width / 4
+        height: parent.height - parent.height / 4
+    }
+
+
     PMenubar {
         id: menuBar
         height: 20
@@ -34,7 +43,7 @@ Window {
             Action {
                 text: qsTr("Settings");
                 onTriggered: {
-                    console.log("open settings")
+                    settingsDialog.open()
                 }
             }
         }

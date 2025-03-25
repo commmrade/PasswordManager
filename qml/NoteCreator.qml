@@ -29,7 +29,7 @@ Dialog {
 
         // Title
         Text {
-            text: "Create your note"
+            text: qsTr("Create new note")
             color: "white"
             font.pixelSize: 24
             font.bold: true
@@ -44,7 +44,7 @@ Dialog {
             // Title field
             TextField {
                 id: titleField
-                placeholderText: "Title"
+                placeholderText: qsTr("Title")
                 Layout.fillWidth: true
                 Material.foreground: "white"
                 Material.background: "#403F3F"
@@ -53,7 +53,7 @@ Dialog {
             // Url field
             TextField {
                 id: urlField
-                placeholderText: "Url"
+                placeholderText: qsTr("Url")
                 Layout.fillWidth: true
                 Material.foreground: "white"
                 Material.background: "#403F3F"
@@ -62,7 +62,7 @@ Dialog {
             // Username field
             TextField {
                 id: usernameField
-                placeholderText: "Username"
+                placeholderText: qsTr("Username")
                 Layout.fillWidth: true
                 Material.foreground: "white"
                 Material.background: "#403F3F"
@@ -71,7 +71,7 @@ Dialog {
             // Email field
             TextField {
                 id: emailField
-                placeholderText: "Email"
+                placeholderText: qsTr("Email")
                 Layout.fillWidth: true
                 Material.foreground: "white"
                 Material.background: "#403F3F"
@@ -80,7 +80,7 @@ Dialog {
             // Password field
             TextField {
                 id: passwordField
-                placeholderText: "Password"
+                placeholderText: qsTr("Password")
                 Layout.fillWidth: true
                 Material.foreground: "white"
                 Material.background: "#403F3F"
@@ -96,7 +96,7 @@ Dialog {
             Item { Layout.fillWidth: true }  // Spacer
 
             Button {
-                text: "Generate password"
+                text: qsTr("Generate password")
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"
@@ -106,7 +106,7 @@ Dialog {
             }
 
             Button {
-                text: "Create"
+                text: qsTr("Create")
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"
@@ -117,15 +117,17 @@ Dialog {
                     }
 
                     noteController.createNote(titleField.text, urlField.text, usernameField.text, emailField.text, passwordField.text)
+                    reset()
                     root.close()
                 }
             }
             Button {
-                text: "Close"
+                text: qsTr("Close")
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"
                 onClicked: {
+                    reset()
                     root.close()
                 }
             }
@@ -136,8 +138,16 @@ Dialog {
     }
     MessageDialog {
         id: warningDialog
-        title: "Title or Password Empty"
-        text: "Please, make sure both fields are filled with text."
+        title: qsTr("Title or Password Empty")
+        text: qsTr("Please, make sure both fields are filled with text.")
         buttons: MessageDialog.Ok
+    }
+
+    function reset() {
+        titleField.text = ""
+        urlField.text = ""
+        usernameField.text = ""
+        emailField.text = ""
+        passwordField.text = ""
     }
 }

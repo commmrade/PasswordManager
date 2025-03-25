@@ -88,7 +88,7 @@ Item {
                     Button {
                         id: createNoteBtn
                         width: listView.width / 2 - 30
-                        text: "Create"
+                        text: qsTr("Create")
                         Material.elevation: 2
                         Material.background: "#403F3F"
 
@@ -107,14 +107,16 @@ Item {
                     Button {
                         id: deleteNoteBtn
                         width: listView.width / 2 - 30
-                        text: "Delete"
+                        text: qsTr("Delete")
                         Material.elevation: 2
                         Material.background: "#403F3F"
 
                         onClicked: {
-                            noteController.deleteNote(infoNote.currentIndex)
-                            infoNote.visible = false
-                            infoNote.currentIndex = -1
+                            if (infoNote.currentIndex !== -1) {
+                                noteController.deleteNote(infoNote.currentIndex)
+                                infoNote.visible = false
+                                infoNote.currentIndex = -1
+                            }
                         }
                     }
                 }
@@ -145,7 +147,6 @@ Item {
             iconManager.downloadImage(urlFull, id)
         }
         function onCloseRequested() {
-            console.log("hi")
             infoNote.visible = false
             infoNote.currentIndex = -1
         }

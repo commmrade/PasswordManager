@@ -28,6 +28,19 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("klewy.com");
     QCoreApplication::setApplicationName("Password Manager");
 
+    QTranslator translator;
+    QSettings settings;
+
+    // TODO: сделать загрузку в зависимости от локали, если язык не установлен
+    QString language = settings.value("gui/language").isValid() ? settings.value("gui/language").toString() : QString("English");
+    if (language == "Russian") {
+        if (!translator.load(":/translation_ru.qm")) {
+            qDebug() << "Could not load translation";
+        }
+    }
+    app.installTranslator(&translator);
+    qDebug() << language;
+
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkdir(appDataLoc);
     QDir().mkdir(appDataLoc + "/images");
@@ -49,7 +62,6 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("noteController", &ins);
     engine.rootContext()->setContextProperty("clipboard", &clipboard);
 
-    QSettings settings;
     engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
     return app.exec();
