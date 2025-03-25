@@ -17,6 +17,7 @@
 #include "passwordgenerator.h"
 #include "iconmanager.h"
 #include "loadercontroller.h"
+#include "settingscontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -56,6 +57,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<PasswordGenerator>("PasswordGenerator", 1, 0, "PasswordGenerator");
     qmlRegisterType<IconManager>("IconManager", 1, 0, "IconManager");
     qmlRegisterType<LoaderController>("LoaderController", 1, 0, "LoaderController");
+    qmlRegisterType<SettingsController>("SettingsController", 1, 0, "SettingsController");
 
     Clipboard clipboard;
     auto& ins = NoteController::instance();

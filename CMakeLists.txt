@@ -59,6 +59,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         net/storagemanager.h net/storagemanager.cpp
         common/clipboard.h common/clipboard.cpp
         common/loadercontroller.h common/loadercontroller.cpp
+        common/settingscontroller.h common/settingscontroller.cpp
     )
 
 else()

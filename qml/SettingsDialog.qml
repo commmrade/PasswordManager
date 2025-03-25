@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material
 import QtCore
 import QtQuick.Dialogs
+import SettingsController
 
 Dialog {
     id: root
@@ -29,12 +30,16 @@ Dialog {
         property string refreshToken
     }
 
+    SettingsController {
+        id: settingsController
+    }
+
+
     Component.onCompleted: {
         guiTypeBox.currentIndex = guiTypeBox.indexOfValue(guiSettings.type)
         languageBox.currentIndex = languageBox.indexOfValue(guiSettings.language)
         themeBox.currentIndex = themeBox.indexOfValue(guiSettings.theme)
-
-        if (accountSettings.jwtToken === null && accountSettings.refreshToken === null) {
+        if (accountSettings.jwtToken === "" && accountSettings.refreshToken === "") {
             disableAccount()
         }
     }
@@ -129,9 +134,12 @@ Dialog {
                     text: qsTr("Reset\nReset all settings and storages")
                     Layout.fillWidth: true
                 }
-
                 Button {
                     text: qsTr("Reset")
+
+                    onClicked: {
+                        resetPopup.open();
+                    }
                 }
             }
 
@@ -268,6 +276,27 @@ Dialog {
                 break;
             case MessageDialog.Close:
                 changePopup.close()
+            }
+
+        }
+    }
+
+    MessageDialog {
+        id: resetPopup
+        title: qsTr("Resetting")
+        text: qsTr("Are you sure, that you want to reset the app? It will delete settings, storage")
+        buttons: MessageDialog.Ok | MessageDialog.Close
+        Material.theme: Material.Dark
+        Material.accent: Material.Purple
+        Material.primary: Material.Grey
+
+        onButtonClicked: function (button, role) {
+            switch (button) {
+                case MessageDialog.Ok:
+                    settingsController.resetApp();
+                    break;
+                case MessageDialog.Close:
+
             }
 
         }
