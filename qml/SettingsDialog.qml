@@ -3,6 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material
 import QtCore
+import QtQuick.Dialogs
 
 Dialog {
     id: root
@@ -13,7 +14,6 @@ Dialog {
     Material.theme: Material.Dark
     Material.accent: Material.Purple
     Material.primary: Material.Grey
-
 
     Settings {
         id: guiSettings
@@ -38,8 +38,6 @@ Dialog {
             disableAccount()
         }
     }
-
-
 
     ScrollView {
         anchors.fill: parent
@@ -73,6 +71,7 @@ Dialog {
                     onActivated: (index) => {
                         let val = guiTypeBox.textAt(index)
                         guiSettings.type = val
+                        changePopup.open()
                     }
                 }
             }
@@ -94,6 +93,7 @@ Dialog {
                     onActivated: (index) => {
                         let val = languageBox.textAt(index)
                         guiSettings.language = val
+                        changePopup.open()
                     }
                 }
             }
@@ -115,6 +115,7 @@ Dialog {
                     onActivated: (index) => {
                         let val = themeBox.textAt(index)
                         guiSettings.theme = val
+                        changePopup.open()
                     }
                 }
             }
@@ -249,5 +250,26 @@ Dialog {
         loadRow.visible = true
         authBtn.visible = false
     }
-}
 
+    // Popup that appears when language, GUI type, or theme changes
+    MessageDialog {
+        id: changePopup
+        title: qsTr("Setting Changed")
+        text: qsTr("Settings have been changed. Restart to apply them?")
+        buttons: MessageDialog.Ok | MessageDialog.Close
+        Material.theme: Material.Dark
+        Material.accent: Material.Purple
+        Material.primary: Material.Grey
+
+        onButtonClicked: function (button, role) {
+            switch (button) {
+            case MessageDialog.Ok:
+                Qt.quit()
+                break;
+            case MessageDialog.Close:
+                changePopup.close()
+            }
+
+        }
+    }
+}
