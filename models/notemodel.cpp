@@ -10,6 +10,7 @@
 #include <QIcon>
 #include <QtLogging>
 #include <QBuffer>
+#include <utility>
 SqlNoteModel::SqlNoteModel(QObject *parent)
     : QSqlTableModel{parent, SqlNoteModel::makeDatabase()}
 {
@@ -97,7 +98,7 @@ int SqlNoteModel::createNote(const QString& title, const QString& url,
 
 void SqlNoteModel::editNote(const int noteId, const QString &title, const QString &url,
                             const QString &username, const QString &email,
-                            const QString &password)
+                            const std::pair<QString, QString> &passwordSalt)
 {
     // TODO: add check if note exists
     const auto startIndex = this->index(0, 0);
@@ -112,7 +113,8 @@ void SqlNoteModel::editNote(const int noteId, const QString &title, const QStrin
     record.setValue("url", url);
     record.setValue("username", username);
     record.setValue("email", email);
-    record.setValue("password", password);
+    record.setValue("password", passwordSalt.first);
+    record.setValue("salt", passwordSalt.second);
     if (!setRecord(row, record)) {
         qWarning("Warning: Could not edit the note");
     }
@@ -297,4 +299,3 @@ void SqlNoteModel::generateRoles()
     }
     roles[Qt::DecorationRole] = "icon";
 }
-
