@@ -10,5 +10,7 @@
         <file>qml/Notes.qml</file>
         <file>qml/InfoNote.qml</file>
         <file>qml/NoteCreator.qml</file>
+        <file>qml/Welcome.qml</file>
+        <file>qml/AppSettings.qml</file>
     </qresource>
 </RCC>

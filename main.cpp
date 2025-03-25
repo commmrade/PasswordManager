@@ -11,6 +11,8 @@
 #include <QQmlApplicationEngine>
 #include "notecontroller.h"
 #include <QQmlContext>
+
+#include "clipboard.h"
 #include "notemodel.h"
 #include "passwordgenerator.h"
 #include "iconmanager.h"
@@ -22,30 +24,29 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("klewy.com");
     app.setApplicationName("Password Manager");
 
+
+    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir().mkdir(appDataLoc);
+    QDir().mkdir(appDataLoc + "/images");
+
+
     qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Dense");
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", "Dark");
 
 
     QQmlApplicationEngine engine;
     engine.addImportPath("qrc:/");
-
+    //engine.addImportPath("qrc:/qml");
     qmlRegisterType<PasswordGenerator>("PasswordGenerator", 1, 0, "PasswordGenerator");
     qmlRegisterType<IconManager>("IconManager", 1, 0, "IconManager");
 
+    Clipboard clipboard;
     auto& ins = NoteController::instance();
     engine.rootContext()->setContextProperty("noteController", &ins);
-
-    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
-
+    engine.rootContext()->setContextProperty("clipboard", &clipboard);
 
     QSettings settings;
-    auto isFirstTime = settings.value("firstTime", true).toBool();
-    if (isFirstTime) {
-        // SecretPassWidget w;
-        // w.exec();
-        settings.setValue("firstTime", false);
-    }
-
+    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
     return app.exec();
 

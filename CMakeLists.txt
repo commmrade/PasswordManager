@@ -57,6 +57,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dialogs/authdialog.h dialogs/authdialog.cpp dialogs/authdialog.ui
         net/authmanager.h net/authmanager.cpp
         net/storagemanager.h net/storagemanager.cpp
+        common/clipboard.h common/clipboard.cpp
+
     )
 
 else()
@@ -74,18 +76,25 @@ else()
     endif()
 endif()
 
+
+
 find_package(Qt6 REQUIRED COMPONENTS Qml)
 # Link Qt libraries
 target_link_libraries(PasswordManager PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Qml)
 
-# Link Crypto++ library (shared .so)
-target_link_libraries(PasswordManager PRIVATE ${CRYPTOPP_LIBRARIES})
+set_source_files_properties(qml/AppSettings.qml PROPERTIES
+        QT_QML_SINGLETON_TYPE TRUE
+)
 
 qt_add_qml_module(PasswordManagerQML
-    URI PasswordManager
-    VERSION 1.0
-    QML_FILES qml/Main.qml qml/PMenubar.qml qml/PMenu.qml qml/Notes.qml qml/InfoNote.qml qml/NoteCreator.qml
+        URI PasswordManager
+        VERSION 1.0
+        QML_FILES qml/Main.qml qml/PMenubar.qml qml/PMenu.qml qml/Notes.qml qml/InfoNote.qml qml/NoteCreator.qml qml/Welcome.qml qml/AppSettings.qml
 )
+# Link Crypto++ library (shared .so)
+target_link_libraries(PasswordManager PRIVATE ${CRYPTOPP_LIBRARIES} PasswordManagerQML)
+
+
 
 include_directories(common)
 include_directories(dialogs)
