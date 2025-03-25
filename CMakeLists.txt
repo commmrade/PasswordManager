@@ -90,7 +90,7 @@ set_source_files_properties(qml/AppSettings.qml PROPERTIES
 qt_add_qml_module(PasswordManagerQML
         URI PasswordManager
         VERSION 1.0
-        QML_FILES qml/Main.qml qml/PMenubar.qml qml/PMenu.qml qml/Notes.qml qml/InfoNote.qml qml/NoteCreator.qml qml/Welcome.qml qml/AppSettings.qml
+        QML_FILES qml/Main.qml qml/PMenubar.qml qml/PMenu.qml qml/Notes.qml qml/InfoNote.qml qml/NoteCreator.qml qml/Welcome.qml qml/AppSettings.qml qml/PLoader.qml
 )
 # Link Crypto++ library (shared .so)
 target_link_libraries(PasswordManager PRIVATE ${CRYPTOPP_LIBRARIES} PasswordManagerQML)
