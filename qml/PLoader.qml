@@ -3,7 +3,8 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QtQuick.Dialogs
-
+import PasswordManager
+import LoaderController
 Dialog {
     id: root
     modal: true
@@ -15,6 +16,10 @@ Dialog {
 
     implicitWidth: 400
     implicitHeight: 200
+
+    LoaderController {
+        id: loaderController
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -77,9 +82,15 @@ Dialog {
 
             Button {
                 text: "Load"
-                highlighted: true // Uses accent color
+                highlighted: true
                 onClicked: {
                     console.log("File:", filePathInput.text, "Password:", passwordInput.text)
+                    if (!loaderController.loadStorage(filePathInput.text, passwordInput.text)) {
+                        console.log("Damn error");
+                        return
+                    }
+                    AppSettings.firstTime = false
+                    AppSettings.password = passwordInput.text
                     root.accept()
                 }
             }
@@ -97,6 +108,7 @@ Dialog {
         id: fileDialog
         title: "Select a File"
         currentFolder: StandardPaths.standardLocations(StandardPaths.HomeLocation)[0] // Use first home location
+        nameFilters: ["PM files (*.pm)"]
         onAccepted: {
             root.filePath = fileDialog.currentFile
         }

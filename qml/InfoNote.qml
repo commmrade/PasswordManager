@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import PasswordGenerator
 
 Item {
     id: root
@@ -123,12 +124,12 @@ Item {
                 }
             }
             Button {
-                text: "Generate password"
+                text: "Generate new password"
                 Material.elevation: 2
                 Material.background: "#403F3F"
                 Material.foreground: "white"
                 onClicked: {
-                    // TODO
+                    passwordField.text = passwordGenerator.generatePassword()
                 }
             }
         }
@@ -158,5 +159,9 @@ Item {
         root.username = username
         root.email = email
         root.password = password
+    }
+
+    PasswordGenerator {
+        id: passwordGenerator
     }
 }

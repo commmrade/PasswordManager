@@ -16,6 +16,7 @@
 #include "notemodel.h"
 #include "passwordgenerator.h"
 #include "iconmanager.h"
+#include "loadercontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,7 +24,9 @@ int main(int argc, char *argv[])
     app.setOrganizationName("klewy");
     app.setOrganizationDomain("klewy.com");
     app.setApplicationName("Password Manager");
-
+    QCoreApplication::setOrganizationName("klewy");
+    QCoreApplication::setOrganizationDomain("klewy.com");
+    QCoreApplication::setApplicationName("Password Manager");
 
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkdir(appDataLoc);
@@ -39,6 +42,7 @@ int main(int argc, char *argv[])
     //engine.addImportPath("qrc:/qml");
     qmlRegisterType<PasswordGenerator>("PasswordGenerator", 1, 0, "PasswordGenerator");
     qmlRegisterType<IconManager>("IconManager", 1, 0, "IconManager");
+    qmlRegisterType<LoaderController>("LoaderController", 1, 0, "LoaderController");
 
     Clipboard clipboard;
     auto& ins = NoteController::instance();

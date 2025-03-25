@@ -30,6 +30,11 @@ Item {
         y: -(root.height - height) * 8   // Center vertically
         height: root.height - 100
         width: root.width - 100
+
+
+        onAccepted: {
+            root.destroy()
+        }
     }
 
     Dialog {

@@ -229,7 +229,7 @@ QSqlDatabase SqlNoteModel::makeDatabase()
     }
 
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbPath = appDataLoc + PasswordManager::PM_FILENAME;
+    QString dbPath = appDataLoc + "/" + PasswordManager::PM_FILENAME;
     qDebug() << dbPath;
     database.setDatabaseName(dbPath);
 
