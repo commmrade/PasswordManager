@@ -78,7 +78,7 @@ Item {
         onAccepted: {
             AppSettings.firstTime = false
             AppSettings.password = passwordText.text
-            console.log(AppSettings.password)
+            console.log(AppSettings.password + " confirm")
             AppSettings.sync()
             Qt.callLater(function() { root.destroy() })
         }

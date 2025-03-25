@@ -41,9 +41,6 @@ bool LoaderController::loadStorage(const QString& loadFromPath, const QString& p
     file.flush();
     file.close();
 
-    QSettings settings;
-    //settings.setValue("security/password", password);
-    settings.sync();
     NoteController::instance().resetStorage();
     return true;
 }
