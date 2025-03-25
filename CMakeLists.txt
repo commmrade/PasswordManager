@@ -58,6 +58,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         net/authmanager.h net/authmanager.cpp
         net/storagemanager.h net/storagemanager.cpp
         common/clipboard.h common/clipboard.cpp
+        common/loadercontroller.h common/loadercontroller.cpp
 
     )
 

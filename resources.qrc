@@ -12,5 +12,6 @@
         <file>qml/NoteCreator.qml</file>
         <file>qml/Welcome.qml</file>
         <file>qml/AppSettings.qml</file>
+        <file>qml/PLoader.qml</file>
     </qresource>
 </RCC>

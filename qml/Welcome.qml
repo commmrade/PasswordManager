@@ -24,6 +24,13 @@ Item {
         passwordText.text = passwordGenerator.generatePassword(32)
     }
 
+    PLoader {
+        id: pLoader;
+        x: (root.width - width) / 2  // Center horizontally
+        y: -(root.height - height) * 8   // Center vertically
+        height: root.height - 100
+        width: root.width - 100
+    }
 
     Dialog {
         id: confirmationDialog
@@ -71,6 +78,8 @@ Item {
             Qt.callLater(function() { root.destroy() })
         }
     }
+
+
 
 
     ColumnLayout {
@@ -175,7 +184,8 @@ Item {
                 Material.elevation: 2
                 Layout.fillWidth: true
                 onClicked: {
-                    console.log("todo")
+                    console.log("clicked")
+                    pLoader.open()
                 }
             }
         }

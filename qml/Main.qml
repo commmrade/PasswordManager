@@ -18,14 +18,12 @@ Window {
         if (AppSettings.firstTime === true) {
             welcomeWidget.visible = true
         } else {
+            welcomeWidget.destroy()
             notesView.visible = true
         }
         console.log(AppSettings.password)
     }
 
-    // AppSettings {
-    //     id: settings
-    // }
 
     PMenubar {
         id: menuBar
