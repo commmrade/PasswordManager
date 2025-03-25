@@ -15,7 +15,8 @@ int NoteController::createNote(const QString &title, const QString &url, const Q
 
 void NoteController::editNote(const int noteId, const QString &title, const QString &url, const QString &username, const QString &email, const QString &password)
 {
-    model->editNote(noteId, title, url, username, email, password);
+    auto passwordSalt = Cipher::instance().aesEncrypt(password);
+    model->editNote(noteId, title, url, username, email, passwordSalt);
 }
 
 void NoteController::deleteNote(const int noteId)
