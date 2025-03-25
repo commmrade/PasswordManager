@@ -64,9 +64,8 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                console.log("Clicked on item with title:", model.title, "and ID:", model.id)
+                                // console.log("Clicked on item with title:", model.title, "and ID:", model.id)
                                 let password = noteController.getPassword(model.id)
-                                console.log(password)
                                 infoNote.setNote(model.id, model.title, model.url, model.username, model.email, password)
                                 infoNote.currentIndex = model.id
                                 infoNote.visible = true

@@ -38,6 +38,13 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
 
+    QSettings settings;
+    auto isFirstTime = settings.value("firstTime", true).toBool();
+    if (isFirstTime) {
+        // SecretPassWidget w;
+        // w.exec();
+        settings.setValue("firstTime", false);
+    }
 
 
     return app.exec();
