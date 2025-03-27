@@ -46,33 +46,13 @@ Item {
         Material.theme: Material.Dark
         Material.accent: Material.Purple
         Material.primary: Material.Grey
-        contentItem: Column {
-            spacing: 10
+        standardButtons: Dialog.Ok | Dialog.No
 
-            Text {
-                text: qsTr("Do you really want to close this? Save the password!")
-                wrapMode: Text.Wrap
-                color: "white"
-                font.pixelSize: 16
-            }
-
-            Row {
-                spacing: 10
-
-                Button {
-                    text: qsTr("Yes")
-                    onClicked: {
-                        confirmationDialog.accept() // Use accept() instead of close()
-                    }
-                }
-
-                Button {
-                    text: qsTr("No")
-                    onClicked: {
-                        confirmationDialog.reject()
-                    }
-                }
-            }
+        Text {
+            text: qsTr("Do you really want to close this? Save the password!")
+            wrapMode: Text.Wrap
+            color: "white"
+            font.pixelSize: 16
         }
 
         onAccepted: {

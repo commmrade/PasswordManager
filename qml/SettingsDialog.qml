@@ -54,18 +54,20 @@ Dialog {
         title: qsTr("Warning")
     }
 
-    MessageDialog {
+    Dialog {
         id: loadWarningDialog
         title: qsTr("Warning")
-        text: qsTr("Are you sure you want to load the storage backup? It will overwrite the current storage")
-        buttons: MessageDialog.Ok | MessageDialog.Cancel
+        Material.theme: Material.Dark
+        Material.accent: Material.Purple
+        Material.primary: Material.Grey
+        Text {
+            text: qsTr("Are you sure you want to load the storage backup? It will overwrite the current storage")
+            color: "white"
+        }
 
-        onButtonClicked: function (button, role) {
-            switch (button) {
-            case MessageDialog.Ok:
-                storageManager.loadStorage()
-                break;
-            }
+        standardButtons: MessageDialog.Ok | MessageDialog.Cancel
+        onAccepted: {
+            storageManager.loadStorage()
         }
     }
 
@@ -453,45 +455,39 @@ Dialog {
     }
 
     // Popup that appears when language, GUI type, or theme changes
-    MessageDialog {
+    Dialog {
         id: changePopup
         title: qsTr("Setting Changed")
-        text: qsTr("Settings have been changed. Restart to apply them?")
-        buttons: MessageDialog.Ok | MessageDialog.Close
+        standardButtons: MessageDialog.Ok | MessageDialog.Close
         Material.theme: Material.Dark
         Material.accent: Material.Purple
         Material.primary: Material.Grey
 
-        onButtonClicked: function (button, role) {
-            switch (button) {
-            case MessageDialog.Ok:
-                Qt.quit()
-                break;
-            case MessageDialog.Close:
-                changePopup.close()
-            }
+        Text {
+            color: "white"
+            text: qsTr("Settings have been changed. Restart to apply them?")
+        }
 
+        onAccepted: {
+            Qt.quit()
         }
     }
 
-    MessageDialog {
+    Dialog {
         id: resetPopup
         title: qsTr("Resetting")
-        text: qsTr("Are you sure, that you want to reset the app? It will delete settings, storage")
-        buttons: MessageDialog.Ok | MessageDialog.Close
+
+        Text {
+            color: "white"
+            text: qsTr("Are you sure, that you want to reset the app? It will delete settings, storage")
+        }
+        standardButtons: MessageDialog.Ok | MessageDialog.Close
         Material.theme: Material.Dark
         Material.accent: Material.Purple
         Material.primary: Material.Grey
 
-        onButtonClicked: function (button, role) {
-            switch (button) {
-                case MessageDialog.Ok:
-                    settingsController.resetApp();
-                    break;
-                case MessageDialog.Close:
-
-            }
-
+        onAccepted: {
+            settingsController.resetApp();
         }
     }
 
@@ -521,35 +517,20 @@ Dialog {
         }
     }
 
-    Popup {
+    Dialog {
         id: errorDialog
-        width: 300
-        height: 150
-        modal: true
-        focus: true
-        closePolicy: Popup.CloseOnEscape
+
 
         Material.theme: Material.Dark
         Material.accent: Material.Purple
         Material.primary: Material.Grey
-
-        Column {
-            anchors.centerIn: parent
-            spacing: 10
-
-            Text {
-                text: qsTr("Could not save the storage")
-                color: "white"
-                font.pixelSize: 16
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-            }
-
-            Button {
-                text: qsTr("OK")
-                onClicked: errorDialog.close()
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
+        standardButtons: Dialog.Ok
+        Text {
+            text: qsTr("Could not save the storage")
+            color: "white"
+            font.pixelSize: 16
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
         }
     }
 

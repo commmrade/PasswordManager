@@ -15,7 +15,9 @@ Dialog {
     property alias email: emailField.text
     property alias password: passwordField.text
 
-
+    onClosed: {
+        reset()
+    }
 
     // Ensure Material style is applied (can be overridden by parent)
     Material.theme: Material.Dark
@@ -136,11 +138,19 @@ Dialog {
     PasswordGenerator {
         id: passwordGenerator
     }
-    MessageDialog {
+
+
+    Dialog {
         id: warningDialog
         title: qsTr("Title or Password Empty")
-        text: qsTr("Please, make sure both fields are filled with text.")
-        buttons: MessageDialog.Ok
+        Material.theme: Material.Dark
+        Material.accent: Material.Purple
+        Material.primary: Material.Grey
+        Text {
+            text: qsTr("Please, make sure both fields are filled with text.")
+            color: "white"
+        }
+        standardButtons: Dialog.Ok
     }
 
     function reset() {

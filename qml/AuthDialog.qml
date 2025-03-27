@@ -105,13 +105,17 @@ Dialog {
             }
         }
 
-        MessageDialog {
+        Dialog {
             id: errorDialog
             Material.theme: Material.Dark
             Material.accent: Material.Purple
             Material.primary: Material.Grey
             title: qsTr("Warning")
-            text: qsTr("Please, fill out all fields.")
+            standardButtons: Dialog.Ok
+            Text {
+                text: qsTr("Please, fill out all fields.")
+                color: "white"
+            }
         }
 
         MessageDialog {

@@ -109,35 +109,19 @@ Dialog {
         }
     }
 
-    Popup {
+    Dialog {
         id: errorDialog
-        width: 300
-        height: 150
-        modal: true
-        focus: true
-        closePolicy: Popup.CloseOnEscape
 
         Material.theme: Material.Dark
         Material.accent: Material.Purple
         Material.primary: Material.Grey
 
-        Column {
-            anchors.centerIn: parent
-            spacing: 10
-
-            Text {
-                text: qsTr("Could not load the storage")
-                color: "white"
-                font.pixelSize: 16
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-            }
-
-            Button {
-                text: qsTr("OK")
-                onClicked: errorDialog.close()
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
+        Text {
+            text: qsTr("Could not load the storage")
+            color: "white"
+            font.pixelSize: 16
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
         }
     }
 
