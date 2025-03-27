@@ -4,6 +4,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import PasswordGenerator
 import QtQuick.Dialogs
+import PasswordManager
 
 Dialog {
     id: root
@@ -20,9 +21,9 @@ Dialog {
     }
 
     // Ensure Material style is applied (can be overridden by parent)
-    Material.theme: Material.Dark
+    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: Material.Purple
-    Material.primary: Material.Grey
+    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     ColumnLayout {
         anchors.fill: parent
@@ -32,7 +33,7 @@ Dialog {
         // Title
         Text {
             text: qsTr("Create new note")
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
             font.pixelSize: 24
             font.bold: true
             Layout.alignment: Qt.AlignHCenter
@@ -48,8 +49,8 @@ Dialog {
                 id: titleField
                 placeholderText: qsTr("Title")
                 Layout.fillWidth: true
-                Material.foreground: "white"
-                Material.background: "#403F3F"
+                Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
+                Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
             }
 
             // Url field
@@ -57,8 +58,8 @@ Dialog {
                 id: urlField
                 placeholderText: qsTr("Url")
                 Layout.fillWidth: true
-                Material.foreground: "white"
-                Material.background: "#403F3F"
+                Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
+                Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
             }
 
             // Username field
@@ -66,8 +67,8 @@ Dialog {
                 id: usernameField
                 placeholderText: qsTr("Username")
                 Layout.fillWidth: true
-                Material.foreground: "white"
-                Material.background: "#403F3F"
+                Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
+                Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
             }
 
             // Email field
@@ -75,8 +76,8 @@ Dialog {
                 id: emailField
                 placeholderText: qsTr("Email")
                 Layout.fillWidth: true
-                Material.foreground: "white"
-                Material.background: "#403F3F"
+                Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
+                Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
             }
 
             // Password field
@@ -84,8 +85,8 @@ Dialog {
                 id: passwordField
                 placeholderText: qsTr("Password")
                 Layout.fillWidth: true
-                Material.foreground: "white"
-                Material.background: "#403F3F"
+                Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
+                Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
                 // echoMode: TextInput.PasswordEchoOnEdit
             }
         }
@@ -100,8 +101,7 @@ Dialog {
             Button {
                 text: qsTr("Generate password")
                 Material.elevation: 2
-                Material.background: "#403F3F"
-                Material.foreground: "white"
+
                 onClicked: {
                     passwordField.text = passwordGenerator.generatePassword()
                 }
@@ -110,8 +110,7 @@ Dialog {
             Button {
                 text: qsTr("Create")
                 Material.elevation: 2
-                Material.background: "#403F3F"
-                Material.foreground: "white"
+
                 onClicked: {
                     if (titleField.text === "" || passwordField.text === "") {
                         warningDialog.open()
@@ -126,8 +125,7 @@ Dialog {
             Button {
                 text: qsTr("Close")
                 Material.elevation: 2
-                Material.background: "#403F3F"
-                Material.foreground: "white"
+
                 onClicked: {
                     reset()
                     root.close()
@@ -143,12 +141,12 @@ Dialog {
     Dialog {
         id: warningDialog
         title: qsTr("Title or Password Empty")
-        Material.theme: Material.Dark
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: Material.Purple
-        Material.primary: Material.Grey
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         Text {
             text: qsTr("Please, make sure both fields are filled with text.")
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
         }
         standardButtons: Dialog.Ok
     }

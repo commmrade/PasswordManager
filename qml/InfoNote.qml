@@ -22,9 +22,9 @@ Item {
     signal closeRequested()
 
     // Ensure Material style is applied (can be overridden by parent)
-    Material.theme: Material.Dark
+    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: Material.Purple
-    Material.primary: Material.Grey
+    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     ColumnLayout {
         anchors.fill: parent
@@ -117,8 +117,7 @@ Item {
             Button {
                 text: qsTr("Save")
                 Material.elevation: 2
-                Material.background: "#403F3F"
-                Material.foreground: "white"
+
                 onClicked: {
                     noteController.editNote(currentIndex, titleField.text, urlField.text, usernameField.text, emailField.text, passwordField.text)
                 }
@@ -126,8 +125,7 @@ Item {
             Button {
                 text: qsTr("Generate new password")
                 Material.elevation: 2
-                Material.background: "#403F3F"
-                Material.foreground: "white"
+
                 onClicked: {
                     passwordField.text = passwordGenerator.generatePassword()
                 }
@@ -142,8 +140,6 @@ Item {
             Button {
                 text: qsTr("Close")
                 Material.elevation: 2
-                Material.background: "#403F3F"
-                Material.foreground: "white"
                 onClicked: {
                     closeRequested()
                 }

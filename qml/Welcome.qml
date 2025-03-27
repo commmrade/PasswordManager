@@ -13,9 +13,9 @@ Item {
     width: 600
     height: 400
 
-    Material.theme: Material.Dark
+    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: Material.Purple
-    Material.primary: Material.Grey
+    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     PasswordGenerator {
         id: passwordGenerator
@@ -43,22 +43,22 @@ Item {
         y: root.height / 2  // Center vertically
         title: qsTr("Confirmation")
         modal: true
-        Material.theme: Material.Dark
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: Material.Purple
-        Material.primary: Material.Grey
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         standardButtons: Dialog.Ok | Dialog.No
 
         Text {
             text: qsTr("Do you really want to close this? Save the password!")
             wrapMode: Text.Wrap
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
             font.pixelSize: 16
         }
 
         onAccepted: {
-            AppSettings.firstTime = false
-            AppSettings.password = passwordText.text
-            AppSettings.sync()
+            AppSettings.general.firstTime = false
+            AppSettings.security.password = passwordText.text
+            AppSettings.security.sync()
             Qt.callLater(function() { root.destroy() })
         }
     }
@@ -74,7 +74,7 @@ Item {
         Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
-            color: "#393939"
+            color: AppSettings.gui.theme === "Dark" ? "#393939" : "#E2E2E2"
             radius: 10
 
             Label {
@@ -88,7 +88,7 @@ Item {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: "#393939"
+            color: AppSettings.gui.theme === "Dark" ? "#393939" : "#E2E2E2"
             radius: 10
 
             ColumnLayout {
@@ -99,7 +99,7 @@ Item {
                 Label {
                     text: qsTr("Your password:")
                     font.pixelSize: 16
-                    color: "white"
+                    color: AppSettings.gui.theme === "Dark" ? "white" : "black"
                     Layout.alignment: Qt.AlignHCenter
                 }
                 Label {
@@ -112,14 +112,14 @@ Item {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 40
-                    color: "#292828"
+                    color: AppSettings.gui.theme === "Dark" ? "#292828" : "#FFFFFF"
                     radius: 5
 
                     TextInput {
                         id: passwordText
                         text: ""
                         font.pixelSize: 14
-                        color: "white"
+                        color: AppSettings.gui.theme === "Dark" ? "white" : "black"
                         anchors.centerIn: parent
                         readOnly: true
                         selectByMouse: true
@@ -152,8 +152,6 @@ Item {
 
             Button {
                 text: qsTr("Continue")
-                Material.background: "#403F3F"
-                Material.foreground: "white"
                 Material.elevation: 2
                 Layout.fillWidth: true
                 onClicked: {
@@ -163,8 +161,7 @@ Item {
 
             Button {
                 text: qsTr("Load existing passwords")
-                Material.background: "#403F3F"
-                Material.foreground: "white"
+
                 Material.elevation: 2
                 Layout.fillWidth: true
                 onClicked: {

@@ -11,9 +11,9 @@ Dialog {
     modal: true
     title: "File Selection" // Optional: adds a title to the dialog
 
-    Material.theme: Material.Dark
+    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: Material.Purple
-    Material.primary: Material.Grey
+    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     implicitWidth: 400
     implicitHeight: 200
@@ -94,8 +94,8 @@ Dialog {
                         errorDialog.open();
                         return
                     }
-                    AppSettings.firstTime = false
-                    AppSettings.password = passwordInput.text
+                    AppSettings.general.firstTime = false
+                    AppSettings.security.password = passwordInput.text
                     root.accept()
                 }
             }
@@ -112,13 +112,13 @@ Dialog {
     Dialog {
         id: errorDialog
 
-        Material.theme: Material.Dark
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: Material.Purple
-        Material.primary: Material.Grey
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
         Text {
             text: qsTr("Could not load the storage")
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
             font.pixelSize: 16
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter

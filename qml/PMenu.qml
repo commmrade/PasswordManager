@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
-
+import PasswordManager
 
 Menu {
     id: root
@@ -26,7 +26,7 @@ Menu {
                 height: parent.height
 
                 visible: menuItem.highlighted
-                color: "darkgray"
+                color: AppSettings.gui.theme === "Dark" ? "darkgray" : "#FFFFFF"
             }
         }
         background: Rectangle {

@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import IconManager
+import PasswordManager 1.0
 
 Item {
     id: root
@@ -15,9 +16,9 @@ Item {
         id: iconManager
     }
 
-    Material.theme: Material.Dark
+    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: Material.Purple
-    Material.primary: Material.Grey
+    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     SplitView {
         id: splitView
@@ -47,7 +48,8 @@ Item {
                     delegate: Rectangle {
                         width: parent.width
                         height: 50
-                        color: "#403F3F"
+
+                        color: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#F1F1F1"
                         radius: 8
 
                         Row {
@@ -57,7 +59,7 @@ Item {
                             Text {
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: model.title
-                                color: "white"
+                                color: AppSettings.gui.theme === "Dark" ? "white" : "black"
                                 font.pixelSize: 20
                             }
                         }
@@ -90,7 +92,9 @@ Item {
                         width: listView.width / 2 - 30
                         text: qsTr("Create")
                         Material.elevation: 2
-                        Material.background: "#403F3F"
+                        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
+                        Material.accent: Material.Purple
+                        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
                         NoteCreator {
                             id: noteCreator
@@ -109,7 +113,9 @@ Item {
                         width: listView.width / 2 - 30
                         text: qsTr("Delete")
                         Material.elevation: 2
-                        Material.background: "#403F3F"
+                        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
+                        Material.accent: Material.Purple
+                        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
                         onClicked: {
                             if (infoNote.currentIndex !== -1) {

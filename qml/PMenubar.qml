@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
-
+import PasswordManager
 
 MenuBar {
     id: root
@@ -16,14 +16,14 @@ MenuBar {
             text: menuBarItem.text
             font: menuBarItem.font
             elide: Text.ElideRight
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
             opacity: enabled ? 1.0 : 0.3
         }
 
         background: Rectangle {
             id: background
 
-            color: "#312F2F"
+            color: AppSettings.gui.theme === "Dark" ? "#312F2F" : "#FFFFFF"
             Rectangle {
                 id: indicator
 

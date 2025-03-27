@@ -14,9 +14,10 @@ Dialog {
     Layout.maximumWidth: 900  // Set maximum width to 600
     Layout.maximumHeight: 600  // Set maximum width to 600
     Layout.fillWidth: true    // Make the dialog take all available width
-    Material.theme: Material.Dark
+    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: Material.Purple
-    Material.primary: Material.Grey
+    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+
 
     property AuthManager authManager: AuthManager{}
     property StorageManager storageManager: StorageManager {}
@@ -48,21 +49,21 @@ Dialog {
 
     MessageDialog {
         id: storageErrorDialog
-        Material.theme: Material.Dark
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: Material.Purple
-        Material.primary: Material.Grey
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         title: qsTr("Warning")
     }
 
     Dialog {
         id: loadWarningDialog
         title: qsTr("Warning")
-        Material.theme: Material.Dark
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: Material.Purple
-        Material.primary: Material.Grey
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         Text {
             text: qsTr("Are you sure you want to load the storage backup? It will overwrite the current storage")
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
         }
 
         standardButtons: MessageDialog.Ok | MessageDialog.Cancel
@@ -71,13 +72,13 @@ Dialog {
         }
     }
 
-    Settings {
-        id: guiSettings
-        category: "gui"
-        property string language: "English"
-        property string type: "Widgets"
-        property string theme: "Dark"
-    }
+    // Settings {
+    //     id: guiSettings
+    //     category: "gui"
+    //     property string language: "English"
+    //     property string type: "Widgets"
+    //     property string theme: "Dark"
+    // }
     Settings {
         id: accountSettings
         category: "account"
@@ -91,9 +92,9 @@ Dialog {
 
 
     Component.onCompleted: {
-        guiTypeBox.currentIndex = guiTypeBox.indexOfValue(guiSettings.type)
-        languageBox.currentIndex = languageBox.indexOfValue(guiSettings.language)
-        themeBox.currentIndex = themeBox.indexOfValue(guiSettings.theme)
+        guiTypeBox.currentIndex = guiTypeBox.indexOfValue(AppSettings.gui.type)
+        languageBox.currentIndex = languageBox.indexOfValue(AppSettings.gui.language)
+        themeBox.currentIndex = themeBox.indexOfValue(AppSettings.gui.theme)
 
         if (accountSettings.jwtToken === "" && accountSettings.refreshToken === "") {
             disableAccount()
@@ -154,7 +155,7 @@ Dialog {
 
                     onActivated: (index) => {
                         let val = guiTypeBox.textAt(index)
-                        guiSettings.type = val
+                        AppSettings.gui.type = val
                         changePopup.open()
                     }
                 }
@@ -188,7 +189,7 @@ Dialog {
 
                     onActivated: (index) => {
                         let val = languageBox.textAt(index)
-                        guiSettings.language = val
+                        AppSettings.gui.language = val
                         changePopup.open()
                     }
                 }
@@ -220,7 +221,7 @@ Dialog {
 
                     onActivated: (index) => {
                         let val = themeBox.textAt(index)
-                        guiSettings.theme = val
+                        AppSettings.gui.theme = val
                         changePopup.open()
                     }
                 }
@@ -459,12 +460,12 @@ Dialog {
         id: changePopup
         title: qsTr("Setting Changed")
         standardButtons: MessageDialog.Ok | MessageDialog.Close
-        Material.theme: Material.Dark
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: Material.Purple
-        Material.primary: Material.Grey
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
         Text {
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
             text: qsTr("Settings have been changed. Restart to apply them?")
         }
 
@@ -478,13 +479,13 @@ Dialog {
         title: qsTr("Resetting")
 
         Text {
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
             text: qsTr("Are you sure, that you want to reset the app? It will delete settings, storage")
         }
         standardButtons: MessageDialog.Ok | MessageDialog.Close
-        Material.theme: Material.Dark
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: Material.Purple
-        Material.primary: Material.Grey
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
         onAccepted: {
             settingsController.resetApp();
@@ -521,13 +522,13 @@ Dialog {
         id: errorDialog
 
 
-        Material.theme: Material.Dark
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: Material.Purple
-        Material.primary: Material.Grey
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         standardButtons: Dialog.Ok
         Text {
             text: qsTr("Could not save the storage")
-            color: "white"
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
             font.pixelSize: 16
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter

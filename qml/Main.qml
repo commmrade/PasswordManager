@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtCore
 import QtQuick.LocalStorage
-import PasswordManager 1.0  //
+import PasswordManager
 
 
 Window {
@@ -10,18 +10,19 @@ Window {
     width: 1280
     height: 720
     visible: true
-    color: "#292828"
+    color: AppSettings.gui.theme === "Dark" ? "#292828" : "#F7F7F7"
+    //color: "#292828"
     title: qsTr("Password Manager")
 
     Component.onCompleted: {
-        console.log("Initial settings - firstTime: " + AppSettings.firstTime + ", password: " + AppSettings.password)
-        if (AppSettings.firstTime === true) {
+        console.log("Initial settings - firstTime: " + AppSettings.general.firstTime + ", password: " + AppSettings.security.password)
+        if (AppSettings.general.firstTime === true) {
             welcomeWidget.visible = true
         } else {
             welcomeWidget.destroy()
             notesView.visible = true
         }
-        console.log(AppSettings.password)
+        console.log(AppSettings.security.password)
     }
 
 

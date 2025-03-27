@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import QtQuick.Controls.Material
 import AuthManager
 import QtQuick.Dialogs
+import PasswordManager
 
 Dialog {
     id: dialog
@@ -37,9 +38,9 @@ Dialog {
     }
 
 
-    Material.theme: Material.Dark
+    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: Material.Purple
-    Material.primary: Material.Grey
+    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     contentItem: RowLayout {
         anchors.fill: parent
@@ -107,9 +108,9 @@ Dialog {
 
         Dialog {
             id: errorDialog
-            Material.theme: Material.Dark
+            Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
             Material.accent: Material.Purple
-            Material.primary: Material.Grey
+            Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
             title: qsTr("Warning")
             standardButtons: Dialog.Ok
             Text {
@@ -120,9 +121,9 @@ Dialog {
 
         MessageDialog {
             id: authErrorDialog
-            Material.theme: Material.Dark
+            Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
             Material.accent: Material.Purple
-            Material.primary: Material.Grey
+            Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
             title: qsTr("Warning")
         }
 
