@@ -222,7 +222,6 @@ Dialog {
                     onActivated: (index) => {
                         let val = themeBox.textAt(index)
                         AppSettings.gui.theme = val
-                        changePopup.open()
                     }
                 }
             }
