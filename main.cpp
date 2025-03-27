@@ -66,6 +66,10 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("noteController", &ins);
     engine.rootContext()->setContextProperty("clipboard", &clipboard);
 
+
+    AuthManager authManager;
+    authManager.validateToken();
+
     engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
     return app.exec();

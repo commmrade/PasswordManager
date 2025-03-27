@@ -39,6 +39,8 @@ Dialog {
                     disableAccount()
                     storageErrorDialog.text = "Please, log in again"
                     storageErrorDialog.open()
+                } else {
+                    console.log("Updated refresh");
                 }
             }
         }
@@ -90,6 +92,7 @@ Dialog {
         guiTypeBox.currentIndex = guiTypeBox.indexOfValue(guiSettings.type)
         languageBox.currentIndex = languageBox.indexOfValue(guiSettings.language)
         themeBox.currentIndex = themeBox.indexOfValue(guiSettings.theme)
+
         if (accountSettings.jwtToken === "" && accountSettings.refreshToken === "") {
             disableAccount()
         } else {
