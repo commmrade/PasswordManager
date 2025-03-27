@@ -103,7 +103,7 @@ QString AuthManager::updateToken() {
     }
     QNetworkRequest req{QUrl{"http://localhost:3000/token"}};
 
-    req.setRawHeader("Authorization", refreshToken.toUtf8());
+    req.setRawHeader("Authorization", "Bearer " + refreshToken.toUtf8());
 
     QEventLoop loop;
     auto* reply = manager.get(req);
