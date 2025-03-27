@@ -10,8 +10,8 @@ class StorageManager : public QObject
 public:
     explicit StorageManager(QObject *parent = nullptr);
 
-    void saveStorage();
-    void loadStorage();
+    Q_INVOKABLE void saveStorage();
+    Q_INVOKABLE void loadStorage();
 
 
 signals:

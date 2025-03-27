@@ -5,6 +5,8 @@ import QtQuick.Controls.Material
 import QtCore
 import QtQuick.Dialogs
 import SettingsController
+import AuthManager
+import StorageManager
 
 Dialog {
     id: root
@@ -15,6 +17,55 @@ Dialog {
     Material.theme: Material.Dark
     Material.accent: Material.Purple
     Material.primary: Material.Grey
+
+    property AuthManager authManager: AuthManager{}
+    property StorageManager storageManager: StorageManager {}
+
+
+    Connections {
+        target: storageManager
+
+        function onSuccess() {
+            console.log("SUCCESS LOADING");
+            noteController.resetStorage()
+        }
+
+        function onError(statusCode, errorMessage) {
+            storageErrorDialog.text = errorMessage
+            storageErrorDialog.open()
+
+            if (statusCode === 401) {
+                if (authManager.updateToken() === "") {
+                    disableAccount()
+                    storageErrorDialog.text = "Please, log in again"
+                    storageErrorDialog.open()
+                }
+            }
+        }
+    }
+
+    MessageDialog {
+        id: storageErrorDialog
+        Material.theme: Material.Dark
+        Material.accent: Material.Purple
+        Material.primary: Material.Grey
+        title: qsTr("Warning")
+    }
+
+    MessageDialog {
+        id: loadWarningDialog
+        title: qsTr("Warning")
+        text: qsTr("Are you sure you want to load the storage backup? It will overwrite the current storage")
+        buttons: MessageDialog.Ok | MessageDialog.Cancel
+
+        onButtonClicked: function (button, role) {
+            switch (button) {
+            case MessageDialog.Ok:
+                storageManager.loadStorage()
+                break;
+            }
+        }
+    }
 
     Settings {
         id: guiSettings
@@ -41,7 +92,10 @@ Dialog {
         themeBox.currentIndex = themeBox.indexOfValue(guiSettings.theme)
         if (accountSettings.jwtToken === "" && accountSettings.refreshToken === "") {
             disableAccount()
+        } else {
+            enableAccount()
         }
+
     }
 
     ScrollView {
@@ -306,6 +360,11 @@ Dialog {
 
                 Button {
                     text: qsTr("Log Out")
+
+                    onClicked: {
+                        authManager.logOut()
+                        disableAccount()
+                    }
                 }
             }
 
@@ -331,6 +390,10 @@ Dialog {
 
                 Button {
                     text: qsTr("Upload")
+
+                    onClicked: {
+                        storageManager.saveStorage()
+                    }
                 }
             }
 
@@ -356,6 +419,10 @@ Dialog {
 
                 Button {
                     text: qsTr("Load")
+
+                    onClicked: {
+                        loadWarningDialog.open()
+                    }
                 }
             }
 
@@ -439,10 +506,16 @@ Dialog {
     AuthDialog {
         id: authDialog
 
+        authManager: root.authManager
+
         anchors.centerIn: root
 
         width: root.width
         height: root.height
+
+        onAccepted: {
+            enableAccount()
+        }
     }
 
     Popup {

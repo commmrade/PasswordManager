@@ -11,13 +11,13 @@
 #include <QQmlApplicationEngine>
 #include "notecontroller.h"
 #include <QQmlContext>
-
+#include "authmanager.h"
 #include "clipboard.h"
-#include "notemodel.h"
 #include "passwordgenerator.h"
 #include "iconmanager.h"
 #include "loadercontroller.h"
 #include "settingscontroller.h"
+#include "storagemanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -58,6 +58,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<IconManager>("IconManager", 1, 0, "IconManager");
     qmlRegisterType<LoaderController>("LoaderController", 1, 0, "LoaderController");
     qmlRegisterType<SettingsController>("SettingsController", 1, 0, "SettingsController");
+    qmlRegisterType<AuthManager>("AuthManager", 1, 0, "AuthManager");
+    qmlRegisterType<StorageManager>("StorageManager", 1, 0, "StorageManager");
 
     Clipboard clipboard;
     auto& ins = NoteController::instance();

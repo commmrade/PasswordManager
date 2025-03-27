@@ -228,7 +228,7 @@ void SettingsDialog::on_loadStorageButton_clicked()
 {
     QMessageBox msgBox(this);
     msgBox.setWindowTitle(tr("Warning"));
-    msgBox.setText(tr("Are you sure you want to load the storage backup? It will overwrite current storage"));
+    msgBox.setText(tr("Are you sure you want to load the storage backup? It will overwrite the current storage"));
 
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
@@ -246,7 +246,7 @@ void SettingsDialog::on_uploadButton_clicked()
 void SettingsDialog::on_request_error(int statusCode, const QString& errorMsg) {
     QMessageBox::warning(this, tr("Warning"), errorMsg);
 
-    if (statusCode == 403) {
+    if (statusCode == 401) {
         if (authManager.updateToken().isEmpty()) {
             disableAccountSettings();
             QMessageBox::warning(this, tr("Warning"), "Please, log in again!");

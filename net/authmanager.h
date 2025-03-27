@@ -16,6 +16,8 @@ public:
 
     Q_INVOKABLE QString updateToken();
 
+    Q_INVOKABLE void logOut();
+
 signals:
     void successAuth();
     void errorAuth(int statusCode, QString errorMessage);
