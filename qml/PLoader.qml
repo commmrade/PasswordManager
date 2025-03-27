@@ -20,6 +20,11 @@ Dialog {
     LoaderController {
         id: loaderController
     }
+    onAccepted: {
+        filePathInput.text = ""
+        passwordInput.text = ""
+        root.close()
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -90,7 +95,7 @@ Dialog {
                     }
                     AppSettings.firstTime = false
                     AppSettings.password = passwordInput.text
-                    // root.accept()
+                    root.accept()
                 }
             }
 

@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     QDir().mkdir(appDataLoc + "/images");
 
 
-    qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Dense");
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Normal");
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", "Dark");
 
 

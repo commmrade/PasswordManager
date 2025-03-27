@@ -11,10 +11,10 @@ class AuthManager : public QObject
 public:
     explicit AuthManager(QObject *parent = nullptr);
 
-    void registerUser(const QString& username, const QString& email, const QString& password);
-    void loginUser(const QString& email, const QString& password);
+    Q_INVOKABLE void registerUser(const QString& username, const QString& email, const QString& password);
+    Q_INVOKABLE void loginUser(const QString& email, const QString& password);
 
-    QString updateToken();
+    Q_INVOKABLE QString updateToken();
 
 signals:
     void successAuth();

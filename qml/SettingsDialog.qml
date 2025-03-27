@@ -57,6 +57,13 @@ Dialog {
             Label {
                 text: qsTr("GENERAL")
                 font.bold: true
+                font.pointSize: 16
+            }
+
+            Rectangle {
+                Layout.fillWidth: true
+                height: 2  // Adjust thickness
+                color: "darkgray"
             }
 
             // GUI Type Row
@@ -64,10 +71,23 @@ Dialog {
                 Layout.fillWidth: true
                 spacing: 10
 
-                Label {
-                    text: qsTr("GUI type\nPM offers different types of rendering")
+                ColumnLayout {
                     Layout.fillWidth: true
+                    spacing: 5
+
+                    Label {
+                        text: qsTr("GUI type")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("PM offers different types of rendering")
+                        Layout.fillWidth: true
+                    }
                 }
+
+
                 Item { Layout.fillWidth: true }  // Spacer
                 ComboBox {
                     id: guiTypeBox
@@ -86,10 +106,22 @@ Dialog {
                 Layout.fillWidth: true
                 spacing: 10
 
-                Label {
-                    text: qsTr("Language\nInterface is available in different languages")
+
+                ColumnLayout {
                     Layout.fillWidth: true
+                    Label {
+                        text: qsTr("Language")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("Interface is available in different languages")
+                        Layout.fillWidth: true
+                    }
                 }
+
+
 
                 ComboBox {
                     id: languageBox
@@ -108,9 +140,19 @@ Dialog {
                 Layout.fillWidth: true
                 spacing: 10
 
-                Label {
-                    text: qsTr("Theme\nThere are several themes. You can manually edit them")
+
+                ColumnLayout {
                     Layout.fillWidth: true
+                    Label {
+                        text: qsTr("Theme")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("There are several themes. You can manually edit them")
+                        Layout.fillWidth: true
+                    }
                 }
 
                 ComboBox {
@@ -130,10 +172,20 @@ Dialog {
                 Layout.fillWidth: true
                 spacing: 10
 
-                Label {
-                    text: qsTr("Reset\nReset all settings and storages")
+                ColumnLayout {
                     Layout.fillWidth: true
+                    Label {
+                        text: qsTr("Reset")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("Reset all settings and storages")
+                        Layout.fillWidth: true
+                    }
                 }
+
                 Button {
                     text: qsTr("Reset")
 
@@ -149,18 +201,36 @@ Dialog {
                 font.bold: true
             }
 
+            Rectangle {
+                Layout.fillWidth: true
+                height: 2  // Adjust thickness
+                color: "darkgray"
+            }
+
             // Load Database Row
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 10
 
-                Label {
-                    text: qsTr("Load database\nYou can load PM database from other device")
+                ColumnLayout {
                     Layout.fillWidth: true
+                    Label {
+                        text: qsTr("Reset")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("Reset all settings and storages")
+                        Layout.fillWidth: true
+                    }
                 }
 
                 Button {
                     text: qsTr("Load")
+                    onClicked: {
+                        pLoader.open()
+                    }
                 }
             }
 
@@ -169,13 +239,26 @@ Dialog {
                 Layout.fillWidth: true
                 spacing: 10
 
-                Label {
-                    text: qsTr("Export storage\nExport storage so you can use it on another device (Don't forget the password)")
+                ColumnLayout {
                     Layout.fillWidth: true
+                    Label {
+                        text: qsTr("Export storage")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("Export storage so you can use it on another device (Don't forget the password)")
+                        Layout.fillWidth: true
+                    }
                 }
 
                 Button {
                     text: qsTr("Export")
+
+                    onClicked: {
+                        fileDialog.open()
+                    }
                 }
             }
 
@@ -185,10 +268,20 @@ Dialog {
                 font.bold: true
             }
 
+            Rectangle {
+                Layout.fillWidth: true
+                height: 2  // Adjust thickness
+                color: "darkgray"
+            }
+
             Button {
                 id: authBtn
                 text: qsTr("Authenticate")
                 Layout.fillWidth: true
+
+                onClicked: {
+                    authDialog.open()
+                }
             }
 
             // Account Row
@@ -196,9 +289,19 @@ Dialog {
                 Layout.fillWidth: true
                 spacing: 10
                 id: accountRow
-                Label {
-                    text: qsTr("Account\nDo stuff with your account")
+
+                ColumnLayout {
                     Layout.fillWidth: true
+                    Label {
+                        text: qsTr("Account")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("Do stuff with your account")
+                        Layout.fillWidth: true
+                    }
                 }
 
                 Button {
@@ -211,9 +314,19 @@ Dialog {
                 id: uploadRow
                 Layout.fillWidth: true
                 spacing: 10
-                Label {
-                    text: qsTr("Upload\nUpload your storage to the cloud")
+
+                ColumnLayout {
                     Layout.fillWidth: true
+                    Label {
+                        text: qsTr("Upload")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("Upload your storage to the cloud")
+                        Layout.fillWidth: true
+                    }
                 }
 
                 Button {
@@ -226,9 +339,19 @@ Dialog {
                 id: loadRow
                 Layout.fillWidth: true
                 spacing: 10
-                Label {
-                    text: qsTr("Load\nLoad your storage from the cloud")
+
+                ColumnLayout {
                     Layout.fillWidth: true
+                    Label {
+                        text: qsTr("Load")
+                        font.bold: true
+                        font.weight: 200
+                        font.pointSize: 11
+                    }
+                    Label {
+                        text: qsTr("Load your storage from the cloud")
+                        Layout.fillWidth: true
+                    }
                 }
 
                 Button {
@@ -299,6 +422,72 @@ Dialog {
 
             }
 
+        }
+    }
+
+    PLoader {
+        id: pLoader;
+        anchors.centerIn: root
+        height: root.height - 100
+        width: root.width - 100
+
+        onAccepted: {
+            root.close()
+        }
+    }
+
+    AuthDialog {
+        id: authDialog
+
+        anchors.centerIn: root
+
+        width: root.width
+        height: root.height
+    }
+
+    Popup {
+        id: errorDialog
+        width: 300
+        height: 150
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape
+
+        Material.theme: Material.Dark
+        Material.accent: Material.Purple
+        Material.primary: Material.Grey
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 10
+
+            Text {
+                text: qsTr("Could not save the storage")
+                color: "white"
+                font.pixelSize: 16
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            Button {
+                text: qsTr("OK")
+                onClicked: errorDialog.close()
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+    }
+
+    FileDialog {
+        id: fileDialog
+        title: qsTr("Select a location")
+        currentFolder: StandardPaths.standardLocations(StandardPaths.HomeLocation)[0] // Use first home location
+        fileMode: FileDialog.SaveFile
+        onAccepted: {
+            if (!settingsController.exportStorage(fileDialog.selectedFile)) {
+                errorDialog.open()
+            }
+        }
+        onRejected: {
         }
     }
 }

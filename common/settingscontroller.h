@@ -11,6 +11,9 @@ public:
 
     Q_INVOKABLE bool resetApp();
 
+
+    Q_INVOKABLE bool exportStorage(const QString& exportDir);
+
 signals:
 };
 
