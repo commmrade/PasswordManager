@@ -29,6 +29,7 @@ Dialog {
         anchors.fill: parent
         anchors.margins: 20
         spacing: 10
+        Layout.fillHeight: true
 
         // Title
         Text {

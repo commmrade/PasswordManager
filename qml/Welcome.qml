@@ -26,8 +26,7 @@ Item {
 
     PLoader {
         id: pLoader;
-        x: (root.width - width) / 2  // Center horizontally
-        y: -(root.height - height) * 8   // Center vertically
+        anchors.centerIn: root
         height: root.height - 100
         width: root.width - 100
 

@@ -49,7 +49,7 @@ Item {
                         width: parent.width
                         height: 50
 
-                        color: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#F1F1F1"
+                        color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
                         radius: 8
 
                         Row {
@@ -87,6 +87,7 @@ Item {
                 RowLayout {
                     id: listButtonsRow
                     spacing: 30
+                    Layout.leftMargin: 10
 
                     Button {
                         id: createNoteBtn
@@ -97,13 +98,6 @@ Item {
                         Material.accent: Material.Purple
                         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
-                        NoteCreator {
-                            id: noteCreator
-                            x: (root.width - width) / 2  // Center horizontally
-                            y: -(root.height - height) * 8   // Center vertically
-                            height: root.height - 100
-                            width: root.width - 100
-                        }
 
                         onClicked: {
                             noteCreator.open()
@@ -168,6 +162,14 @@ Item {
             resetNote()
         }
     }
+
+    NoteCreator {
+        id: noteCreator
+        anchors.centerIn: root
+        height: root.height - root.height / 4
+        width: root.width / 2 + root.width / 4
+    }
+
 
     function resetNote() {
         emptyText.visible = true
