@@ -67,6 +67,7 @@ Item {
                             anchors.fill: parent
                             onClicked: {
                                 // console.log("Clicked on item with title:", model.title, "and ID:", model.id)
+                                emptyText.visible = false
                                 let password = noteController.getPassword(model.id)
                                 infoNote.setNote(model.id, model.title, model.url, model.username, model.email, password)
                                 infoNote.currentIndex = model.id
@@ -120,8 +121,7 @@ Item {
                         onClicked: {
                             if (infoNote.currentIndex !== -1) {
                                 noteController.deleteNote(infoNote.currentIndex)
-                                infoNote.visible = false
-                                infoNote.currentIndex = -1
+                                resetNote()
                             }
                         }
                     }
@@ -136,6 +136,18 @@ Item {
             SplitView.preferredWidth: 150
             SplitView.fillHeight: true
 
+            Text {
+                id: emptyText
+                text: "Empty"
+                wrapMode: Text.WordWrap
+                anchors.centerIn: parent
+                font.pointSize: 22
+                font.italic: true
+                color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+            }
 
             InfoNote {
                 id: infoNote
@@ -153,8 +165,13 @@ Item {
             iconManager.downloadImage(urlFull, id)
         }
         function onCloseRequested() {
-            infoNote.visible = false
-            infoNote.currentIndex = -1
+            resetNote()
         }
+    }
+
+    function resetNote() {
+        emptyText.visible = true
+        infoNote.visible = false
+        infoNote.currentIndex = -1
     }
 }
