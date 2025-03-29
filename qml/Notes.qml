@@ -164,8 +164,8 @@ Item {
     NoteCreator {
         id: noteCreator
         anchors.centerIn: root
-        height: root.height - root.height / 4
-        width: root.width / 2 + root.width / 4
+        height: root.height - root.height / 8
+        width: root.width / 2 + root.width / 6
     }
 
 

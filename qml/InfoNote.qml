@@ -6,7 +6,7 @@ import PasswordGenerator
 
 Item {
     id: root
-    anchors.fill: parent  // Fill all available space in the parent
+    anchors.fill: parent
 
     // Properties to access TextField values
     property alias title: titleField.text
@@ -21,7 +21,6 @@ Item {
     signal urlFieldChanged(id: int, url: string)
     signal closeRequested()
 
-    // Ensure Material style is applied (can be overridden by parent)
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: Material.Purple
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
@@ -34,141 +33,132 @@ Item {
 
         ColumnLayout {
             anchors.fill: parent
+            spacing: 15
             anchors.margins: 20
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            spacing: 10
 
-            // Form fields
-            ColumnLayout {
-                spacing: 15
-                anchors.fill: root
+            ScrollView {
+                id: scrollView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-                // Title field
-                TextField {
-                    id: titleField
-                    placeholderText: qsTr("Title")
-                    Layout.fillWidth: true
 
-                    onAccepted: {
-                        if (currentIndex !== -1) {
-                            noteController.setTitle(currentIndex, titleField.text)
-                        }
-                    }
-                }
+                ColumnLayout {
+                    width: scrollView.width
+                    spacing: 15
 
-                // Url field
-                TextField {
-                    id: urlField
-                    placeholderText: qsTr("Url")
-                    Layout.fillWidth: true
 
-                    onAccepted: {
-                        if (currentIndex !== -1) {
-                            noteController.setUrl(currentIndex, urlField.text)
-                            urlFieldChanged(currentIndex, urlField.text)
-                        }
-                    }
-                }
-
-                // Username field
-                TextField {
-                    id: usernameField
-                    placeholderText: qsTr("Username")
-                    Layout.fillWidth: true
-
-                    onAccepted: {
-                        if (currentIndex !== -1) {
-                            noteController.setUsername(currentIndex, usernameField.text)
-                        }
-                    }
-                }
-
-                // Email field
-                TextField {
-                    id: emailField
-                    placeholderText: qsTr("Email")
-                    Layout.fillWidth: true
-
-                    onAccepted: {
-                        if (currentIndex !== -1) {
-                            noteController.setEmail(currentIndex, emailField.text)
-                        }
-                    }
-                }
-
-                // Password field
-
-                RowLayout {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
+                    // Title field
                     TextField {
-                        id: passwordField
-                        placeholderText: qsTr("Password")
+                        Layout.topMargin: 5
+                        id: titleField
+                        placeholderText: qsTr("Title")
                         Layout.fillWidth: true
-                        echoMode: TextInput.Password
 
                         onAccepted: {
                             if (currentIndex !== -1) {
-                                noteController.setPassword(currentIndex, passwordField.text)
+                                noteController.setTitle(currentIndex, titleField.text)
                             }
                         }
                     }
 
-                    Button {
-                        text: "📋"
-                        Material.elevation: 2
-                        Material.roundedScale: Material.ExtraSmallScale
-                        Layout.maximumHeight: passwordField.height + passwordField.height / 8
-                        Layout.minimumHeight: passwordField.height + passwordField.height / 8
-                        Layout.maximumWidth: 64
-                        onClicked: {
-                            // Логика копирования в буфер обмена
-                            let password = noteController.getPassword(currentIndex)
-                            clipboard.copyText(password)
+                    // Url field
+                    TextField {
+                        id: urlField
+                        placeholderText: qsTr("Url")
+                        Layout.fillWidth: true
+
+                        onAccepted: {
+                            if (currentIndex !== -1) {
+                                noteController.setUrl(currentIndex, urlField.text)
+                                urlFieldChanged(currentIndex, urlField.text)
+                            }
                         }
-                        Layout.alignment: Qt.AlignHCenter
+                    }
+
+                    // Username field
+                    TextField {
+                        id: usernameField
+                        placeholderText: qsTr("Username")
+                        Layout.fillWidth: true
+
+                        onAccepted: {
+                            if (currentIndex !== -1) {
+                                noteController.setUsername(currentIndex, usernameField.text)
+                            }
+                        }
+                    }
+
+                    // Email field
+                    TextField {
+                        id: emailField
+                        placeholderText: qsTr("Email")
+                        Layout.fillWidth: true
+
+                        onAccepted: {
+                            if (currentIndex !== -1) {
+                                noteController.setEmail(currentIndex, emailField.text)
+                            }
+                        }
+                    }
+
+                    // Password field
+                    RowLayout {
+                        Layout.fillWidth: true
+
+                        TextField {
+                            id: passwordField
+                            placeholderText: qsTr("Password")
+                            Layout.fillWidth: true
+                            echoMode: TextInput.Password
+
+                            onAccepted: {
+                                if (currentIndex !== -1) {
+                                    noteController.setPassword(currentIndex, passwordField.text)
+                                }
+                            }
+                        }
+
+                        Button {
+                            text: "📋"
+                            Material.elevation: 2
+                            Material.roundedScale: Material.ExtraSmallScale
+                            Layout.preferredHeight: passwordField.height
+                            Layout.preferredWidth: 64
+                            onClicked: {
+                                let password = noteController.getPassword(currentIndex)
+                                clipboard.copyText(password)
+                            }
+                        }
                     }
                 }
-
-
             }
 
-            // Buttons
+
             RowLayout {
                 Layout.fillWidth: true
+                Layout.margins: 20
                 spacing: 10
 
                 Item { Layout.fillWidth: true }  // Spacer
-
-
 
                 Button {
                     text: qsTr("Save")
                     Material.elevation: 2
-
                     onClicked: {
                         noteController.editNote(currentIndex, titleField.text, urlField.text, usernameField.text, emailField.text, passwordField.text)
                     }
                 }
+
                 Button {
                     text: qsTr("Generate new password")
                     Material.elevation: 2
-
                     onClicked: {
                         passwordField.text = passwordGenerator.generatePassword()
                     }
                 }
-            }
 
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: 10
-
-                Item { Layout.fillWidth: true }  // Spacer
                 Button {
                     text: qsTr("Close")
                     Material.elevation: 2
@@ -177,11 +167,8 @@ Item {
                     }
                 }
             }
-
         }
     }
-
-
 
     function setNote(id, title, url, username, email, password) {
         currentIndex = id

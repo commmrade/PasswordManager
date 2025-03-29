@@ -48,18 +48,20 @@ Dialog {
 
         // Sign Up section (left half)
         Rectangle {
+            id: recReg
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
             Layout.topMargin: 75
             Layout.leftMargin: 50
-            color: "#403F3F"
+            Layout.bottomMargin: 20
+
             radius: 20
             border.color: "#555"
-
             ColumnLayout {
                 anchors.fill: parent
-                anchors.margins: 20
+                anchors.margins: 15
                 spacing: 10
 
                 Text {
@@ -68,26 +70,44 @@ Dialog {
                     color: "white"
                 }
 
-                TextField {
-                    id: usernameReg
-                    placeholderText: qsTr("Username...")
-                    Layout.fillWidth: true
-                }
 
-                TextField {
-                    id: emailReg
-                    placeholderText: qsTr("Email...")
+                ScrollView {
+                    id: regScrollView
+                    anchors.fill: recReg
                     Layout.fillWidth: true
-                }
+                    Layout.fillHeight: true
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                    ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-                TextField {
-                    id: passwordReg
-                    placeholderText: qsTr("Password...")
-                    echoMode: TextInput.Password
-                    Layout.fillWidth: true
-                }
 
-                Item { Layout.fillHeight: true }  // Заполнитель, чтобы кнопка ушла вниз
+                    ColumnLayout {
+                        width: regScrollView.width
+                        spacing: 10
+
+                        TextField {
+                            id: usernameReg
+                            placeholderText: qsTr("Username...")
+                            Layout.fillWidth: true
+                        }
+
+                        TextField {
+                            id: emailReg
+                            placeholderText: qsTr("Email...")
+                            Layout.fillWidth: true
+                        }
+
+                        TextField {
+                            id: passwordReg
+                            placeholderText: qsTr("Password...")
+                            echoMode: TextInput.Password
+                            Layout.fillWidth: true
+                        }
+
+                        Item { Layout.fillHeight: true }  // Заполнитель, чтобы кнопка ушла вниз
+
+
+                    }
+                }
 
                 Button {
                     id: continueBtnReg
@@ -104,6 +124,8 @@ Dialog {
                     }
                 }
             }
+
+
         }
 
         Dialog {
@@ -129,19 +151,22 @@ Dialog {
 
         // Log In section (right half)
         Rectangle {
+            id: recLogin
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            color: "#403F3F"
             Layout.topMargin: 75
             Layout.rightMargin: 50
+            Layout.bottomMargin: 20
+
+            color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
 
             radius: 20
             border.color: "#555"
 
             ColumnLayout {
                 anchors.fill: parent
-                anchors.margins: 20
+                anchors.margins: 15
                 spacing: 10
 
                 Text {
@@ -150,20 +175,31 @@ Dialog {
                     color: "white"
                 }
 
-                TextField {
-                    id: emailLogin
-                    placeholderText: qsTr("Email...")
+                ScrollView {
+                    id: loginScrollView
+                    anchors.fill: recLogin
                     Layout.fillWidth: true
-                }
+                    Layout.fillHeight: true
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                    ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-                TextField {
-                    id: passwordLogin
-                    placeholderText: qsTr("Password...")
-                    echoMode: TextInput.Password
-                    Layout.fillWidth: true
-                }
+                    ColumnLayout {
+                        width: loginScrollView.width
+                        TextField {
+                            id: emailLogin
+                            placeholderText: qsTr("Email...")
+                            Layout.fillWidth: true
+                        }
 
-                Item { Layout.fillHeight: true }  // Заполнитель
+                        TextField {
+                            id: passwordLogin
+                            placeholderText: qsTr("Password...")
+                            echoMode: TextInput.Password
+                            Layout.fillWidth: true
+                        }
+                    }
+
+                }
 
                 Button {
                     id: continueBtnLogin
@@ -180,6 +216,9 @@ Dialog {
                     }
                 }
             }
+
+
+
         }
     }
     function clearFields() {
