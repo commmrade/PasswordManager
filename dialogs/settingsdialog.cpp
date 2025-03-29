@@ -28,7 +28,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     QString theme = settings.value("gui/theme", "Dark").toString();
     ui->guiThemeBox->setCurrentText(theme);
-    qDebug() << settings.value("account/jwtToken") << settings.value("account/refreshToken");
     if (settings.value("account/jwtToken").toString().isEmpty() && settings.value("account/refreshToken").toString().isEmpty()) {
         disableAccountSettings();
     } else {

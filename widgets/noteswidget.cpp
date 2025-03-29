@@ -7,6 +7,7 @@
 #include <QDir>
 #include <QStandardPaths>
 #include "iconmanager.h"
+#include <QMenu>
 
 NotesWidget::NotesWidget(QWidget *parent)
     : QWidget(parent)
@@ -17,16 +18,36 @@ NotesWidget::NotesWidget(QWidget *parent)
     ui->notesView->setModel(NoteController::instance().getModel());
     ui->notesView->setModelColumn(1);
     ui->notesView->setIconSize({32, 32});
+    ui->notesView->setContextMenuPolicy(Qt::CustomContextMenu);
 
     loadIcons(); // Downloads icons in case if STORAGE was loaded from somewhere
     infoWidget = new InfoWidget();
     ui->stackedWidget->addWidget(infoWidget);
+    connect(ui->notesView, &QListView::customContextMenuRequested, this, &NotesWidget::on_contextMenu_requested);
     connect(infoWidget, &InfoWidget::urlChanged, this, &NotesWidget::on_url_changed);
 }
 
 NotesWidget::~NotesWidget()
 {
     delete ui;
+}
+
+void NotesWidget::on_contextMenu_requested(const QPoint &pos)
+{
+    QPoint globalPos = ui->notesView->mapToGlobal(pos);
+    auto selectedModelIndex = ui->notesView->indexAt(pos);
+    if (!selectedModelIndex.isValid()) {
+        return;
+    }
+
+    QMenu contextMenu(ui->notesView);
+    QAction* deleteItem = contextMenu.addAction("Delete");
+    auto* selectedMenuItem = contextMenu.exec(globalPos);
+    if (selectedMenuItem == deleteItem)
+    {
+        auto id = ui->notesView->model()->index(selectedModelIndex.row(), 0).data().toInt();
+        NoteController::instance().deleteNote(id);
+    }
 }
 
 void NotesWidget::on_notesView_clicked(const QModelIndex &index)
@@ -86,6 +107,8 @@ void NotesWidget::on_url_changed(int id)
     QString urlIcon{url + "/favicon.ico"};
     iconManager->downloadImage(urlIcon, id);
 }
+
+
 
 void NotesWidget::loadIcons()
 {

@@ -51,35 +51,31 @@ Item {
                         color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
                         radius: 8
 
-                        Row {
-                            anchors.centerIn: parent
-                            spacing: 10
-
-                            Text {
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: model.title
-                                color: AppSettings.gui.theme === "Dark" ? "white" : "black"
-                                font.pixelSize: 20
-                            }
+                        Text {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: model.title
+                            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                            font.pixelSize: 20
+                            Layout.leftMargin: 10
                         }
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: {
-                                // console.log("Clicked on item with title:", model.title, "and ID:", model.id)
-                                emptyText.visible = false
-                                let password = noteController.getPassword(model.id)
-                                infoNote.setNote(model.id, model.title, model.url, model.username, model.email, password)
-                                infoNote.currentIndex = model.id
-                                infoNote.visible = true
+                            acceptedButtons: Qt.LeftButton | Qt.RightButton
+                            onClicked: (mouse) => {
+                                if (mouse.button == Qt.LeftButton) {
+                                    emptyText.visible = false
+                                    let password = noteController.getPassword(model.id)
+                                    infoNote.setNote(model.id, model.title, model.url, model.username, model.email, password)
+                                    infoNote.currentIndex = model.id
+                                    infoNote.visible = true
+                                } else {
+
+                                    contextMenu.popup()
+                                }
                             }
                         }
 
-                        Component.onCompleted: {
-                            if (!iconManager.hasIcon(model.id)) {
-                                let link = model.url + "/favicon.ico"
-                                iconManager.downloadImage(link, model.id)
-                            }
-                        }
                     }
                 }
 
@@ -103,7 +99,6 @@ Item {
                     }
                     Button {
                         id: deleteNoteBtn
-                        // width: listView.width / 2 - 30
                         text: qsTr("Delete")
                         Material.elevation: 2
                         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
@@ -166,6 +161,23 @@ Item {
         anchors.centerIn: root
         height: root.height - root.height / 8
         width: root.width / 2 + root.width / 6
+    }
+
+    Menu {
+        id: contextMenu
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
+        Material.accent: Material.Purple
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+
+        MenuItem {
+            text: "Delete"
+            onTriggered: {
+                if (infoNote.currentIndex !== -1) {
+                    noteController.deleteNote(infoNote.currentIndex)
+                    root.resetNote()
+                }
+            }
+        }
     }
 
 
