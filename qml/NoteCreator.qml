@@ -42,7 +42,7 @@ Dialog {
 
         // Form fields
         ColumnLayout {
-            spacing: 15
+            spacing: 10
             Layout.fillWidth: true
 
             // Title field
@@ -50,6 +50,7 @@ Dialog {
                 id: titleField
                 placeholderText: qsTr("Title")
                 Layout.fillWidth: true
+                Layout.maximumHeight: 45
                 Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
                 Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
             }
@@ -59,6 +60,7 @@ Dialog {
                 id: urlField
                 placeholderText: qsTr("Url")
                 Layout.fillWidth: true
+                Layout.maximumHeight: 45
                 Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
                 Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
             }
@@ -68,6 +70,7 @@ Dialog {
                 id: usernameField
                 placeholderText: qsTr("Username")
                 Layout.fillWidth: true
+                Layout.maximumHeight: 45
                 Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
                 Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
             }
@@ -77,6 +80,7 @@ Dialog {
                 id: emailField
                 placeholderText: qsTr("Email")
                 Layout.fillWidth: true
+                Layout.maximumHeight: 45
                 Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
                 Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
             }
@@ -86,6 +90,7 @@ Dialog {
                 id: passwordField
                 placeholderText: qsTr("Password")
                 Layout.fillWidth: true
+                Layout.maximumHeight: 45
                 Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
                 Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
                 // echoMode: TextInput.PasswordEchoOnEdit

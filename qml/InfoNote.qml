@@ -121,6 +121,10 @@ Item {
                     Button {
                         text: "📋"
                         Material.elevation: 2
+                        Material.roundedScale: Material.ExtraSmallScale
+                        Layout.maximumHeight: passwordField.height + passwordField.height / 8
+                        Layout.minimumHeight: passwordField.height + passwordField.height / 8
+                        Layout.maximumWidth: 64
                         onClicked: {
                             // Логика копирования в буфер обмена
                             let password = noteController.getPassword(currentIndex)

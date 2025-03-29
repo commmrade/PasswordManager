@@ -152,7 +152,7 @@ Dialog {
                 ComboBox {
                     id: guiTypeBox
                     model: ["Widgets", "Quick"]
-
+                    Layout.maximumHeight: 45
                     onActivated: (index) => {
                         let val = guiTypeBox.textAt(index)
                         AppSettings.gui.type = val
@@ -186,7 +186,7 @@ Dialog {
                 ComboBox {
                     id: languageBox
                     model: ["English", "Russian"]
-
+                    Layout.maximumHeight: 45
                     onActivated: (index) => {
                         let val = languageBox.textAt(index)
                         AppSettings.gui.language = val
@@ -218,7 +218,7 @@ Dialog {
                 ComboBox {
                     id: themeBox
                     model: ["Dark", "Light"]
-
+                    Layout.maximumHeight: 45
                     onActivated: (index) => {
                         let val = themeBox.textAt(index)
                         AppSettings.gui.theme = val

@@ -27,14 +27,13 @@ Item {
         // First element: Your original RowLayout
         RowLayout {
             id: globalRow
-            SplitView.minimumWidth: 100  // Minimum width for resizing
+            SplitView.minimumWidth: 200  // Minimum width for resizing
             SplitView.preferredWidth: 300  // Initial width
             SplitView.fillHeight: true
 
             ColumnLayout {
                 id: listColumn
-                Layout.maximumWidth: 300
-                Layout.minimumWidth: 100
+
                 Layout.fillHeight: true
                 Layout.fillWidth: true
 
@@ -86,12 +85,11 @@ Item {
 
                 RowLayout {
                     id: listButtonsRow
-                    spacing: 30
                     Layout.leftMargin: 10
 
                     Button {
                         id: createNoteBtn
-                        width: listView.width / 2 - 30
+                        // width: listView.width / 2 - 30
                         text: qsTr("Create")
                         Material.elevation: 2
                         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
@@ -105,7 +103,7 @@ Item {
                     }
                     Button {
                         id: deleteNoteBtn
-                        width: listView.width / 2 - 30
+                        // width: listView.width / 2 - 30
                         text: qsTr("Delete")
                         Material.elevation: 2
                         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
@@ -126,8 +124,8 @@ Item {
 
         StackView {
             id: stackView
-            SplitView.minimumWidth: 50
-            SplitView.preferredWidth: 150
+            SplitView.minimumWidth: root.width / 3
+            // SplitView.preferredWidth: 500
             SplitView.fillHeight: true
 
             Text {
