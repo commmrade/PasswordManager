@@ -16,7 +16,7 @@ bool SettingsController::resetApp()
     QDir appDataDir {appDataLoc};
     QFile file(appDataDir.filePath(PasswordManager::PM_FILENAME));
 
-    if (!file.remove() && !appDataDir.removeRecursively()) {
+    if (!file.remove() || !appDataDir.removeRecursively()) {
         return false;
     }
     QSettings settings;

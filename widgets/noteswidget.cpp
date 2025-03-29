@@ -16,6 +16,7 @@ NotesWidget::NotesWidget(QWidget *parent)
     ui->setupUi(this);
     ui->notesView->setModel(NoteController::instance().getModel());
     ui->notesView->setModelColumn(1);
+    ui->notesView->setIconSize({32, 32});
 
     loadIcons(); // Downloads icons in case if STORAGE was loaded from somewhere
     infoWidget = new InfoWidget();

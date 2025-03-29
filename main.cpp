@@ -21,98 +21,92 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
-    app.setOrganizationName("klewy");
-    app.setOrganizationDomain("klewy.com");
-    app.setApplicationName("Password Manager");
     QCoreApplication::setOrganizationName("klewy");
     QCoreApplication::setOrganizationDomain("klewy.com");
     QCoreApplication::setApplicationName("Password Manager");
 
-    QTranslator translator;
     QSettings settings;
-
-    // TODO: сделать загрузку в зависимости от локали, если язык не установлен
-    QString language = settings.value("gui/language").isValid() ? settings.value("gui/language").toString() : QString("English");
-    if (language == "Russian") {
-        if (!translator.load(":/translation_ru.qm")) {
-            qDebug() << "Could not load translation";
-        }
-    }
-    app.installTranslator(&translator);
-    qDebug() << language;
+    auto guiType = settings.value("gui/type", "Widgets");
 
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkdir(appDataLoc);
     QDir().mkdir(appDataLoc + "/images");
 
+    if (guiType == "Quick") {
+        QGuiApplication app(argc, argv);
+        app.setOrganizationName("klewy");
+        app.setOrganizationDomain("klewy.com");
+        app.setApplicationName("Password Manager");
 
-    qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Normal");
-    qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", "Dark");
+        QTranslator translator;
 
+        QString language = settings.value("gui/language", "English").toString();
+        if (language == "Russian") {
+            if (!translator.load(":/translation_ru.qm")) {
+                qDebug() << "Could not load translation";
+            }
+        }
+        app.installTranslator(&translator);
+        qDebug() << language;
 
-    QQmlApplicationEngine engine;
-    engine.addImportPath("qrc:/");
-    //engine.addImportPath("qrc:/qml");
-    qmlRegisterType<PasswordGenerator>("PasswordGenerator", 1, 0, "PasswordGenerator");
-    qmlRegisterType<IconManager>("IconManager", 1, 0, "IconManager");
-    qmlRegisterType<LoaderController>("LoaderController", 1, 0, "LoaderController");
-    qmlRegisterType<SettingsController>("SettingsController", 1, 0, "SettingsController");
-    qmlRegisterType<AuthManager>("AuthManager", 1, 0, "AuthManager");
-    qmlRegisterType<StorageManager>("StorageManager", 1, 0, "StorageManager");
+        qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Normal");
+        qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", "Dark");
 
-    Clipboard clipboard;
-    auto& ins = NoteController::instance();
-    engine.rootContext()->setContextProperty("noteController", &ins);
-    engine.rootContext()->setContextProperty("clipboard", &clipboard);
+        QQmlApplicationEngine engine;
+        engine.addImportPath("qrc:/");
+        qmlRegisterType<PasswordGenerator>("PasswordGenerator", 1, 0, "PasswordGenerator");
+        qmlRegisterType<IconManager>("IconManager", 1, 0, "IconManager");
+        qmlRegisterType<LoaderController>("LoaderController", 1, 0, "LoaderController");
+        qmlRegisterType<SettingsController>("SettingsController", 1, 0, "SettingsController");
+        qmlRegisterType<AuthManager>("AuthManager", 1, 0, "AuthManager");
+        qmlRegisterType<StorageManager>("StorageManager", 1, 0, "StorageManager");
 
-
-    AuthManager authManager;
-    authManager.validateToken();
-
-    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
-
-    return app.exec();
-
-    // QApplication a(argc, argv);
-    // QTranslator translator;
-    // QSettings settings;
-
-    // // TODO: сделать загрузку в зависимости от локали, если язык не установлен
-    // QString language = settings.value("gui/language").isValid() ? settings.value("gui/language").toString() : QString("English");
-    // if (language == "Russian") {
-    //     if (!translator.load(":/translation_ru.qm")) {
-    //         qDebug() << "Could not load translation";
-    //     }
-    // }
-    // a.installTranslator(&translator);
-
-    // QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    // QDir().mkdir(appDataLoc);
-    // QDir().mkdir(appDataLoc + "/images");
-
-    // QString themeStr = settings.value("gui/theme").isValid() ? settings.value("gui/theme").toString() : QString("Dark");
-    // QString themeLoc = themeStr == "Dark" ? "/generalDark.qss" : "/generalLight.qss";
+        Clipboard clipboard;
+        auto& ins = NoteController::instance();
+        engine.rootContext()->setContextProperty("noteController", &ins);
+        engine.rootContext()->setContextProperty("clipboard", &clipboard);
 
 
-    // QFile file(QApplication::applicationDirPath() + themeLoc);
-    // if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    //     a.setStyleSheet(file.readAll());
-    //     file.close();
-    // }
-    // a.setStyle(QStyleFactory::create("Fusion"));
+        AuthManager authManager;
+        authManager.validateToken();
+
+        engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
+
+        return app.exec();
+    } else {
+        QApplication a(argc, argv);
+        QTranslator translator;
+
+        QString language = settings.value("gui/language", "English").toString();
+        if (language == "Russian") {
+            if (!translator.load(":/translation_ru.qm")) {
+                qDebug() << "Could not load translation";
+            }
+        }
+        a.installTranslator(&translator);
 
 
-    // // Handle settings like language, ui type and etc.
+        QString themeStr = settings.value("gui/theme", "Dark").toString();
+        QString themeLoc = themeStr == "Dark" ? "/generalDark.qss" : "/generalLight.qss";
 
-    // auto isFirstTime = settings.value("firstTime").toBool();
-    // if (!isFirstTime) {
-    //     SecretPassWidget w;
-    //     w.exec();
-    //     settings.setValue("firstTime", true);
-    // }
 
-    // MainWindow w;
-    // w.show();
-    // return a.exec();
+        QFile file(QApplication::applicationDirPath() + themeLoc);
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            a.setStyleSheet(file.readAll());
+            file.close();
+        }
+        a.setStyle(QStyleFactory::create("Fusion"));
+
+
+        auto isFirstTime = settings.value("firstTime", true).toBool();
+        if (isFirstTime) {
+            SecretPassWidget w;
+            w.exec();
+            settings.setValue("firstTime", false);
+        }
+
+        MainWindow w;
+        w.show();
+        return a.exec();
+    }
 }

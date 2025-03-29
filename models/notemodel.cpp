@@ -26,7 +26,6 @@ SqlNoteModel::SqlNoteModel(QObject *parent)
 QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
 {
     if (role == Qt::DecorationRole) {
-        qDebug() << "there we go";
         const auto record = this->record(index.row());
         {
             QByteArray* pixmapBytes = icons.object(record.value("id").toInt());
@@ -36,7 +35,7 @@ QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
 
                     return {};
                 }
-                return pixmap;
+                return QIcon{pixmap};
             }
         }
 
@@ -55,7 +54,7 @@ QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
         buffer.close();
 
         icons.insert(record.value("id").toInt(), byteArray);
-        return pixmap;
+        return QIcon{pixmap};
     } else if (role < Qt::UserRole) {
         return QSqlTableModel::data(index, role);
     } else {
