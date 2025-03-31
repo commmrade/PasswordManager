@@ -10,6 +10,7 @@
 #include <QIcon>
 #include <QtLogging>
 #include <QBuffer>
+#include <utility>
 SqlNoteModel::SqlNoteModel(QObject *parent)
     : QSqlTableModel{parent, SqlNoteModel::makeDatabase()}
 {
@@ -19,6 +20,7 @@ SqlNoteModel::SqlNoteModel(QObject *parent)
     if (!QSqlTableModel::select()) {
         throw std::runtime_error("Data could not be set in the model");
     }
+    select();
 }
 
 QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
@@ -52,7 +54,7 @@ QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
         buffer.close();
 
         icons.insert(record.value("id").toInt(), byteArray);
-        return QVariant{QIcon{pixmap}};
+        return QIcon{pixmap};
     } else if (role < Qt::UserRole) {
         return QSqlTableModel::data(index, role);
     } else {
@@ -95,7 +97,7 @@ int SqlNoteModel::createNote(const QString& title, const QString& url,
 
 void SqlNoteModel::editNote(const int noteId, const QString &title, const QString &url,
                             const QString &username, const QString &email,
-                            const QString &password)
+                            const std::pair<QString, QString> &passwordSalt)
 {
     // TODO: add check if note exists
     const auto startIndex = this->index(0, 0);
@@ -110,7 +112,8 @@ void SqlNoteModel::editNote(const int noteId, const QString &title, const QStrin
     record.setValue("url", url);
     record.setValue("username", username);
     record.setValue("email", email);
-    record.setValue("password", password);
+    record.setValue("password", passwordSalt.first);
+    record.setValue("salt", passwordSalt.second);
     if (!setRecord(row, record)) {
         qWarning("Warning: Could not edit the note");
     }
@@ -218,7 +221,6 @@ QSqlDatabase SqlNoteModel::makeDatabase()
     qDebug() << "make db";
     const QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
-    // Ensure the directory exists
     QDir dir(appDataLoc);
     if (!dir.exists()) {
         if (!dir.mkpath(appDataLoc)) {
@@ -228,14 +230,8 @@ QSqlDatabase SqlNoteModel::makeDatabase()
     }
 
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
-    // Remove unnecessary settings for SQLite
-    // database.setHostName("klewy"); // Not needed for SQLite
-    // database.setUserName("root");  // Not needed for SQLite
-    // database.setPassword("root");  // Not needed for SQLite
-
-    // Set the database file path
-    QString dbPath = appDataLoc + PasswordManager::PM_FILENAME;
-
+    QString dbPath = appDataLoc + "/" + PasswordManager::PM_FILENAME;
+    qDebug() << dbPath;
     database.setDatabaseName(dbPath);
 
     if (!database.open()) {
@@ -300,4 +296,5 @@ void SqlNoteModel::generateRoles()
     for (auto i = 0; i < nCols; ++i) {
         roles[Qt::UserRole + i + 1] = QVariant(headerData(i, Qt::Horizontal).toString()).toByteArray();
     }
+    roles[Qt::DecorationRole] = "icon";
 }

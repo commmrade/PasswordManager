@@ -20,8 +20,8 @@ public:
                    const QString& username,
                    const QString& email, const QString& password, const QString& salt);
     void editNote(const int noteId, const QString& title, const QString& url,
-                  const QString& username,
-                  const QString& email, const QString& password);
+                   const QString& username,
+                   const QString& email, const std::pair<QString, QString> &passwordSalt);
     void deleteNote(const int noteId);
     void setTitle(const int noteId, const QString& title);
     QString getTitle(const int noteId) const;

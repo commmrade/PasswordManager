@@ -20,18 +20,18 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->setupUi(this);
     // Loading settings...
     QSettings settings;
-    QString language = settings.value("gui/language").isValid() ? settings.value("gui/language").toString() : QString("English");
+    QString language = settings.value("gui/language", "English").toString();
     ui->languageBox->setCurrentText(language);
 
-    QString guiType = settings.value("gui/type").isValid() ? settings.value("gui/type").toString() : QString("Widgets");
+    QString guiType = settings.value("gui/type", "Widgets").toString();
     ui->guiTypeBox->setCurrentText(guiType);
 
-    QString theme = settings.value("gui/theme").isValid() ? settings.value("gui/theme").toString() : QString("Dark");
+    QString theme = settings.value("gui/theme", "Dark").toString();
     ui->guiThemeBox->setCurrentText(theme);
-
-    if (settings.value("account/jwtToken").isNull() && settings.value("account/refreshToken").isNull()) {
+    if (settings.value("account/jwtToken").toString().isEmpty() && settings.value("account/refreshToken").toString().isEmpty()) {
         disableAccountSettings();
     } else {
+        qDebug() << "enabke";
         enableAccountSettings();
     }
 
@@ -50,9 +50,19 @@ SettingsDialog::~SettingsDialog()
 void SettingsDialog::on_guiTypeBox_activated(int index)
 {
     QString uiType = ui->guiTypeBox->itemText(index);
-
+    qDebug() << uiType;
     QSettings settings;
     settings.setValue("gui/type", uiType);
+
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("GUI type changed"));
+    msgBox.setText(tr("Restart the app to apply settings?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    if (msgBox.exec() == QMessageBox::Yes) {
+        QApplication::quit();
+    }
 }
 
 
@@ -91,7 +101,7 @@ void SettingsDialog::on_resetButton_clicked()
     QDir appDataDir {appDataLoc};
     QFile file(appDataDir.filePath(PasswordManager::PM_FILENAME));
 
-    if (!file.remove() && !appDataDir.removeRecursively()) {
+    if (!file.remove() || !appDataDir.removeRecursively()) {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle(tr("Warning"));
@@ -228,7 +238,7 @@ void SettingsDialog::on_loadStorageButton_clicked()
 {
     QMessageBox msgBox(this);
     msgBox.setWindowTitle(tr("Warning"));
-    msgBox.setText(tr("Are you sure you want to load the storage backup? It will overwrite current storage"));
+    msgBox.setText(tr("Are you sure you want to load the storage backup? It will overwrite the current storage"));
 
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
@@ -246,7 +256,7 @@ void SettingsDialog::on_uploadButton_clicked()
 void SettingsDialog::on_request_error(int statusCode, const QString& errorMsg) {
     QMessageBox::warning(this, tr("Warning"), errorMsg);
 
-    if (statusCode == 403) {
+    if (statusCode == 401) {
         if (authManager.updateToken().isEmpty()) {
             disableAccountSettings();
             QMessageBox::warning(this, tr("Warning"), "Please, log in again!");

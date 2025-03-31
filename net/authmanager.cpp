@@ -7,7 +7,7 @@
 #include <QJsonObject>
 #include <QMessageBox>
 #include <QSettings>
-
+#include <QUrlQuery>
 
 AuthManager::AuthManager(QObject *parent)
     : QObject{parent}
@@ -78,11 +78,18 @@ void AuthManager::loginUser(const QString& email, const QString& password) {
             qDebug() << "scueess";
             emit successAuth();
         } else {
-            QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
-            QJsonObject jsonObj = jsonDoc.object();
-            QString errorMessage = jsonObj["message"].toString();
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-            emit errorAuth(statusCode, errorMessage);
+
+            if (statusCode != 0) {
+                QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
+                QJsonObject jsonObj = jsonDoc.object();
+                QString errorMessage = jsonObj["message"].toString();
+
+                emit errorAuth(statusCode, errorMessage);
+            } else {
+                emit errorAuth(0, "Server is offline");
+            }
+
         }
         reply->deleteLater();
     });
@@ -96,7 +103,7 @@ QString AuthManager::updateToken() {
     }
     QNetworkRequest req{QUrl{"http://localhost:3000/token"}};
 
-    req.setRawHeader("Authorization", refreshToken.toUtf8());
+    req.setRawHeader("Authorization", "Bearer " + refreshToken.toUtf8());
 
     QEventLoop loop;
     auto* reply = manager.get(req);
@@ -104,23 +111,64 @@ QString AuthManager::updateToken() {
         loop.exit();
     });
     loop.exec();
-
+    qDebug() << "refresh is" << refreshToken;
     if (reply->error() == QNetworkReply::NoError) {
+        qDebug() << "UPDATED TOKEN";
         auto bytes = reply->readAll();
         settings.setValue("account/jwtToken", bytes);
         return bytes;
     } else {
-        // TODO: If 403 error then reset all tokens
+
         int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if (statusCode == 403) {
             settings.remove("account/jwtToken");
             settings.remove("account/refreshToken");
+            settings.remove("account/email");
         }
         QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
         QJsonObject jsonObj = jsonDoc.object();
         QString errorMessage = jsonObj["message"].toString();
-        QMessageBox::warning(nullptr, tr("Warning"), errorMessage);
     }
     delete reply;
     return "";
+}
+
+void AuthManager::logOut()
+{
+    QSettings settings;
+    settings.remove("account/email");
+    settings.remove("account/refreshToken");
+    settings.remove("account/jwtToken");
+}
+
+void AuthManager::validateToken()
+{
+    QSettings settings;
+
+    QUrl url{"http://localhost:3000/validate"};
+    QUrlQuery query;
+    query.addQueryItem("token", settings.value("account/jwtToken").toString());
+    url.setQuery(query);
+
+    QNetworkRequest request{url};
+
+    auto* reply = manager.get(request);
+    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+        if (reply->error() == QNetworkReply::NoError) {
+
+        } else {
+            int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+            if (statusCode == 401) {
+                if (updateToken().isEmpty()) {
+                    QSettings settings;
+                    settings.remove("account/email");
+                    settings.remove("account/refreshToken");
+                    settings.remove("account/jwtToken");
+                }
+            }
+        }
+        reply->deleteLater();
+    });
+
 }

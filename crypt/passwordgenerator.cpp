@@ -2,7 +2,6 @@
 #include <random>
 #include <QString>
 #include <QDebug>
-PasswordGenerator::PasswordGenerator() {}
 
 QString PasswordGenerator::generatePassword(unsigned int len)
 {

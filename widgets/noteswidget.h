@@ -27,6 +27,8 @@ private slots:
 
     void on_url_changed(int id);
 
+    void on_contextMenu_requested(const QPoint& pos);
+
 private:
     Ui::NotesWidget *ui;
     InfoWidget* infoWidget{nullptr};

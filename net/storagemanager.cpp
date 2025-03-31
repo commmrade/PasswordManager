@@ -61,7 +61,6 @@ void StorageManager::saveStorage() {
             } else {
                 emit error(0, tr("Server is dead / No internet"));
             }
-
         }
         reply->deleteLater();
     });

@@ -3,4 +3,17 @@
         <file>images/copy.png</file>
         <file>images/pm.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>qml/Main.qml</file>
+        <file>qml/PMenu.qml</file>
+        <file>qml/PMenubar.qml</file>
+        <file>qml/Notes.qml</file>
+        <file>qml/InfoNote.qml</file>
+        <file>qml/NoteCreator.qml</file>
+        <file>qml/Welcome.qml</file>
+        <file>qml/AppSettings.qml</file>
+        <file>qml/PLoader.qml</file>
+        <file>qml/SettingsDialog.qml</file>
+        <file>qml/AuthDialog.qml</file>
+    </qresource>
 </RCC>

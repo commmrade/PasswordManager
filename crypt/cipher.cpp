@@ -24,7 +24,7 @@ std::pair<QString, QString> Cipher::aesEncrypt(const QString &plain)
     std::string output;
 
 
-    auto ivStr = PasswordGenerator::generatePassword();
+    auto ivStr = PasswordGenerator{}.generatePassword();
     CryptoPP::byte iv[16];
     std::memcpy(iv, ivStr.toUtf8().constData(), 16);
 
