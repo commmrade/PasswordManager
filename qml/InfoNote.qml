@@ -57,8 +57,10 @@ Item {
                         Layout.fillWidth: true
 
                         onAccepted: {
-                            if (currentIndex !== -1) {
+                            if (currentIndex !== -1 && titleField.text !== "") {
                                 noteController.setTitle(currentIndex, titleField.text)
+                            } else {
+                                emptyDialog.open()
                             }
                         }
                     }
@@ -70,7 +72,7 @@ Item {
                         Layout.fillWidth: true
 
                         onAccepted: {
-                            if (currentIndex !== -1) {
+                            if (currentIndex !== -1 && urlField.text !== "") {
                                 noteController.setUrl(currentIndex, urlField.text)
                                 urlFieldChanged(currentIndex, urlField.text)
                             }
@@ -84,7 +86,7 @@ Item {
                         Layout.fillWidth: true
 
                         onAccepted: {
-                            if (currentIndex !== -1) {
+                            if (currentIndex !== -1 && usernameField.text !== "") {
                                 noteController.setUsername(currentIndex, usernameField.text)
                             }
                         }
@@ -97,7 +99,7 @@ Item {
                         Layout.fillWidth: true
 
                         onAccepted: {
-                            if (currentIndex !== -1) {
+                            if (currentIndex !== -1 && emailField.text !== "") {
                                 noteController.setEmail(currentIndex, emailField.text)
                             }
                         }
@@ -114,8 +116,10 @@ Item {
                             echoMode: TextInput.Password
 
                             onAccepted: {
-                                if (currentIndex !== -1) {
+                                if (currentIndex !== -1 && passwordField.text !== "") {
                                     noteController.setPassword(currentIndex, passwordField.text)
+                                } else {
+                                    emptyDialog.open()
                                 }
                             }
                         }
@@ -146,7 +150,11 @@ Item {
                     text: qsTr("Save")
                     Material.elevation: 2
                     onClicked: {
-                        noteController.editNote(currentIndex, titleField.text, urlField.text, usernameField.text, emailField.text, passwordField.text)
+                        if (titleField.text !== "" || passwordField.text !== "") {
+                            noteController.editNote(currentIndex, titleField.text, urlField.text, usernameField.text, emailField.text, passwordField.text)
+                        } else {
+                            emptyDialog.open()
+                        }
                     }
                 }
 
@@ -167,6 +175,20 @@ Item {
                 }
             }
         }
+    }
+
+    Dialog {
+        id: emptyDialog
+        title: qsTr("Title or Password Empty")
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
+        Material.accent: Material.Purple
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+
+        Text {
+            text: qsTr("Please, make sure both fields are filled with text.")
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+        }
+        standardButtons: Dialog.Ok
     }
 
     function setNote(id, title, url, username, email, password) {

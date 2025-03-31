@@ -17,30 +17,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="68"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="65"/>
         <location filename="dialogs/authdialog.ui" line="31"/>
-        <location filename="qml/AuthDialog.qml" line="68"/>
+        <location filename="qml/AuthDialog.qml" line="65"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="198"/>
         <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="198"/>
         <source>Sign Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="89"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="86"/>
         <location filename="dialogs/authdialog.ui" line="56"/>
-        <location filename="qml/AuthDialog.qml" line="89"/>
+        <location filename="qml/AuthDialog.qml" line="86"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="199"/>
         <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="199"/>
         <source>Username...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="95"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="190"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="92"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="183"/>
         <location filename="dialogs/authdialog.ui" line="63"/>
         <location filename="dialogs/authdialog.ui" line="169"/>
-        <location filename="qml/AuthDialog.qml" line="95"/>
-        <location filename="qml/AuthDialog.qml" line="190"/>
+        <location filename="qml/AuthDialog.qml" line="92"/>
+        <location filename="qml/AuthDialog.qml" line="183"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="200"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="204"/>
         <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="200"/>
@@ -49,12 +49,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="101"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="196"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="98"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="189"/>
         <location filename="dialogs/authdialog.ui" line="76"/>
         <location filename="dialogs/authdialog.ui" line="182"/>
-        <location filename="qml/AuthDialog.qml" line="101"/>
-        <location filename="qml/AuthDialog.qml" line="196"/>
+        <location filename="qml/AuthDialog.qml" line="98"/>
+        <location filename="qml/AuthDialog.qml" line="189"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="201"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="205"/>
         <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="201"/>
@@ -63,12 +63,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="114"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="206"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="108"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="199"/>
         <location filename="dialogs/authdialog.ui" line="111"/>
         <location filename="dialogs/authdialog.ui" line="217"/>
-        <location filename="qml/AuthDialog.qml" line="114"/>
-        <location filename="qml/AuthDialog.qml" line="206"/>
+        <location filename="qml/AuthDialog.qml" line="108"/>
+        <location filename="qml/AuthDialog.qml" line="199"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="202"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="206"/>
         <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="202"/>
@@ -77,36 +77,36 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="139"/>
-        <location filename="qml/AuthDialog.qml" line="139"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="132"/>
+        <location filename="qml/AuthDialog.qml" line="132"/>
         <source>Please, fill out all fields.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="173"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="166"/>
         <location filename="dialogs/authdialog.ui" line="147"/>
-        <location filename="qml/AuthDialog.qml" line="173"/>
+        <location filename="qml/AuthDialog.qml" line="166"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="203"/>
         <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_authdialog.h" line="203"/>
         <source>Log In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.cpp" line="32"/>
+        <location filename="dialogs/authdialog.cpp" line="33"/>
         <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.cpp" line="32"/>
+        <location filename="dialogs/authdialog.cpp" line="33"/>
         <source>Successfully authenticated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="136"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="149"/>
-        <location filename="qml/AuthDialog.qml" line="136"/>
-        <location filename="qml/AuthDialog.qml" line="149"/>
-        <location filename="dialogs/authdialog.cpp" line="37"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="129"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="142"/>
+        <location filename="qml/AuthDialog.qml" line="129"/>
+        <location filename="qml/AuthDialog.qml" line="142"/>
+        <location filename="dialogs/authdialog.cpp" line="38"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
@@ -120,45 +120,57 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="69"/>
-        <location filename="qml/InfoNote.qml" line="69"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="71"/>
+        <location filename="qml/InfoNote.qml" line="71"/>
         <source>Url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="83"/>
-        <location filename="qml/InfoNote.qml" line="83"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="85"/>
+        <location filename="qml/InfoNote.qml" line="85"/>
         <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="96"/>
-        <location filename="qml/InfoNote.qml" line="96"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="98"/>
+        <location filename="qml/InfoNote.qml" line="98"/>
         <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="112"/>
-        <location filename="qml/InfoNote.qml" line="112"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="114"/>
+        <location filename="qml/InfoNote.qml" line="114"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="146"/>
-        <location filename="qml/InfoNote.qml" line="146"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="150"/>
+        <location filename="qml/InfoNote.qml" line="150"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="154"/>
-        <location filename="qml/InfoNote.qml" line="154"/>
-        <source>Generate new password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="162"/>
         <location filename="qml/InfoNote.qml" line="162"/>
+        <source>Generate new password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="170"/>
+        <location filename="qml/InfoNote.qml" line="170"/>
         <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="182"/>
+        <location filename="qml/InfoNote.qml" line="182"/>
+        <source>Title or Password Empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/qml/InfoNote.qml" line="188"/>
+        <location filename="qml/InfoNote.qml" line="188"/>
+        <source>Please, make sure both fields are filled with text.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -211,6 +223,18 @@
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="275"/>
         <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="275"/>
         <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/infowidget.cpp" line="31"/>
+        <location filename="widgets/infowidget.cpp" line="67"/>
+        <source>Title or password empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/infowidget.cpp" line="31"/>
+        <location filename="widgets/infowidget.cpp" line="67"/>
+        <source>Please, make sure both fields are filled with text</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

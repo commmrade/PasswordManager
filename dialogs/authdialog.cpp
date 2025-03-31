@@ -24,6 +24,7 @@ void AuthDialog::on_continueRegButton_clicked()
         || ui->passwordRegEdit->text().length() < 6)
     {
         QMessageBox::warning(this, "Warning", "Please, fill out all fields.");
+        return;
     }
     authManager.registerUser(ui->usernameRegEdit->text(), ui->emailRegEdit->text(), ui->passwordRegEdit->text());
 }
@@ -45,6 +46,7 @@ void AuthDialog::on_continueLogButton_clicked()
        || ui->passwordLogEdit->text().length() < 6))
     {
         QMessageBox::warning(this, "Warning", "Please, fill out all fields.");
+        return;
     }
     authManager.loginUser(ui->emailLogEdit->text(), ui->passwordLogEdit->text());
 }
