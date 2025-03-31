@@ -17,7 +17,6 @@ void IconManager::downloadImage(QString urlStr, int id)
     if (!urlStr.contains("http://") && !urlStr.contains("https://")) {
         urlStr.insert(0, "http://");
     }
-    qDebug() << "Link is:" << urlStr;
     QUrl url(urlStr);
     if (!url.isValid()) {
         qDebug() << "Invalid url";
