@@ -112,7 +112,6 @@ void NotesWidget::on_url_changed(int id)
 
 void NotesWidget::loadIcons()
 {
-    // Loading icons
     for (int i = 0; i < ui->notesView->model()->rowCount(); ++i) {
         auto id = ui->notesView->model()->index(i, 0).data().toInt();
         if (!iconManager->hasIcon(id)) {

@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+// Class used by QML for clipboard since it doesn't have a built-in one
 class Clipboard : public QObject
 {
     Q_OBJECT

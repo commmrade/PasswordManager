@@ -27,8 +27,7 @@ void IconManager::downloadImage(QString urlStr, int id)
     QNetworkRequest request(url);
     auto* reply = manager->get(request);
    QObject::connect(reply, &QNetworkReply::downloadProgress, this, [this, reply] (qint64 bytesReceived, qint64 bytesTotal) {
-       qDebug() << "Bytes received: " << bytesReceived;
-        if (bytesReceived > MAX_DOWNLOAD_SIZE) {
+        if (bytesReceived > MAX_DOWNLOAD_SIZE) { // In case user does something stupid
             reply->abort();
         }
    });

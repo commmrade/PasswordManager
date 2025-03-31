@@ -21,7 +21,7 @@ bool SettingsController::resetApp()
     }
     QSettings settings;
     settings.clear();
-    QCoreApplication::exit();
+    QCoreApplication::exit(); // TODO: Try to make the app truly restart
     return true;
 }
 

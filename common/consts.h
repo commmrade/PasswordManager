@@ -4,6 +4,4 @@
 namespace PasswordManager {
     constexpr inline const char* PM_FILENAME = "pmanager.pm";
 }
-
-
 #endif // CONSTS_H

@@ -10,8 +10,6 @@ public:
     explicit SettingsController(QObject *parent = nullptr);
 
     Q_INVOKABLE bool resetApp();
-
-
     Q_INVOKABLE bool exportStorage(const QString& exportDir);
 
 signals:

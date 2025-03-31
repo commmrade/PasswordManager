@@ -21,10 +21,7 @@ Dialog {
         }
 
         function onErrorAuth(statusCode, errorMessage) {
-            console.log("failed auth")
-            console.log(errorMessage)
-            console.log(statusCode)
-
+            console.log("Auth error: " + errorMessage)
             authErrorDialog.text = errorMessage
             authErrorDialog.open()
         }
@@ -102,10 +99,7 @@ Dialog {
                             echoMode: TextInput.Password
                             Layout.fillWidth: true
                         }
-
                         Item { Layout.fillHeight: true }  // Заполнитель, чтобы кнопка ушла вниз
-
-
                     }
                 }
 
@@ -119,7 +113,6 @@ Dialog {
                             errorDialog.open()
                             return
                         }
-
                         authManager.registerUser(usernameReg.text, emailReg.text, passwordReg.text)
                     }
                 }

@@ -2,7 +2,7 @@
 #define NOTE_H
 #include <QString>
 struct Note {
-    int id{-1};
+    int id{-1}; // -1 is used to mark closed Note
     QString title;
     QString url;
     QString username;

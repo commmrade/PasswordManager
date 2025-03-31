@@ -42,13 +42,18 @@ void AuthManager::registerUser(const QString &username, const QString &email, co
             qDebug() << "scueess";
             emit successAuth();
         } else {
-            QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
-            QJsonObject jsonObj = jsonDoc.object();
-            QString errorMessage = jsonObj["message"].toString();
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-            qDebug() << "error";
-            emit errorAuth(statusCode, errorMessage);
+            if (statusCode != 0) {
+                QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
+                QJsonObject jsonObj = jsonDoc.object();
+                QString errorMessage = jsonObj["message"].toString();
+
+                emit errorAuth(statusCode, errorMessage);
+            } else {
+                emit errorAuth(0, "Server is offline");
+            }
         }
+        reply->deleteLater();
     });
 
 }
@@ -84,12 +89,10 @@ void AuthManager::loginUser(const QString& email, const QString& password) {
                 QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
                 QJsonObject jsonObj = jsonDoc.object();
                 QString errorMessage = jsonObj["message"].toString();
-
                 emit errorAuth(statusCode, errorMessage);
             } else {
                 emit errorAuth(0, "Server is offline");
             }
-
         }
         reply->deleteLater();
     });
@@ -113,12 +116,10 @@ QString AuthManager::updateToken() {
     loop.exec();
     qDebug() << "refresh is" << refreshToken;
     if (reply->error() == QNetworkReply::NoError) {
-        qDebug() << "UPDATED TOKEN";
         auto bytes = reply->readAll();
         settings.setValue("account/jwtToken", bytes);
         return bytes;
     } else {
-
         int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if (statusCode == 403) {
             settings.remove("account/jwtToken");
@@ -154,9 +155,7 @@ void AuthManager::validateToken()
 
     auto* reply = manager.get(request);
     connect(reply, &QNetworkReply::finished, this, [this, reply] {
-        if (reply->error() == QNetworkReply::NoError) {
-
-        } else {
+        if (reply->error() != QNetworkReply::NoError) {
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
             if (statusCode == 401) {

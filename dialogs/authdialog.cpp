@@ -15,8 +15,6 @@ AuthDialog::AuthDialog(AuthManager &authManager, QWidget *parent)
 AuthDialog::~AuthDialog()
 {
     delete ui;
-
-
 }
 
 void AuthDialog::on_continueRegButton_clicked()
@@ -31,13 +29,11 @@ void AuthDialog::on_continueRegButton_clicked()
 }
 
 void AuthDialog::successAuthenticated() {
-    qDebug() << "here";
     QMessageBox::about(this, tr("Authentication"), tr("Successfully authenticated"));
     accept();
 }
 
 void AuthDialog::errorAuthenticated(int statusCode, const QString &errorMessage) {
-    qDebug() << "here";
     QMessageBox::warning(this, tr("Warning"), errorMessage);
 }
 

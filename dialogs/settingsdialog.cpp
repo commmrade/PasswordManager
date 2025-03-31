@@ -28,10 +28,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     QString theme = settings.value("gui/theme", "Dark").toString();
     ui->guiThemeBox->setCurrentText(theme);
-    if (settings.value("account/jwtToken").toString().isEmpty() && settings.value("account/refreshToken").toString().isEmpty()) {
+    if (settings.value("account/jwtToken").toString().isEmpty() && settings.value("account/refreshToken").toString().isEmpty()) { // If user doesn't have tokens set up - unauthorized (dumb but idc)
         disableAccountSettings();
     } else {
-        qDebug() << "enabke";
         enableAccountSettings();
     }
 

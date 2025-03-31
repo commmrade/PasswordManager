@@ -92,12 +92,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.cpp" line="35"/>
+        <location filename="dialogs/authdialog.cpp" line="32"/>
         <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/authdialog.cpp" line="35"/>
+        <location filename="dialogs/authdialog.cpp" line="32"/>
         <source>Successfully authenticated</source>
         <translation type="unfinished"></translation>
     </message>
@@ -106,7 +106,7 @@
         <location filename="build/Desktop_Qt_6_8_1-Debug/qml/AuthDialog.qml" line="149"/>
         <location filename="qml/AuthDialog.qml" line="136"/>
         <location filename="qml/AuthDialog.qml" line="149"/>
-        <location filename="dialogs/authdialog.cpp" line="41"/>
+        <location filename="dialogs/authdialog.cpp" line="37"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
@@ -796,17 +796,17 @@
         <location filename="build/Desktop_Qt_6_8_1-Debug/qml/SettingsDialog.qml" line="58"/>
         <location filename="qml/SettingsDialog.qml" line="53"/>
         <location filename="qml/SettingsDialog.qml" line="58"/>
-        <location filename="dialogs/settingsdialog.cpp" line="107"/>
-        <location filename="dialogs/settingsdialog.cpp" line="240"/>
-        <location filename="dialogs/settingsdialog.cpp" line="257"/>
-        <location filename="dialogs/settingsdialog.cpp" line="262"/>
+        <location filename="dialogs/settingsdialog.cpp" line="106"/>
+        <location filename="dialogs/settingsdialog.cpp" line="239"/>
+        <location filename="dialogs/settingsdialog.cpp" line="256"/>
+        <location filename="dialogs/settingsdialog.cpp" line="261"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="build/Desktop_Qt_6_8_1-Debug/qml/SettingsDialog.qml" line="63"/>
         <location filename="qml/SettingsDialog.qml" line="63"/>
-        <location filename="dialogs/settingsdialog.cpp" line="241"/>
+        <location filename="dialogs/settingsdialog.cpp" line="240"/>
         <source>Are you sure you want to load the storage backup? It will overwrite the current storage</source>
         <translation type="unfinished"></translation>
     </message>
@@ -993,62 +993,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="78"/>
+        <location filename="dialogs/settingsdialog.cpp" line="77"/>
         <source>Language changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="60"/>
-        <location filename="dialogs/settingsdialog.cpp" line="79"/>
-        <location filename="dialogs/settingsdialog.cpp" line="228"/>
+        <location filename="dialogs/settingsdialog.cpp" line="59"/>
+        <location filename="dialogs/settingsdialog.cpp" line="78"/>
+        <location filename="dialogs/settingsdialog.cpp" line="227"/>
         <source>Restart the app to apply settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="59"/>
+        <location filename="dialogs/settingsdialog.cpp" line="58"/>
         <source>GUI type changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="92"/>
+        <location filename="dialogs/settingsdialog.cpp" line="91"/>
         <source>Confirm Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="93"/>
+        <location filename="dialogs/settingsdialog.cpp" line="92"/>
         <source>Are you sure you want to reset the app?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="108"/>
+        <location filename="dialogs/settingsdialog.cpp" line="107"/>
         <source>Application could not be reset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="140"/>
-        <location filename="dialogs/settingsdialog.cpp" line="149"/>
-        <location filename="dialogs/settingsdialog.cpp" line="157"/>
+        <location filename="dialogs/settingsdialog.cpp" line="139"/>
+        <location filename="dialogs/settingsdialog.cpp" line="148"/>
+        <location filename="dialogs/settingsdialog.cpp" line="156"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="132"/>
+        <location filename="dialogs/settingsdialog.cpp" line="131"/>
         <source>Save storage file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="141"/>
+        <location filename="dialogs/settingsdialog.cpp" line="140"/>
         <source>Could not open storage file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="150"/>
-        <location filename="dialogs/settingsdialog.cpp" line="158"/>
+        <location filename="dialogs/settingsdialog.cpp" line="149"/>
+        <location filename="dialogs/settingsdialog.cpp" line="157"/>
         <source>Could not save storage file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dialogs/settingsdialog.cpp" line="227"/>
+        <location filename="dialogs/settingsdialog.cpp" line="226"/>
         <source>Theme changed</source>
         <translation type="unfinished"></translation>
     </message>

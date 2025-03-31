@@ -28,7 +28,7 @@ QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
     if (role == Qt::DecorationRole) {
         const auto record = this->record(index.row());
         {
-            QByteArray* pixmapBytes = icons.object(record.value("id").toInt());
+            QByteArray* pixmapBytes = icons.object(record.value("id").toInt()); // From cache
             if (pixmapBytes) {
                 QPixmap pixmap;
                 if (!pixmap.loadFromData(*pixmapBytes, "png")) {
@@ -47,7 +47,7 @@ QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
             return QVariant{};
         }
 
-        auto* byteArray = new QByteArray;
+        auto* byteArray = new QByteArray; // new QByteArray so this way I can cache, it takes ownership
         QBuffer buffer(byteArray);
         buffer.open(QIODevice::WriteOnly);
         pixmap.save(&buffer, "png");

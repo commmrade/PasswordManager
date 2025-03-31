@@ -67,7 +67,7 @@ void LoaderPasswords::on_loadButton_clicked()
 
     QSettings settings;
     settings.setValue("security/password", password.toUtf8());
-    NoteController::instance().resetStorage();
+    NoteController::instance().resetStorage(); // To update model, so the user sees new storage
     accept();
 }
 
