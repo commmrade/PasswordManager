@@ -118,11 +118,12 @@ QString AuthManager::updateToken() {
         settings.setValue("account/jwtToken", bytes);
         return bytes;
     } else {
-        // TODO: If 403 error then reset all tokens
+
         int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if (statusCode == 403) {
             settings.remove("account/jwtToken");
             settings.remove("account/refreshToken");
+            settings.remove("account/email");
         }
         QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
         QJsonObject jsonObj = jsonDoc.object();
@@ -161,7 +162,6 @@ void AuthManager::validateToken()
             if (statusCode == 401) {
                 if (updateToken().isEmpty()) {
                     QSettings settings;
-                    qDebug() << "here?";
                     settings.remove("account/email");
                     settings.remove("account/refreshToken");
                     settings.remove("account/jwtToken");

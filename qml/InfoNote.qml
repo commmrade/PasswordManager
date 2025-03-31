@@ -127,8 +127,7 @@ Item {
                             Layout.preferredHeight: passwordField.height
                             Layout.preferredWidth: 64
                             onClicked: {
-                                let password = noteController.getPassword(currentIndex)
-                                clipboard.copyText(password)
+                                clipboard.copyText(passwordField.text)
                             }
                         }
                     }

@@ -40,8 +40,6 @@ Dialog {
                     disableAccount()
                     storageErrorDialog.text = "Please, log in again"
                     storageErrorDialog.open()
-                } else {
-                    console.log("Updated refresh");
                 }
             }
         }
