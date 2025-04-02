@@ -15,7 +15,7 @@ Dialog {
     Layout.maximumHeight: 600  // Set maximum width to 600
     Layout.fillWidth: true    // Make the dialog take all available width
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: Material.Purple
+    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
 
@@ -27,7 +27,6 @@ Dialog {
         target: storageManager
 
         function onSuccess() {
-            console.log("SUCCESS LOADING");
             noteController.resetStorage()
         }
 
@@ -48,7 +47,7 @@ Dialog {
     MessageDialog {
         id: storageErrorDialog
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: Material.Purple
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         title: qsTr("Warning")
     }
@@ -57,7 +56,7 @@ Dialog {
         id: loadWarningDialog
         title: qsTr("Warning")
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: Material.Purple
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         Text {
             text: qsTr("Are you sure you want to load the storage backup? It will overwrite the current storage")
@@ -458,7 +457,7 @@ Dialog {
         title: qsTr("Setting Changed")
         standardButtons: MessageDialog.Ok | MessageDialog.Close
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: Material.Purple
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
         Text {
@@ -481,7 +480,7 @@ Dialog {
         }
         standardButtons: MessageDialog.Ok | MessageDialog.Close
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: Material.Purple
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
         onAccepted: {
@@ -520,7 +519,7 @@ Dialog {
 
 
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: Material.Purple
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         standardButtons: Dialog.Ok
         Text {

@@ -36,7 +36,7 @@ Dialog {
 
 
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: Material.Purple
+    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     contentItem: RowLayout {
@@ -124,7 +124,7 @@ Dialog {
         Dialog {
             id: errorDialog
             Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-            Material.accent: Material.Purple
+            Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
             Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
             title: qsTr("Warning")
             standardButtons: Dialog.Ok
@@ -137,7 +137,7 @@ Dialog {
         MessageDialog {
             id: authErrorDialog
             Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-            Material.accent: Material.Purple
+            Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
             Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
             title: qsTr("Warning")
         }

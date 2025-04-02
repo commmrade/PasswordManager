@@ -22,7 +22,7 @@ Item {
     signal closeRequested()
 
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: Material.Purple
+    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     Rectangle {
@@ -181,7 +181,7 @@ Item {
         id: emptyDialog
         title: qsTr("Title or Password Empty")
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: Material.Purple
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
         Text {

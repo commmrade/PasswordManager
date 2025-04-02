@@ -17,7 +17,7 @@ Item {
     }
 
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: Material.Purple
+    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     SplitView {
@@ -89,7 +89,7 @@ Item {
                         text: qsTr("Create")
                         Material.elevation: 2
                         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-                        Material.accent: Material.Purple
+                        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
                         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
 
@@ -102,7 +102,7 @@ Item {
                         text: qsTr("Delete")
                         Material.elevation: 2
                         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-                        Material.accent: Material.Purple
+                        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
                         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
                         onClicked: {
@@ -166,7 +166,7 @@ Item {
     Menu {
         id: contextMenu
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: Material.Purple
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
         MenuItem {

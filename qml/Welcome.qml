@@ -14,7 +14,7 @@ Item {
     height: 400
 
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: Material.Purple
+    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
     PasswordGenerator {
@@ -43,7 +43,7 @@ Item {
         title: qsTr("Confirmation")
         modal: true
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: Material.Purple
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
         standardButtons: Dialog.Ok | Dialog.No
 

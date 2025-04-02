@@ -53,6 +53,8 @@ void SettingsDialog::on_guiTypeBox_activated(int index)
     QSettings settings;
     settings.setValue("gui/type", uiType);
 
+
+
     QMessageBox msgBox(this);
     msgBox.setIcon(QMessageBox::Question);
     msgBox.setWindowTitle(tr("GUI type changed"));
