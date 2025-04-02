@@ -25,9 +25,9 @@ public:
     };
 
 private slots:
-    void on_guiTypeBox_activated(int index);
+    // void on_guiTypeBox_activated(int index);
 
-    void on_languageBox_activated(int index);
+    // void on_languageBox_activated(int index);
 
     void on_resetButton_clicked();
 
@@ -36,7 +36,7 @@ private slots:
     void on_exportButton_clicked();
 
 
-    void on_guiThemeBox_activated(int index);
+    // void on_guiThemeBox_activated(int index);
 
     void on_authButton_clicked();
 
@@ -48,6 +48,9 @@ private slots:
 
     void on_request_error(int statusCode, const QString &errorMsg);
 
+    void on_languageBox_textChanged(const QString& language);
+    void on_themeBox_textChanged(const QString& theme);
+    void on_typeBox_textChanged(const QString& type);
 private:
     Ui::SettingsDialog *ui;
     AuthManager authManager{};

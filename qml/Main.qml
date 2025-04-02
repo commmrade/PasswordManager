@@ -15,7 +15,6 @@ Window {
     title: qsTr("Password Manager")
 
     Component.onCompleted: {
-        console.log("Initial settings - firstTime: " + AppSettings.general.firstTime + ", password: " + AppSettings.security.password)
         if (AppSettings.general.firstTime === true) {
             welcomeWidget.visible = true
         } else {

@@ -69,6 +69,23 @@ Dialog {
         }
     }
 
+    Dialog {
+        id: uploadWarningDialog
+        title: qsTr("Warning")
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Text {
+            text: qsTr("Are you sure you want to upload the storage? It will overwrite the backup storage")
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            wrapMode: Text.WordWrap
+        }
+
+        standardButtons: MessageDialog.Ok | MessageDialog.Cancel
+        onAccepted: {
+            storageManager.saveStorage()()
+        }
+    }
     // Settings {
     //     id: guiSettings
     //     category: "gui"
@@ -88,10 +105,16 @@ Dialog {
     }
 
 
+    property int guiTypeBoxPrevIndex
+    property int languageBoxPrevIndex
+    property int themeBoxPrevIndex
     Component.onCompleted: {
         guiTypeBox.currentIndex = guiTypeBox.indexOfValue(AppSettings.gui.type)
         languageBox.currentIndex = languageBox.indexOfValue(AppSettings.gui.language)
         themeBox.currentIndex = themeBox.indexOfValue(AppSettings.gui.theme)
+        guiTypeBoxPrevIndex = guiTypeBox.currentIndex
+        languageBoxPrevIndex = languageBox.currentIndex
+        themeBoxPrevIndex = themeBox.currentIndex
 
         if (accountSettings.jwtToken === "" && accountSettings.refreshToken === "") {
             disableAccount()
@@ -151,9 +174,12 @@ Dialog {
                     model: ["Widgets", "Quick"]
                     Layout.maximumHeight: 50
                     onActivated: (index) => {
-                        let val = guiTypeBox.textAt(index)
-                        AppSettings.gui.type = val
-                        changePopup.open()
+                        if (index !== guiTypeBoxPrevIndex) {
+                            let val = guiTypeBox.textAt(index)
+                            AppSettings.gui.type = val
+                            guiTypeBoxPrevIndex = index
+                            changePopup.open()
+                        }
                     }
                 }
             }
@@ -185,9 +211,12 @@ Dialog {
                     model: ["English", "Russian"]
                     Layout.maximumHeight: 50
                     onActivated: (index) => {
-                        let val = languageBox.textAt(index)
-                        AppSettings.gui.language = val
-                        changePopup.open()
+                        if (index !== languageBoxPrevIndex) {
+                            let val = languageBox.textAt(index)
+                            AppSettings.gui.language = val
+                            languageBoxPrevIndex = index
+                            changePopup.open()
+                        }
                     }
                 }
             }
@@ -394,7 +423,7 @@ Dialog {
                     text: qsTr("Upload")
 
                     onClicked: {
-                        storageManager.saveStorage()
+                        uploadWarningDialog.open()
                     }
                 }
             }

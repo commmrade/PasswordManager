@@ -34,6 +34,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         enableAccountSettings();
     }
 
+    QObject::connect(ui->languageBox, &QComboBox::currentTextChanged, this, &SettingsDialog::on_languageBox_textChanged);
+    QObject::connect(ui->guiThemeBox, &QComboBox::currentTextChanged, this, &SettingsDialog::on_themeBox_textChanged);
+    QObject::connect(ui->guiTypeBox, &QComboBox::currentTextChanged, this, &SettingsDialog::on_typeBox_textChanged);
+
     QObject::connect(&storageManager, &StorageManager::success, this, []() {
         NoteController::instance().resetStorage();
     });
@@ -44,45 +48,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 SettingsDialog::~SettingsDialog()
 {
     delete ui;
-}
-
-void SettingsDialog::on_guiTypeBox_activated(int index)
-{
-    QString uiType = ui->guiTypeBox->itemText(index);
-    qDebug() << uiType;
-    QSettings settings;
-    settings.setValue("gui/type", uiType);
-
-
-
-    QMessageBox msgBox(this);
-    msgBox.setIcon(QMessageBox::Question);
-    msgBox.setWindowTitle(tr("GUI type changed"));
-    msgBox.setText(tr("Restart the app to apply settings?"));
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msgBox.setDefaultButton(QMessageBox::No);
-    if (msgBox.exec() == QMessageBox::Yes) {
-        QApplication::quit();
-    }
-}
-
-
-void SettingsDialog::on_languageBox_activated(int index)
-{
-    QString language = ui->languageBox->itemText(index);
-    QSettings settings;
-    settings.setValue("gui/language", language);
-
-
-    QMessageBox msgBox(this);
-    msgBox.setIcon(QMessageBox::Question);
-    msgBox.setWindowTitle(tr("Language changed"));
-    msgBox.setText(tr("Restart the app to apply settings?"));
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msgBox.setDefaultButton(QMessageBox::No);
-    if (msgBox.exec() == QMessageBox::Yes) {
-        QApplication::quit();
-    }
 }
 
 
@@ -217,22 +182,6 @@ void SettingsDialog::on_logOutButton_clicked()
 }
 
 
-void SettingsDialog::on_guiThemeBox_activated(int index)
-{
-    QString theme = ui->guiThemeBox->itemText(index);
-    QSettings settings;
-    settings.setValue("gui/theme", theme);
-
-    QMessageBox msgBox(this);
-    msgBox.setIcon(QMessageBox::Question);
-    msgBox.setWindowTitle(tr("Theme changed"));
-    msgBox.setText(tr("Restart the app to apply settings?"));
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msgBox.setDefaultButton(QMessageBox::No);
-    if (msgBox.exec() == QMessageBox::Yes) {
-        QApplication::quit();
-    }
-}
 
 
 void SettingsDialog::on_loadStorageButton_clicked()
@@ -251,7 +200,15 @@ void SettingsDialog::on_loadStorageButton_clicked()
 
 void SettingsDialog::on_uploadButton_clicked()
 {
-    storageManager.saveStorage();
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle(tr("Warning"));
+    msgBox.setText(tr("Are you sure you want to upload the storage backup? It will overwrite the backup storage"));
+
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+
+    if (msgBox.exec() == QMessageBox::Ok) {
+        storageManager.saveStorage();
+    }
 }
 
 void SettingsDialog::on_request_error(int statusCode, const QString& errorMsg) {
@@ -260,8 +217,58 @@ void SettingsDialog::on_request_error(int statusCode, const QString& errorMsg) {
     if (statusCode == 401) {
         if (authManager.updateToken().isEmpty()) {
             disableAccountSettings();
-            QMessageBox::warning(this, tr("Warning"), "Please, log in again!");
+            QMessageBox::warning(this, tr("Warning"), tr("Please, log in again!"));
         }
     }
 }
+
+void SettingsDialog::on_languageBox_textChanged(const QString &language)
+{
+    QSettings settings;
+    settings.setValue("gui/language", language);
+
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("Language changed"));
+    msgBox.setText(tr("Restart the app to apply settings?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    if (msgBox.exec() == QMessageBox::Yes) {
+        QApplication::quit();
+    }
+    qDebug() << "Language box changed";
+}
+
+void SettingsDialog::on_themeBox_textChanged(const QString &theme)
+{
+    QSettings settings;
+    settings.setValue("gui/theme", theme);
+
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("Theme changed"));
+    msgBox.setText(tr("Restart the app to apply settings?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    if (msgBox.exec() == QMessageBox::Yes) {
+        QApplication::quit();
+    }
+}
+
+void SettingsDialog::on_typeBox_textChanged(const QString &type)
+{
+    QSettings settings;
+    settings.setValue("gui/type", type);
+
+    QMessageBox msgBox(this);
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("GUI type changed"));
+    msgBox.setText(tr("Restart the app to apply settings?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    if (msgBox.exec() == QMessageBox::Yes) {
+        QApplication::quit();
+    }
+}
+
 
