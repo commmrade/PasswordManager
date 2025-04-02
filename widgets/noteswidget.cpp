@@ -101,6 +101,7 @@ void NotesWidget::on_deleteButton_clicked()
 
 void NotesWidget::on_url_changed(int id)
 {
+    qDebug() << "here";
     auto& controller = NoteController::instance();
     iconManager->deleteIcon(id);
     auto url = controller.getUrl(id);

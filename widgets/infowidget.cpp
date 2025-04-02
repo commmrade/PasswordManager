@@ -2,6 +2,7 @@
 #include "ui_infowidget.h"
 #include "notecontroller.h"
 #include <QMessageBox>
+#include <QClipboard>
 
 InfoWidget::InfoWidget(QWidget *parent)
     : QWidget(parent)
@@ -37,7 +38,7 @@ void InfoWidget::on_titleEdit_editingFinished()
 
 void InfoWidget::on_urlEdit_editingFinished()
 {
-    if (currentNoteIndex == -1 || ui->urlEdit->text().isEmpty()) {
+    if (currentNoteIndex == -1) {
         return;
     }
     NoteController::instance().setUrl(currentNoteIndex, ui->urlEdit->text());
@@ -47,14 +48,14 @@ void InfoWidget::on_urlEdit_editingFinished()
 
 void InfoWidget::on_userEdit_editingFinished()
 {
-    if (currentNoteIndex == -1 || ui->userEdit->text().isEmpty()) {
+    if (currentNoteIndex == -1) {
         return;
     }
     NoteController::instance().setUsername(currentNoteIndex, ui->userEdit->text());
 }
 void InfoWidget::on_emailEdit_editingFinished()
 {
-    if (currentNoteIndex == -1 || ui->emailEdit->text().isEmpty()) {
+    if (currentNoteIndex == -1) {
         return;
     }
     NoteController::instance().setEmail(currentNoteIndex, ui->emailEdit->text());
@@ -70,4 +71,10 @@ void InfoWidget::on_passwordEdit_editingFinished()
     NoteController::instance().setPassword(currentNoteIndex, ui->passwordEdit->text());
 }
 
+
+
+void InfoWidget::on_copyPassBtn_clicked()
+{
+    QApplication::clipboard()->setText(ui->passwordEdit->text());
+}
 

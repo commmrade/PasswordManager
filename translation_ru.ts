@@ -186,49 +186,49 @@
     <message>
         <location filename="widgets/infowidget.ui" line="14"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="269"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="269"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="294"/>
         <source>Form</source>
         <translation>Форма</translation>
     </message>
     <message>
         <location filename="widgets/infowidget.ui" line="32"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="270"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="270"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="295"/>
         <source>Title</source>
         <translation>Название</translation>
     </message>
     <message>
         <location filename="widgets/infowidget.ui" line="104"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="271"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="271"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="296"/>
         <source>Url</source>
         <translation>Ссылка</translation>
     </message>
     <message>
         <location filename="widgets/infowidget.ui" line="176"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="272"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="272"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="297"/>
         <source>User</source>
         <translation>Имя пользователя</translation>
     </message>
     <message>
         <location filename="widgets/infowidget.ui" line="248"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="273"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="273"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="298"/>
         <source>Email</source>
         <translation>Почта</translation>
     </message>
     <message>
         <location filename="widgets/infowidget.ui" line="320"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="274"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="274"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="299"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="widgets/infowidget.ui" line="404"/>
+        <location filename="widgets/infowidget.ui" line="437"/>
         <location filename="build/Desktop-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="275"/>
-        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="275"/>
+        <location filename="build/Desktop_Qt_6_8_1-Debug/PasswordManager_autogen/include/ui_infowidget.h" line="301"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
@@ -237,14 +237,14 @@
         <translation type="vanished">Удалить</translation>
     </message>
     <message>
-        <location filename="widgets/infowidget.cpp" line="31"/>
-        <location filename="widgets/infowidget.cpp" line="67"/>
+        <location filename="widgets/infowidget.cpp" line="32"/>
+        <location filename="widgets/infowidget.cpp" line="68"/>
         <source>Title or password empty</source>
         <translation type="unfinished">Название или пароль не заполнены</translation>
     </message>
     <message>
-        <location filename="widgets/infowidget.cpp" line="31"/>
-        <location filename="widgets/infowidget.cpp" line="67"/>
+        <location filename="widgets/infowidget.cpp" line="32"/>
+        <location filename="widgets/infowidget.cpp" line="68"/>
         <source>Please, make sure both fields are filled with text</source>
         <translation type="unfinished">Убедитесь, что название и пароль заполнены</translation>
     </message>
