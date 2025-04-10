@@ -137,9 +137,26 @@ QString AuthManager::updateToken() {
 void AuthManager::logOut()
 {
     QSettings settings;
-    settings.remove("account/email");
-    settings.remove("account/refreshToken");
-    settings.remove("account/jwtToken");
+    QUrl url{"http://localhost:3000/logout"};
+    QNetworkRequest request{std::move(url)};
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    QJsonObject jsonObj;
+    jsonObj["refresh_token"] = settings.value("account/refreshToken", "").toString();
+    QJsonDocument jsonDoc{jsonObj};
+    QByteArray jsonBytes {jsonDoc.toJson()};
+
+    auto* reply = manager.post(request, jsonBytes);
+    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+        QSettings settings;
+        settings.remove("account/email");
+        settings.remove("account/refreshToken");
+        settings.remove("account/jwtToken");
+
+        reply->deleteLater();
+    });
+
+
 }
 
 void AuthManager::validateToken()
