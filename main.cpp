@@ -22,10 +22,11 @@
 
 int main(int argc, char *argv[])
 {
-    DotEnv::instance(); // Load .env
     QCoreApplication::setOrganizationName("klewy");
     QCoreApplication::setOrganizationDomain("klewy.com");
     QCoreApplication::setApplicationName("Password Manager");
+
+    DotEnv::instance(); // Load .env
 
     QSettings settings;
     auto guiType = settings.value("gui/type", "Widgets");

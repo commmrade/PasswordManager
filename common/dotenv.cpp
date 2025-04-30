@@ -2,9 +2,9 @@
 
 DotEnv::DotEnv() {
     QDir appDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    auto dotEnvPath = appDir.filePath("PasswordManager/.env");
+    auto dotEnvPath = appDir.filePath(".env");
     QFile file{dotEnvPath};
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (!file.open(QIODevice::Text | QIODevice::ReadWrite)) {
         throw std::runtime_error{".env does not exist in " + file.fileName().toStdString()};
     }
 
@@ -18,4 +18,6 @@ DotEnv::DotEnv() {
         auto value = line.mid(equalPos + 1);
         envVariables_.insert(name, value);
     }
+    file.flush();
+    file.close();
 }
