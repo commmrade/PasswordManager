@@ -18,9 +18,11 @@
 #include "loadercontroller.h"
 #include "settingscontroller.h"
 #include "storagemanager.h"
+#include "dotenv.h"
 
 int main(int argc, char *argv[])
 {
+    DotEnv::instance(); // Load .env
     QCoreApplication::setOrganizationName("klewy");
     QCoreApplication::setOrganizationDomain("klewy.com");
     QCoreApplication::setApplicationName("Password Manager");

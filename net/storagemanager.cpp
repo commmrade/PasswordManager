@@ -7,6 +7,7 @@
 #include "consts.h"
 #include <QJsonDocument>
 #include <QNetworkReply>
+#include "dotenv.h"
 
 StorageManager::StorageManager(QObject *parent)
     : QObject{parent}
@@ -35,7 +36,8 @@ void StorageManager::saveStorage() {
 
     multipart->append(filePart);
 
-    QUrl url{"http://localhost:3000/upload"};
+    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    QUrl url{backendUrl + "/upload"};
     QNetworkRequest request(url);
 
     QSettings settings;
@@ -67,7 +69,9 @@ void StorageManager::saveStorage() {
 }
 
 void StorageManager::loadStorage() {
-    QUrl url{"http://localhost:3000/download"};
+
+    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    QUrl url{backendUrl + "/download"};
 
     QNetworkRequest request{url};
     QHttpHeaders headers;

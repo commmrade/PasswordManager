@@ -8,14 +8,15 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QUrlQuery>
-
+#include "dotenv.h"
 AuthManager::AuthManager(QObject *parent)
     : QObject{parent}
 {}
 
 void AuthManager::registerUser(const QString &username, const QString &email, const QString &password)
 {
-    QNetworkRequest req{QUrl{"http://localhost:3000/register"}};
+    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    QNetworkRequest req{QUrl{backendUrl + "/register"}};
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QJsonObject jsonObj;
@@ -58,7 +59,8 @@ void AuthManager::registerUser(const QString &username, const QString &email, co
 
 }
 void AuthManager::loginUser(const QString& email, const QString& password) {
-    QNetworkRequest req{QUrl{"http://localhost:3000/login"}};
+    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    QNetworkRequest req{QUrl{backendUrl + "/login"}};
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject jsonObj;
     jsonObj["email"] = email;
@@ -104,7 +106,9 @@ QString AuthManager::updateToken() {
     if (refreshToken.isEmpty()) {
         return "";
     }
-    QNetworkRequest req{QUrl{"http://localhost:3000/token"}};
+
+    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    QNetworkRequest req{QUrl{backendUrl + "/token"}};
 
     req.setRawHeader("Authorization", "Bearer " + refreshToken.toUtf8());
 
@@ -137,7 +141,8 @@ QString AuthManager::updateToken() {
 void AuthManager::logOut()
 {
     QSettings settings;
-    QUrl url{"http://localhost:3000/logout"};
+    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    QUrl url{backendUrl + "/logout"};
     QNetworkRequest request{std::move(url)};
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
@@ -163,7 +168,8 @@ void AuthManager::validateToken()
 {
     QSettings settings;
 
-    QUrl url{"http://localhost:3000/validate"};
+    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    QUrl url{backendUrl + "/validate"};
     QUrlQuery query;
     query.addQueryItem("token", settings.value("account/jwtToken").toString());
     url.setQuery(query);

@@ -60,7 +60,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         common/clipboard.h common/clipboard.cpp
         common/loadercontroller.h common/loadercontroller.cpp
         common/settingscontroller.h common/settingscontroller.cpp
-
+        common/dotenv.h common/dotenv.cpp
     )
 
 else()
