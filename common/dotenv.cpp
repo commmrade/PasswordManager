@@ -16,7 +16,7 @@ DotEnv::DotEnv() {
         if (equalPos == -1) continue;
         auto name = line.left(equalPos);
         auto value = line.mid(equalPos + 1);
-        envVariables_.insert(name, value);
+        qputenv(name.toUtf8().data(), value.toUtf8());
     }
     file.flush();
     file.close();

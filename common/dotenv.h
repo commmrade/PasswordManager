@@ -17,12 +17,8 @@ public:
         return instance;
     }
 
-    QString getEnvVar(const QString& name) {
-        return envVariables_.value(name);
-    }
 private:
     DotEnv();
-    QMap<QString, QString> envVariables_;
 };
 
 #endif // DOTENV_H
