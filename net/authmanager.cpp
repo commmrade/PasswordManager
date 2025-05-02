@@ -60,7 +60,6 @@ void AuthManager::registerUser(const QString &username, const QString &email, co
 }
 void AuthManager::loginUser(const QString& email, const QString& password) {
     auto backendUrl = qgetenv("BACKEND_URL");
-    qDebug() << "BACKEND URL" << backendUrl;
     QNetworkRequest req{QUrl{backendUrl + "/login"}};
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject jsonObj;
@@ -170,7 +169,6 @@ void AuthManager::validateToken()
     QSettings settings;
 
     auto backendUrl = qgetenv("BACKEND_URL");
-    qDebug() << "BACKEND URL" << backendUrl;
     QUrl url{backendUrl + "/validate"};
     QUrlQuery query;
     query.addQueryItem("token", settings.value("account/jwtToken").toString());

@@ -11,14 +11,9 @@ public:
 
     DotEnv(const DotEnv&) = delete;
     DotEnv& operator=(const DotEnv&) = delete;
-
-    static DotEnv& instance() {
-        static DotEnv instance;
-        return instance;
-    }
-
-private:
     DotEnv();
+private:
+
 };
 
 #endif // DOTENV_H
