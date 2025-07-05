@@ -8,7 +8,6 @@ DotEnv::DotEnv() {
         QTextStream in(&file);
         while (!in.atEnd()) {
             QString line{in.readLine()};
-
             auto equalPos = line.indexOf('=');
             if (equalPos == -1) continue;
             auto name = line.left(equalPos);

@@ -36,7 +36,7 @@ void StorageManager::saveStorage() {
 
     multipart->append(filePart);
 
-    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    auto backendUrl = qgetenv("BACKEND_URL");
     QUrl url{backendUrl + "/upload"};
     QNetworkRequest request(url);
 
@@ -70,7 +70,7 @@ void StorageManager::saveStorage() {
 
 void StorageManager::loadStorage() {
 
-    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    auto backendUrl = qgetenv("BACKEND_URL");
     QUrl url{backendUrl + "/download"};
 
     QNetworkRequest request{url};

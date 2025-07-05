@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("Password Manager");
 
 
-
     QSettings settings;
     auto guiType = settings.value("gui/type", "Widgets");
 

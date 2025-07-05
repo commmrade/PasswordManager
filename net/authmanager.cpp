@@ -24,7 +24,7 @@ AuthManager::AuthManager(QObject *parent)
 
 void AuthManager::registerUser(const QString &username, const QString &email, const QString &password)
 {
-    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    QString backendUrl = qgetenv("BACKEND_URL");
     QNetworkRequest req{QUrl{backendUrl + "/register"}};
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
@@ -67,7 +67,7 @@ void AuthManager::registerUser(const QString &username, const QString &email, co
 
 }
 void AuthManager::loginUser(const QString& email, const QString& password) {
-    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    auto backendUrl = qgetenv("BACKEND_URL");
     QNetworkRequest req{QUrl{backendUrl + "/login"}};
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject jsonObj;
@@ -115,6 +115,7 @@ void AuthManager::updateToken() {
         return;
     }
     auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+
     QNetworkRequest req{QUrl{backendUrl + "/token"}};
 
     req.setRawHeader("Authorization", "Bearer " + refreshToken.toUtf8());
@@ -148,7 +149,7 @@ void AuthManager::updateToken() {
 void AuthManager::logOut()
 {
     QSettings settings;
-    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    auto backendUrl = qgetenv("BACKEND_URL");
     QUrl url{backendUrl + "/logout"};
     QNetworkRequest request{std::move(url)};
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -175,7 +176,7 @@ void AuthManager::validateToken()
 {
     QSettings settings;
 
-    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    auto backendUrl = qgetenv("BACKEND_URL");
     QUrl url{backendUrl + "/validate"};
     QUrlQuery query;
     query.addQueryItem("token", settings.value("account/jwtToken").toString());
