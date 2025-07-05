@@ -32,7 +32,6 @@ QVariant SqlNoteModel::data(const QModelIndex &index, int role /* = Qt::DisplayR
             if (pixmapBytes) {
                 QPixmap pixmap;
                 if (!pixmap.loadFromData(*pixmapBytes, "png")) {
-
                     return {};
                 }
                 return QIcon{pixmap};

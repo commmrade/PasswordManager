@@ -18,14 +18,15 @@ Cipher::Cipher() {
     key = CryptoPP::SecByteBlock{(const unsigned char*)rawPassword.constData(), static_cast<size_t>(rawPassword.size())};
 }
 
+
 std::pair<QString, QString> Cipher::aesEncrypt(const QString &plain)
 {
     std::string cipher;
     std::string output;
 
-    auto ivStr = PasswordGenerator::generatePswd();
-    CryptoPP::byte iv[16];
-    std::memcpy(iv, ivStr.toUtf8().constData(), 16);
+    auto ivStr = PasswordGenerator::generatePswd(); // default is 16
+    CryptoPP::byte iv[IV_SIZE];
+    std::memcpy(iv, ivStr.toUtf8().constData(), ivStr.size());
 
     std::string plainStd = plain.toStdString();
     try {
@@ -46,7 +47,7 @@ QString Cipher::aesDecrypt(const QString &encryptedText, const QString& salt)
     std::string encoded = encryptedText.toStdString();
 
     CryptoPP::byte iv[16];
-    std::memcpy(iv, salt.toUtf8().constData(), 16);
+    std::memcpy(iv, salt.toUtf8().constData(), salt.size());
 
     CryptoPP::StringSource(encoded, true, new CryptoPP::HexDecoder(new CryptoPP::StringSink(cipher)));
     try {

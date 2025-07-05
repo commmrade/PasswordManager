@@ -12,6 +12,8 @@
 #include <cryptopp/modes.h>
 #include <cryptopp/osrng.h>
 
+constexpr static inline int IV_SIZE = 16;
+
 class Cipher {
 public:
 
