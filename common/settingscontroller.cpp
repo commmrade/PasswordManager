@@ -5,6 +5,7 @@
 #include "consts.h"
 #include <QSettings>
 #include <QCoreApplication>
+#include <filesystem>
 
 SettingsController::SettingsController(QObject *parent)
     : QObject{parent}
@@ -25,29 +26,23 @@ bool SettingsController::resetApp()
     return true;
 }
 
-bool SettingsController::exportStorage(QString exportDir)
+bool SettingsController::exportStorage(QString exportDestination)
 {
-    if (exportDir.isEmpty()) {
+    if (exportDestination.isEmpty()) {
         return false;
     }
 
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir appDataDir{appDataLoc};
 
-    if (exportDir.contains("file://")) {
-        exportDir = exportDir.sliced(7); // File paths start with "file://", cut it
+    if (exportDestination.contains("file://")) {
+        exportDestination = exportDestination.sliced(7); // File paths start with "file://", cut it
     }
-    QFile exportFile(exportDir);
 
+    QFile exportFile(exportDestination);
     QFile curStorageFile(appDataDir.filePath(PasswordManager::PM_FILENAME));
-    if (!curStorageFile.open(QIODevice::ReadOnly)) {
-        return false;
-    }
-    if (exportFile.exists() && !exportFile.remove()) { // If file exists, remove it, so copy works
-        return false;
-    }
-
-    if (!curStorageFile.copy(exportFile.fileName())) { // File is closed before being copied
+  
+    if (!std::filesystem::copy_file(curStorageFile.fileName().toStdString(), exportFile.fileName().toStdString(), std::filesystem::copy_options::overwrite_existing)) {
         return false;
     }
     return true;

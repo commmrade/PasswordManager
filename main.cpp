@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     QDir().mkdir(appDataLoc);
     QDir().mkdir(appDataLoc + "/images");
 
-    DotEnv::instance(); // Load .env
+    DotEnv{}; // Loads env variables
 
     if (guiType == "Quick") {
         QGuiApplication app(argc, argv);

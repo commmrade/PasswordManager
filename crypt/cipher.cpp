@@ -15,14 +15,13 @@
 Cipher::Cipher() {
     QSettings settings;
     auto rawPassword = settings.value("security/password").toString().toUtf8();
-    std::memcpy(key, rawPassword.data(), rawPassword.length());
+    key = CryptoPP::SecByteBlock{(const unsigned char*)rawPassword.constData(), static_cast<size_t>(rawPassword.size())};
 }
 
 std::pair<QString, QString> Cipher::aesEncrypt(const QString &plain)
 {
     std::string cipher;
     std::string output;
-
 
     auto ivStr = PasswordGenerator::generatePswd();
     CryptoPP::byte iv[16];

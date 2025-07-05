@@ -4,6 +4,7 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QSettings>
+#include <filesystem>
 
 #include "consts.h"
 
@@ -16,10 +17,8 @@ bool LoaderController::loadStorage(const QString& loadFromPath, const QString& p
         return false;
     }
 
-    qDebug() << "Sliced why" << loadFromPath;
     QFile file(loadFromPath.sliced(7)); // File paths start with file://, cut it
     if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "Could not open load from storage";
         return false;
     }
 
@@ -32,9 +31,9 @@ bool LoaderController::loadStorage(const QString& loadFromPath, const QString& p
         return false;
     }
 
-    char buf[256];
+    char buf[1024];
     int bytes{0};
-    while ((bytes = file.read(buf, 256)) > 0) {
+    while ((bytes = file.read(buf, sizeof(buf))) > 0) { // I can't just copy file, since NoteModle woudl reference old file
         currentFile.write(buf, bytes);
     }
     currentFile.flush();

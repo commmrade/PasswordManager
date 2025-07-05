@@ -114,7 +114,7 @@ void AuthManager::updateToken() {
     if (refreshToken.isEmpty()) {
         return;
     }
-    auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
+    auto backendUrl = qgetenv("BACKEND_URL");
 
     QNetworkRequest req{QUrl{backendUrl + "/token"}};
 

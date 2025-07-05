@@ -7,19 +7,6 @@
 class DotEnv
 {
 public:
-
-    DotEnv(const DotEnv&) = delete;
-    DotEnv& operator=(const DotEnv&) = delete;
-
-    static DotEnv& instance() {
-        static DotEnv instance;
-        return instance;
-    }
-
-    QString getEnvVar(const QString& name) {
-        return qgetenv(name.toUtf8().data());
-    }
-private:
     DotEnv();
 };
 
