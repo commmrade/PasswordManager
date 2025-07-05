@@ -14,43 +14,40 @@ bool SettingsController::resetApp()
 {
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir appDataDir {appDataLoc};
-    QFile file(appDataDir.filePath(PasswordManager::PM_FILENAME));
-
-    if (!file.remove() || !appDataDir.removeRecursively()) {
+    if (!appDataDir.removeRecursively()) {
         return false;
     }
+
     QSettings settings;
     settings.clear();
-    QCoreApplication::exit(); // TODO: Try to make the app truly restart
+
+    QCoreApplication::exit();
     return true;
 }
 
-bool SettingsController::exportStorage(const QString &exportDir)
+bool SettingsController::exportStorage(QString exportDir)
 {
-    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir appDataDir{appDataLoc};
-
     if (exportDir.isEmpty()) {
         return false;
     }
 
-    QFile exportFile(exportDir.sliced(7));
-    qDebug() << exportDir;
+    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QDir appDataDir{appDataLoc};
+
+    if (exportDir.contains("file://")) {
+        exportDir = exportDir.sliced(7); // File paths start with "file://", cut it
+    }
+    QFile exportFile(exportDir);
 
     QFile curStorageFile(appDataDir.filePath(PasswordManager::PM_FILENAME));
     if (!curStorageFile.open(QIODevice::ReadOnly)) {
-        qDebug() << "here 1";
         return false;
     }
-    qDebug() << exportFile.exists();
-    if (exportFile.exists() && !exportFile.remove()) {
-        qDebug() << "here 2";
+    if (exportFile.exists() && !exportFile.remove()) { // If file exists, remove it, so copy works
         return false;
     }
 
     if (!curStorageFile.copy(exportFile.fileName())) { // File is closed before being copied
-        qDebug() << curStorageFile.errorString();
-        qDebug() << "here 3";
         return false;
     }
     return true;

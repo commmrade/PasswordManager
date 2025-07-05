@@ -43,6 +43,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     });
     QObject::connect(&storageManager, &StorageManager::error, this, &SettingsDialog::on_request_error);
 
+    QObject::connect(&authManager, &AuthManager::errorAuth, this, &SettingsDialog::on_request_error); // Connect for token update error
+    // We don't care about the case, when token is updated succesfully since in that case we'd do nothing
 }
 
 SettingsDialog::~SettingsDialog()
@@ -63,11 +65,7 @@ void SettingsDialog::on_resetButton_clicked()
         return;
     }
 
-    QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir appDataDir {appDataLoc};
-    QFile file(appDataDir.filePath(PasswordManager::PM_FILENAME));
-
-    if (!file.remove() || !appDataDir.removeRecursively()) {
+    if (!settingsController.resetApp()) {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
         msgBox.setWindowTitle(tr("Warning"));
@@ -75,12 +73,7 @@ void SettingsDialog::on_resetButton_clicked()
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
-        return;
     }
-    QSettings settings;
-    settings.clear();
-
-    QCoreApplication::exit();
 }
 
 
@@ -100,32 +93,13 @@ void SettingsDialog::on_exportButton_clicked()
         return;
     }
 
-    QFile curStorageFile(appDataDir.filePath(PasswordManager::PM_FILENAME));
-    if (!curStorageFile.open(QIODevice::ReadOnly)) {
-        QMessageBox msgBox;
-        msgBox.setWindowTitle(tr("Error"));
-        msgBox.setText(tr("Could not open storage file"));
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
-        return;
-    }
-    if (QFile::exists(saveFilePath) && !QFile::remove(saveFilePath)) {
+    if (!settingsController.exportStorage(std::move(saveFilePath))) {
         QMessageBox msgBox;
         msgBox.setWindowTitle(tr("Error"));
         msgBox.setText(tr("Could not save storage file"));
         msgBox.setIcon(QMessageBox::Critical);
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.exec();
-    }
-    if (!curStorageFile.copy(saveFilePath)) { // File is closed before being copied
-        QMessageBox msgBox;
-        msgBox.setWindowTitle(tr("Error"));
-        msgBox.setText(tr("Could not save storage file"));
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setStandardButtons(QMessageBox::Ok);
-        msgBox.exec();
-        return;
     }
 }
 
@@ -215,10 +189,10 @@ void SettingsDialog::on_request_error(int statusCode, const QString& errorMsg) {
     QMessageBox::warning(this, tr("Warning"), errorMsg);
 
     if (statusCode == 401) {
-        if (authManager.updateToken().isEmpty()) {
-            disableAccountSettings();
-            QMessageBox::warning(this, tr("Warning"), tr("Please, log in again!"));
-        }
+        authManager.updateToken();
+    } else if (statusCode == 403) { // If FORBIDDEN, token update failed
+        disableAccountSettings();
+        QMessageBox::warning(this, tr("Warning"), tr("Please, log in again!"));
     }
 }
 

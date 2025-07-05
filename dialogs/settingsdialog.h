@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "authmanager.h"
 #include "storagemanager.h"
+#include "settingscontroller.h"
 
 namespace Ui {
 class SettingsDialog;
@@ -55,6 +56,8 @@ private:
     Ui::SettingsDialog *ui;
     AuthManager authManager{};
     StorageManager storageManager{};
+
+    SettingsController settingsController;
 
 
     void enableAccountSettings();

@@ -11,7 +11,16 @@
 #include "dotenv.h"
 AuthManager::AuthManager(QObject *parent)
     : QObject{parent}
-{}
+{
+    QObject::connect(this, &AuthManager::errorAuth, this, [](int statusCode, const QString& message) {
+        if (statusCode == 403) {
+            QSettings settings;
+            settings.remove("account/email");
+            settings.remove("account/refreshToken");
+            settings.remove("account/jwtToken");
+        }
+    });
+}
 
 void AuthManager::registerUser(const QString &username, const QString &email, const QString &password)
 {
@@ -36,11 +45,10 @@ void AuthManager::registerUser(const QString &username, const QString &email, co
 
             {
                 QSettings settings;
-                settings.setValue("account/jwtToken", jwtToken);
-                settings.setValue("account/refreshToken", refreshToken);
+                settings.setValue("account/jwtToken", std::move(jwtToken));
+                settings.setValue("account/refreshToken", std::move(refreshToken));
                 settings.setValue("account/email", std::move(email));
             }
-            qDebug() << "scueess";
             emit successAuth();
         } else {
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -100,42 +108,41 @@ void AuthManager::loginUser(const QString& email, const QString& password) {
     });
 }
 
-QString AuthManager::updateToken() {
+void AuthManager::updateToken() {
     QSettings settings;
     auto refreshToken = settings.value("account/refreshToken").toString();
     if (refreshToken.isEmpty()) {
-        return "";
+        return;
     }
-
     auto backendUrl = DotEnv::instance().getEnvVar("BACKEND_URL");
     QNetworkRequest req{QUrl{backendUrl + "/token"}};
 
     req.setRawHeader("Authorization", "Bearer " + refreshToken.toUtf8());
 
-    QEventLoop loop;
     auto* reply = manager.get(req);
-    connect(reply, &QNetworkReply::finished, &loop, [&loop] {
-        loop.exit();
-    });
-    loop.exec();
-    qDebug() << "refresh is" << refreshToken;
-    if (reply->error() == QNetworkReply::NoError) {
-        auto bytes = reply->readAll();
-        settings.setValue("account/jwtToken", bytes);
-        return bytes;
-    } else {
-        int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if (statusCode == 403) {
-            settings.remove("account/jwtToken");
-            settings.remove("account/refreshToken");
-            settings.remove("account/email");
+    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+        QSettings settings;
+        if (reply->error() == QNetworkReply::NoError) {
+            auto bytes = reply->readAll();
+            settings.setValue("account/jwtToken", bytes);
+            emit successAuth();
+        } else {
+            int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+            QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
+            QJsonObject jsonObj = jsonDoc.object();
+            QString errorMessage = jsonObj["message"].toString();
+
+            if (statusCode == 403) {
+                settings.remove("account/jwtToken");
+                settings.remove("account/refreshToken");
+                settings.remove("account/email");
+                emit errorAuth(statusCode, errorMessage);
+            }
+            emit errorAuth(statusCode, errorMessage);
         }
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
-        QJsonObject jsonObj = jsonDoc.object();
-        QString errorMessage = jsonObj["message"].toString();
-    }
-    delete reply;
-    return "";
+        reply->deleteLater();
+    });
+
 }
 
 void AuthManager::logOut()
@@ -182,12 +189,7 @@ void AuthManager::validateToken()
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
             if (statusCode == 401) {
-                if (updateToken().isEmpty()) {
-                    QSettings settings;
-                    settings.remove("account/email");
-                    settings.remove("account/refreshToken");
-                    settings.remove("account/jwtToken");
-                }
+                updateToken();
             }
         }
         reply->deleteLater();

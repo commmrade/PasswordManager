@@ -3,7 +3,6 @@
 #include <QDir>
 #include <QMap>
 #include <QStandardPaths>
-#include <iostream>
 #include <QTextStream>
 class DotEnv
 {
@@ -18,11 +17,10 @@ public:
     }
 
     QString getEnvVar(const QString& name) {
-        return envVariables_.value(name);
+        return qgetenv(name.toUtf8().data());
     }
 private:
     DotEnv();
-    QMap<QString, QString> envVariables_;
 };
 
 #endif // DOTENV_H

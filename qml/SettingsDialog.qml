@@ -35,11 +35,19 @@ Dialog {
             storageErrorDialog.open()
 
             if (statusCode === 401) {
-                if (authManager.updateToken() === "") {
-                    disableAccount()
-                    storageErrorDialog.text = "Please, log in again"
-                    storageErrorDialog.open()
-                }
+                authManager.updateToken()
+            }
+        }
+    }
+
+    Connections {
+        target: authManager
+
+        function onErrorAuth(statusCode, errorMessage) {
+            if (statusCode === 403) {
+                disableAccount()
+                storageErrorDialog.text = "Please, log in again"
+                storageErrorDialog.open()
             }
         }
     }

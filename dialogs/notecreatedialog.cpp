@@ -35,6 +35,6 @@ void NoteCreateDialog::on_createButton_clicked()
 
 void NoteCreateDialog::on_pushButton_clicked()
 {
-    ui->passwordEdit->setText(PasswordGenerator{}.generatePassword());
+    ui->passwordEdit->setText(PasswordGenerator::generatePswd());
 }
 

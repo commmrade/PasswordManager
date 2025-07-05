@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("klewy.com");
     QCoreApplication::setApplicationName("Password Manager");
 
-    DotEnv::instance(); // Load .env
+
 
     QSettings settings;
     auto guiType = settings.value("gui/type", "Widgets");
@@ -34,6 +34,8 @@ int main(int argc, char *argv[])
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkdir(appDataLoc);
     QDir().mkdir(appDataLoc + "/images");
+
+    DotEnv::instance(); // Load .env
 
     if (guiType == "Quick") {
         QGuiApplication app(argc, argv);

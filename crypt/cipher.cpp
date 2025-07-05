@@ -24,7 +24,7 @@ std::pair<QString, QString> Cipher::aesEncrypt(const QString &plain)
     std::string output;
 
 
-    auto ivStr = PasswordGenerator{}.generatePassword();
+    auto ivStr = PasswordGenerator::generatePswd();
     CryptoPP::byte iv[16];
     std::memcpy(iv, ivStr.toUtf8().constData(), 16);
 
@@ -34,7 +34,6 @@ std::pair<QString, QString> Cipher::aesEncrypt(const QString &plain)
         CryptoPP::StringSource(plainStd, true, new CryptoPP::StreamTransformationFilter(e, new CryptoPP::StringSink(cipher)));
     } catch (CryptoPP::Exception &exception) {
         qDebug() << "Encrypting" << exception.what();
-
     }
     CryptoPP::StringSource(cipher, true, new CryptoPP::HexEncoder(new CryptoPP::StringSink(output)));
     return {QString::fromStdString(output), ivStr};
@@ -56,7 +55,6 @@ QString Cipher::aesDecrypt(const QString &encryptedText, const QString& salt)
         CryptoPP::StringSource(cipher, true, new CryptoPP::StreamTransformationFilter(d, new CryptoPP::StringSink(output)));
     } catch (CryptoPP::Exception &exception) {
         qDebug() << "Decrypting" << exception.what();
-        // TODO: Password is incorrect, propose to reset the app
     }
     QString outputStr = QString::fromStdString(output);
     return outputStr;

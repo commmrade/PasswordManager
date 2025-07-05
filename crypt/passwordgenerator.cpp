@@ -5,14 +5,15 @@
 
 QString PasswordGenerator::generatePassword(unsigned int len)
 {
+    return generatePswd(len);
+}
+
+QString PasswordGenerator::generatePswd(unsigned int len)
+{
     std::random_device rd;
     std::mt19937_64 engine{rd()};
-    std::string result;
+    QString result;
     result.reserve(len);
-
-    const char digits[] = {"0123456789"};
-    const char symbols[] = {"!@#$%^&*()-_+=[]{}`~;:'\"<>,.?/\\"};
-    const char letters[] = {"abcdefghijklmnopqrstuvwxyz"};
 
     std::uniform_int_distribution<> action_dist{1, 100};
     std::uniform_int_distribution<> digits_dist{0, sizeof(digits) - 2};
@@ -23,9 +24,9 @@ QString PasswordGenerator::generatePassword(unsigned int len)
         int action = action_dist(engine);
         if (action < 80) {
             int idx = let_dist(engine);
-            int chance = let_dist(engine);
-            if (chance > sizeof(letters) / 2) {
-                result += toupper(letters[idx]);
+            int shouldBeCapital = let_dist(engine);
+            if (shouldBeCapital > sizeof(letters) / 2) {
+                result += QChar::fromLatin1(toupper(letters[idx]));
             } else {
                 result += letters[idx];
             }
@@ -37,5 +38,5 @@ QString PasswordGenerator::generatePassword(unsigned int len)
             result += digits[digit_idx];
         }
     }
-    return QString::fromStdString(result);
+    return result;
 }

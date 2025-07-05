@@ -16,7 +16,8 @@ bool LoaderController::loadStorage(const QString& loadFromPath, const QString& p
         return false;
     }
 
-    QFile file(loadFromPath.sliced(7));
+    qDebug() << "Sliced why" << loadFromPath;
+    QFile file(loadFromPath.sliced(7)); // File paths start with file://, cut it
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "Could not open load from storage";
         return false;
@@ -25,7 +26,7 @@ bool LoaderController::loadStorage(const QString& loadFromPath, const QString& p
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir appDataDir {appDataLoc};
     QFile currentFile(appDataDir.filePath(PasswordManager::PM_FILENAME));
-    qDebug() << appDataDir.filePath(PasswordManager::PM_FILENAME);
+
     if (!currentFile.open(QIODevice::WriteOnly)) {
         qDebug() << "Could not open current storage";
         return false;
