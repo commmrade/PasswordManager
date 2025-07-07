@@ -39,8 +39,12 @@ void StorageManager::saveStorage() {
     QNetworkRequest request(url);
 
     QSettings settings;
-    QHttpHeaders headers;
     QString authToken = settings.value("account/jwtToken").toString();
+    if (authToken.isEmpty()) {
+        return;
+    }
+
+    QHttpHeaders headers;
     headers.append(QHttpHeaders::WellKnownHeader::Authorization, "Bearer " + authToken);
     headers.append("Password", settings.value("security/password").toString());
     request.setHeaders(headers);
@@ -74,32 +78,29 @@ void StorageManager::loadStorage() {
     QNetworkRequest request{url};
     QHttpHeaders headers;
     QSettings settings;
-    headers.append("Authorization", "Bearer " + settings.value("account/jwtToken").toString());
+    headers.append(QHttpHeaders::WellKnownHeader::Authorization, "Bearer " + settings.value("account/jwtToken").toString());
     request.setHeaders(headers);
 
     auto* reply = manager.get(request);
     connect(reply, &QNetworkReply::finished, this, [this, reply] {
         if (reply->error() == QNetworkReply::NoError) {
-
             QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
             QDir appDataDir {appDataLoc};
             QFile storageFile{appDataDir.filePath("pmanager.pm")};
-            if (!storageFile.open(QIODevice::WriteOnly)) {
-                qDebug() << "Cant open";
+            if (storageFile.open(QIODevice::WriteOnly)) {
+                QByteArray buf;
+                while ((buf = reply->read(4096)).size() > 0) {
+                    storageFile.write(buf);
+                }
+                storageFile.flush();
+                storageFile.close();
+
+                auto passwordHeader = reply->rawHeader("Password");
+                QSettings settings;
+                settings.setValue("security/password", passwordHeader);
+
+                emit success();
             }
-
-            QByteArray buf;
-            while ((buf = reply->read(4096)).size() > 0) {
-                storageFile.write(buf);
-            }
-            storageFile.flush();
-            storageFile.close();
-
-            auto passwordHeader = reply->rawHeader("Password");
-            QSettings settings;
-            settings.setValue("security/password", passwordHeader);
-
-            emit success();
         } else {
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
             qDebug() << statusCode;
