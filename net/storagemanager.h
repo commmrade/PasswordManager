@@ -11,7 +11,7 @@ public:
     explicit StorageManager(QObject *parent = nullptr);
 
     Q_INVOKABLE void saveStorage();
-    Q_INVOKABLE void loadStorage();
+    Q_INVOKABLE void loadStorage(QString masterPassword);
 
 
 signals:

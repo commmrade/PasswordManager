@@ -15,5 +15,6 @@
         <file>qml/PLoader.qml</file>
         <file>qml/SettingsDialog.qml</file>
         <file>qml/AuthDialog.qml</file>
+        <file>qml/PLoaderStorage.qml</file>
     </qresource>
 </RCC>

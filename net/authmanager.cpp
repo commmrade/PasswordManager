@@ -54,7 +54,7 @@ void AuthManager::registerUser(const QString &username, const QString &email, co
             if (statusCode != 0) {
                 QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
                 QJsonObject jsonObj = jsonDoc.object();
-                QString errorMessage = jsonObj["message"].toString();
+                QString errorMessage = jsonObj["error_msg"].toString();
 
                 emit errorAuth(statusCode, errorMessage);
             } else {
@@ -97,7 +97,7 @@ void AuthManager::loginUser(const QString& email, const QString& password) {
             if (statusCode != 0) {
                 QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
                 QJsonObject jsonObj = jsonDoc.object();
-                QString errorMessage = jsonObj["message"].toString();
+                QString errorMessage = jsonObj["error_msg"].toString();
                 emit errorAuth(statusCode, errorMessage);
             } else {
                 emit errorAuth(0, "Server is offline");
@@ -130,7 +130,7 @@ void AuthManager::updateToken() {
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
             QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
             QJsonObject jsonObj = jsonDoc.object();
-            QString errorMessage = jsonObj["message"].toString();
+            QString errorMessage = jsonObj["error_msg"].toString();
 
             if (statusCode == 403) {
                 settings.remove("account/jwtToken");
@@ -148,15 +148,18 @@ void AuthManager::updateToken() {
 void AuthManager::logOut()
 {
     QSettings settings;
+    auto refreshToken = settings.value("account/refreshToken", "").toString();
+    if (refreshToken.isEmpty()) {
+        return;
+    }
     auto backendUrl = qgetenv("BACKEND_URL");
     QUrl url{backendUrl + "/logout"};
     QNetworkRequest request{std::move(url)};
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QJsonObject jsonObj;
-    jsonObj["refresh_token"] = settings.value("account/refreshToken", "").toString();
-    QJsonDocument jsonDoc{jsonObj};
-    QByteArray jsonBytes {jsonDoc.toJson()};
+    jsonObj["refresh_token"] = std::move(refreshToken);
+    QByteArray jsonBytes {QJsonDocument{jsonObj}.toJson()};
 
     auto* reply = manager.post(request, jsonBytes);
     connect(reply, &QNetworkReply::finished, this, [this, reply] {
@@ -174,11 +177,15 @@ void AuthManager::logOut()
 void AuthManager::validateToken()
 {
     QSettings settings;
+    auto jwtToken = settings.value("account/jwtToken").toString();
+    if (jwtToken.isEmpty()) {
+        return;
+    }
 
     auto backendUrl = qgetenv("BACKEND_URL");
     QUrl url{backendUrl + "/validate"};
     QUrlQuery query;
-    query.addQueryItem("token", settings.value("account/jwtToken").toString());
+    query.addQueryItem("token", std::move(jwtToken));
     url.setQuery(query);
 
     QNetworkRequest request{url};

@@ -11,6 +11,7 @@
 #include <QApplication>
 #include "authdialog.h"
 #include <QTranslator>
+#include <QInputDialog>
 #include "notecontroller.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
@@ -166,8 +167,13 @@ void SettingsDialog::on_loadStorageButton_clicked()
 
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
 
+    QString text = QInputDialog::getText(this, tr("Form"), tr("Enter the master password of your backup:"), QLineEdit::EchoMode::Password);
+    if (text.isEmpty()) {
+        return;
+    }
+
     if (msgBox.exec() == QMessageBox::Ok) {
-        storageManager.loadStorage();
+        storageManager.loadStorage(text);
     }
 }
 

@@ -46,7 +46,6 @@ void StorageManager::saveStorage() {
 
     QHttpHeaders headers;
     headers.append(QHttpHeaders::WellKnownHeader::Authorization, "Bearer " + authToken);
-    headers.append("Password", settings.value("security/password").toString());
     request.setHeaders(headers);
 
     auto* reply = manager.post(request, multipart);
@@ -70,7 +69,7 @@ void StorageManager::saveStorage() {
     });
 }
 
-void StorageManager::loadStorage() {
+void StorageManager::loadStorage(QString masterPassword) {
 
     auto backendUrl = qgetenv("BACKEND_URL");
     QUrl url{backendUrl + "/download"};
@@ -82,7 +81,7 @@ void StorageManager::loadStorage() {
     request.setHeaders(headers);
 
     auto* reply = manager.get(request);
-    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+    connect(reply, &QNetworkReply::finished, this, [this, reply, masterPassword = std::move(masterPassword)] {
         if (reply->error() == QNetworkReply::NoError) {
             QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
             QDir appDataDir {appDataLoc};
@@ -95,9 +94,8 @@ void StorageManager::loadStorage() {
                 storageFile.flush();
                 storageFile.close();
 
-                auto passwordHeader = reply->rawHeader("Password");
                 QSettings settings;
-                settings.setValue("security/password", passwordHeader);
+                settings.setValue("security/password", masterPassword);
 
                 emit success();
             }

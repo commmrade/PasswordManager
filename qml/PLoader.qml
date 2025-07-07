@@ -10,7 +10,6 @@ Dialog {
     id: root
     modal: true
     title: "File Selection" // Optional: adds a title to the dialog
-
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey

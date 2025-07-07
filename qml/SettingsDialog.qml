@@ -22,6 +22,11 @@ Dialog {
     property AuthManager authManager: AuthManager{}
     property StorageManager storageManager: StorageManager {}
 
+    PLoaderStorage {
+        id: loaderStorage
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+    }
 
     Connections {
         target: storageManager
@@ -73,13 +78,14 @@ Dialog {
 
         standardButtons: MessageDialog.Ok | MessageDialog.Cancel
         onAccepted: {
-            storageManager.loadStorage()
+            loaderStorage.open()
         }
     }
 
     Dialog {
         id: uploadWarningDialog
         title: qsTr("Warning")
+        y: (parent.height - height) / 2
         Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
         Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
         Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
@@ -91,7 +97,7 @@ Dialog {
 
         standardButtons: MessageDialog.Ok | MessageDialog.Cancel
         onAccepted: {
-            storageManager.saveStorage()()
+            storageManager.saveStorage()
         }
     }
     // Settings {
@@ -308,13 +314,13 @@ Dialog {
                 ColumnLayout {
                     Layout.fillWidth: true
                     Label {
-                        text: qsTr("Reset")
+                        text: qsTr("Load")
                         font.bold: true
                         font.weight: 200
                         font.pointSize: 11
                     }
                     Label {
-                        text: qsTr("Reset all settings and storages")
+                        text: qsTr("Load your storage from a file")
                         Layout.fillWidth: true
                     }
                 }
@@ -530,6 +536,8 @@ Dialog {
         anchors.centerIn: root
         height: root.height - 100
         width: root.width - 100
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
 
         onAccepted: {
             root.close()
