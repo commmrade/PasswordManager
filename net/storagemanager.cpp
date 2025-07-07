@@ -101,7 +101,6 @@ void StorageManager::loadStorage(QString masterPassword) {
             }
         } else {
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-            qDebug() << statusCode;
             if (statusCode == 401) {
                 emit error(statusCode, tr("Authorization error. Try again"));
             } else if (statusCode >= 500) {

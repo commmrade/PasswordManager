@@ -1166,6 +1166,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../dialogs/settingsdialog.cpp" line="170"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsdialog.cpp" line="170"/>
+        <source>Enter the master password of your backup:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../dialogs/settingsdialog.cpp" line="185"/>
         <source>Are you sure you want to upload the storage backup? It will overwrite the backup storage</source>
         <translation type="unfinished"></translation>
