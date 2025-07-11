@@ -38,5 +38,7 @@ git clone https://github.com/commmrade/PasswordManager
 ```bash
 mkdir build && cd build
 cmake ..
-make install
+sudo make install
+sudo cp *.so /usr/lib/ # Install necessary .so libs
 ```
+3. Try to launch, it should launch (I hope)
