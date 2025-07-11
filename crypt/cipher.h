@@ -12,18 +12,27 @@
 #include <cryptopp/modes.h>
 #include <cryptopp/osrng.h>
 
+constexpr static inline int IV_SIZE = 16;
+
 class Cipher {
 public:
-    Cipher();
 
-    static QString aesEncrypt(const QString& plainText);
-    static QString aesDecrypt(const QString& encryptedText);
+    Cipher(const Cipher&) = delete;
+    Cipher& operator=(const Cipher&) = delete;
+
+    static Cipher& instance() {
+        static Cipher controller;
+        return controller;
+    }
+
+
+    std::pair<QString, QString> aesEncrypt(const QString& plainText);
+    QString aesDecrypt(const QString& encryptedText, const QString& salt);
 
 private:
-    // Static key and IV initialized directly
-    static inline CryptoPP::SecByteBlock key{CryptoPP::AES::DEFAULT_KEYLENGTH};
-    static inline CryptoPP::byte iv[CryptoPP::AES::BLOCKSIZE];
+    Cipher();
 
+    CryptoPP::SecByteBlock key{32};
 };
 
 
