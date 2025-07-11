@@ -22,12 +22,14 @@ Techonologies used:
 - MariaDB database (or MySql, since MariaDB and MySql are interchangable (i think, again, I'm not double-checking that))
 
 ### How to build, deploy and yada yada
+
+#### Desktop App
 First, you need to build the Qt project
 
 Dependencies needed:
 - gcc clang git yada yada u know basic stuff
 - crypto++ (cryptopp)
-- qt
+- qt6
 - docker to build a backend image
 
 1. I think you need to clone it
@@ -42,3 +44,9 @@ sudo make install
 sudo cp *.so /usr/lib/ # Install necessary .so libs
 ```
 3. Try to launch, it should launch (I hope)
+```bash
+PasswordManager
+```
+
+#### Backend
+Go to (PasswordManager-Backend)[https://github.com/commmrade/PasswordManager-Backend]
