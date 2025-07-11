@@ -19,6 +19,7 @@
 #include "settingscontroller.h"
 #include "storagemanager.h"
 #include "dotenv.h"
+#include <QtQml/qqml.h>
 
 int main(int argc, char *argv[])
 {
