@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
-// import PasswordManager
+import PasswordManager
 
 Menu {
     id: root

@@ -4,7 +4,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QtQuick.Dialogs
 import QtCore
-// import PasswordManager
+import PasswordManager
 import StorageManager
 import AuthManager
 

@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtCore
 import QtQuick.LocalStorage
-// import PasswordManager
+import PasswordManager
 
 
 Window {

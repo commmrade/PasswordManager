@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import IconManager
-// import PasswordManager 1.0
+import PasswordManager 1.0
 
 Item {
     id: root
@@ -47,7 +47,6 @@ Item {
                     delegate: Rectangle {
                         width: parent.width
                         height: 50
-
                         color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
                         radius: 8
 

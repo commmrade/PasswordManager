@@ -4,7 +4,7 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import PasswordGenerator
 import QtQuick.Dialogs
-// import PasswordManager
+import PasswordManager
 
 Dialog {
     id: root

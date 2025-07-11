@@ -16,5 +16,7 @@
         <file>qml/SettingsDialog.qml</file>
         <file>qml/AuthDialog.qml</file>
         <file>qml/PLoaderStorage.qml</file>
+        <file>qss/generalDark.qss</file>
+        <file>qss/generalLight.qss</file>
     </qresource>
 </RCC>

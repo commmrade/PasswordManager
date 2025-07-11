@@ -92,13 +92,16 @@ int main(int argc, char *argv[])
 
 
         QString themeStr = settings.value("gui/theme", "Dark").toString();
-        QString themeLoc = themeStr == "Dark" ? "/generalDark.qss" : "/generalLight.qss";
+        QString themeLoc = themeStr == "Dark" ? ":/qss/generalDark.qss" : ":/qss/generalLight.qss";
 
 
-        QFile file(QApplication::applicationDirPath() + themeLoc);
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QFile file(themeLoc);
+        if (file.open(QIODevice::ReadOnly)) {
             a.setStyleSheet(file.readAll());
             file.close();
+        } else {
+            qDebug() << themeLoc;
+            qDebug() << "could not open theme" << file.errorString();
         }
         a.setStyle(QStyleFactory::create("Fusion"));
 
