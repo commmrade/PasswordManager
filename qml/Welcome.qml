@@ -4,7 +4,7 @@ import QtQuick.Controls.Material 2.15
 import QtQuick.Layouts 2.15
 import PasswordGenerator
 import QtCore
-import PasswordManager 1.0
+// import PasswordManager 1.0
 
 
 Item {

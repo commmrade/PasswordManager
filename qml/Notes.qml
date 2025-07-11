@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import IconManager
-import PasswordManager 1.0
+// import PasswordManager 1.0
 
 Item {
     id: root
