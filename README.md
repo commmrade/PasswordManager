@@ -49,4 +49,4 @@ PasswordManager
 ```
 
 #### Backend
-Go to (PasswordManager-Backend)[https://github.com/commmrade/PasswordManager-Backend]
+Go to [PasswordManager-Backend](https://github.com/commmrade/PasswordManager-Backend)
