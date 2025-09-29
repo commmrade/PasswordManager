@@ -343,16 +343,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/Main.qml" line="42"/>
+        <location filename="../build/Desktop-Debug/qml/Main.qml" line="41"/>
         <location filename="../build/rel/qml/Main.qml" line="42"/>
-        <location filename="../qml/Main.qml" line="42"/>
+        <location filename="../qml/Main.qml" line="41"/>
         <source>Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/Main.qml" line="44"/>
+        <location filename="../build/Desktop-Debug/qml/Main.qml" line="43"/>
         <location filename="../build/rel/qml/Main.qml" line="44"/>
-        <location filename="../qml/Main.qml" line="44"/>
+        <location filename="../qml/Main.qml" line="43"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1016,15 +1016,15 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="74"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="79"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="96"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="73"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="78"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="95"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="74"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="79"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="96"/>
-        <location filename="../qml/SettingsDialog.qml" line="74"/>
-        <location filename="../qml/SettingsDialog.qml" line="79"/>
-        <location filename="../qml/SettingsDialog.qml" line="96"/>
+        <location filename="../qml/SettingsDialog.qml" line="73"/>
+        <location filename="../qml/SettingsDialog.qml" line="78"/>
+        <location filename="../qml/SettingsDialog.qml" line="95"/>
         <location filename="../dialogs/settingsdialog.cpp" line="75"/>
         <location filename="../dialogs/settingsdialog.cpp" line="167"/>
         <location filename="../dialogs/settingsdialog.cpp" line="186"/>
@@ -1034,96 +1034,96 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="84"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="83"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="84"/>
-        <location filename="../qml/SettingsDialog.qml" line="84"/>
+        <location filename="../qml/SettingsDialog.qml" line="83"/>
         <location filename="../dialogs/settingsdialog.cpp" line="168"/>
         <source>Are you sure you want to load the storage backup? It will overwrite the current storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="102"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="101"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="102"/>
-        <location filename="../qml/SettingsDialog.qml" line="102"/>
+        <location filename="../qml/SettingsDialog.qml" line="101"/>
         <source>Are you sure you want to upload the storage? It will overwrite the backup storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="161"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="160"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="161"/>
-        <location filename="../qml/SettingsDialog.qml" line="161"/>
+        <location filename="../qml/SettingsDialog.qml" line="160"/>
         <source>GENERAL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="182"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="181"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="182"/>
         <location filename="../dialogs/settingsdialog.ui" line="97"/>
-        <location filename="../qml/SettingsDialog.qml" line="182"/>
+        <location filename="../qml/SettingsDialog.qml" line="181"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="487"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="487"/>
         <source>GUI type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="188"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="187"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="188"/>
         <location filename="../dialogs/settingsdialog.ui" line="109"/>
-        <location filename="../qml/SettingsDialog.qml" line="188"/>
+        <location filename="../qml/SettingsDialog.qml" line="187"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="488"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="488"/>
         <source>PM offers different types of rendering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="219"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="218"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="219"/>
         <location filename="../dialogs/settingsdialog.ui" line="156"/>
-        <location filename="../qml/SettingsDialog.qml" line="219"/>
+        <location filename="../qml/SettingsDialog.qml" line="218"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="492"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="492"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="225"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="224"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="225"/>
         <location filename="../dialogs/settingsdialog.ui" line="168"/>
-        <location filename="../qml/SettingsDialog.qml" line="225"/>
+        <location filename="../qml/SettingsDialog.qml" line="224"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="493"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="493"/>
         <source>Interface is available in different languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="256"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="255"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="256"/>
         <location filename="../dialogs/settingsdialog.ui" line="215"/>
-        <location filename="../qml/SettingsDialog.qml" line="256"/>
+        <location filename="../qml/SettingsDialog.qml" line="255"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="497"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="497"/>
         <source>Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="262"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="261"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="262"/>
         <location filename="../dialogs/settingsdialog.ui" line="227"/>
-        <location filename="../qml/SettingsDialog.qml" line="262"/>
+        <location filename="../qml/SettingsDialog.qml" line="261"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="498"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="498"/>
         <source>There are several themes. You can manually edit them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="286"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="298"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="285"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="297"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="286"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="298"/>
         <location filename="../dialogs/settingsdialog.ui" line="274"/>
         <location filename="../dialogs/settingsdialog.ui" line="308"/>
-        <location filename="../qml/SettingsDialog.qml" line="286"/>
-        <location filename="../qml/SettingsDialog.qml" line="298"/>
+        <location filename="../qml/SettingsDialog.qml" line="285"/>
+        <location filename="../qml/SettingsDialog.qml" line="297"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="502"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="504"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="502"/>
@@ -1132,27 +1132,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="292"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="291"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="292"/>
         <location filename="../dialogs/settingsdialog.ui" line="286"/>
-        <location filename="../qml/SettingsDialog.qml" line="292"/>
+        <location filename="../qml/SettingsDialog.qml" line="291"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="503"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="503"/>
         <source>Reset all settings and storages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="308"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="307"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="308"/>
-        <location filename="../qml/SettingsDialog.qml" line="308"/>
+        <location filename="../qml/SettingsDialog.qml" line="307"/>
         <source>ENCRYPTION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="326"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="338"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="465"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="477"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="325"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="337"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="464"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="476"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="326"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="338"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="465"/>
@@ -1160,10 +1160,10 @@
         <location filename="../dialogs/settingsdialog.ui" line="392"/>
         <location filename="../dialogs/settingsdialog.ui" line="617"/>
         <location filename="../dialogs/settingsdialog.ui" line="651"/>
-        <location filename="../qml/SettingsDialog.qml" line="326"/>
-        <location filename="../qml/SettingsDialog.qml" line="338"/>
-        <location filename="../qml/SettingsDialog.qml" line="465"/>
-        <location filename="../qml/SettingsDialog.qml" line="477"/>
+        <location filename="../qml/SettingsDialog.qml" line="325"/>
+        <location filename="../qml/SettingsDialog.qml" line="337"/>
+        <location filename="../qml/SettingsDialog.qml" line="464"/>
+        <location filename="../qml/SettingsDialog.qml" line="476"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="508"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="520"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="522"/>
@@ -1174,62 +1174,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="332"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="331"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="332"/>
-        <location filename="../qml/SettingsDialog.qml" line="332"/>
+        <location filename="../qml/SettingsDialog.qml" line="331"/>
         <source>Load your storage from a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="353"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="352"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="353"/>
         <location filename="../dialogs/settingsdialog.ui" line="410"/>
-        <location filename="../qml/SettingsDialog.qml" line="353"/>
+        <location filename="../qml/SettingsDialog.qml" line="352"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="509"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="509"/>
         <source>Export storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="359"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="358"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="359"/>
         <location filename="../dialogs/settingsdialog.ui" line="422"/>
-        <location filename="../qml/SettingsDialog.qml" line="359"/>
+        <location filename="../qml/SettingsDialog.qml" line="358"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="510"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="510"/>
         <source>Export storage so you can use it on another device (Don&apos;t forget the password)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="365"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="364"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="365"/>
         <location filename="../dialogs/settingsdialog.ui" line="447"/>
-        <location filename="../qml/SettingsDialog.qml" line="365"/>
+        <location filename="../qml/SettingsDialog.qml" line="364"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="511"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="511"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="375"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="374"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="375"/>
-        <location filename="../qml/SettingsDialog.qml" line="375"/>
+        <location filename="../qml/SettingsDialog.qml" line="374"/>
         <source>ACCOUNT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="387"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="386"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="387"/>
-        <location filename="../qml/SettingsDialog.qml" line="387"/>
+        <location filename="../qml/SettingsDialog.qml" line="386"/>
         <source>Authenticate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="404"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="403"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="404"/>
         <location filename="../dialogs/settingsdialog.ui" line="474"/>
         <location filename="../dialogs/settingsdialog.ui" line="507"/>
-        <location filename="../qml/SettingsDialog.qml" line="404"/>
+        <location filename="../qml/SettingsDialog.qml" line="403"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="512"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="514"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="512"/>
@@ -1238,24 +1238,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="410"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="409"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="410"/>
         <location filename="../dialogs/settingsdialog.ui" line="522"/>
-        <location filename="../qml/SettingsDialog.qml" line="410"/>
+        <location filename="../qml/SettingsDialog.qml" line="409"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="515"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="515"/>
         <source>Do stuff with your account</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="436"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="448"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="435"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="447"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="436"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="448"/>
         <location filename="../dialogs/settingsdialog.ui" line="565"/>
         <location filename="../dialogs/settingsdialog.ui" line="599"/>
-        <location filename="../qml/SettingsDialog.qml" line="436"/>
-        <location filename="../qml/SettingsDialog.qml" line="448"/>
+        <location filename="../qml/SettingsDialog.qml" line="435"/>
+        <location filename="../qml/SettingsDialog.qml" line="447"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="517"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="519"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="517"/>
@@ -1264,71 +1264,71 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="442"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="441"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="442"/>
         <location filename="../dialogs/settingsdialog.ui" line="577"/>
-        <location filename="../qml/SettingsDialog.qml" line="442"/>
+        <location filename="../qml/SettingsDialog.qml" line="441"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="518"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="518"/>
         <source>Upload your storage to the cloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="471"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="470"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="471"/>
         <location filename="../dialogs/settingsdialog.ui" line="629"/>
-        <location filename="../qml/SettingsDialog.qml" line="471"/>
+        <location filename="../qml/SettingsDialog.qml" line="470"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="521"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="521"/>
         <source>Load your storage from the cloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="487"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="486"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="487"/>
-        <location filename="../qml/SettingsDialog.qml" line="487"/>
+        <location filename="../qml/SettingsDialog.qml" line="486"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="511"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="510"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="511"/>
-        <location filename="../qml/SettingsDialog.qml" line="511"/>
+        <location filename="../qml/SettingsDialog.qml" line="510"/>
         <source>Setting Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="519"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="518"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="519"/>
-        <location filename="../qml/SettingsDialog.qml" line="519"/>
+        <location filename="../qml/SettingsDialog.qml" line="518"/>
         <source>Settings have been changed. Restart to apply them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="530"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="529"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="530"/>
-        <location filename="../qml/SettingsDialog.qml" line="530"/>
+        <location filename="../qml/SettingsDialog.qml" line="529"/>
         <source>Resetting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="534"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="533"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="534"/>
-        <location filename="../qml/SettingsDialog.qml" line="534"/>
+        <location filename="../qml/SettingsDialog.qml" line="533"/>
         <source>Are you sure, that you want to reset the app? It will delete settings, storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="586"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="585"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="586"/>
-        <location filename="../qml/SettingsDialog.qml" line="586"/>
+        <location filename="../qml/SettingsDialog.qml" line="585"/>
         <source>Could not save the storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="596"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="595"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="596"/>
-        <location filename="../qml/SettingsDialog.qml" line="596"/>
+        <location filename="../qml/SettingsDialog.qml" line="595"/>
         <source>Select a location</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1417,10 +1417,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="417"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="416"/>
         <location filename="../build/rel/qml/SettingsDialog.qml" line="417"/>
         <location filename="../dialogs/settingsdialog.ui" line="547"/>
-        <location filename="../qml/SettingsDialog.qml" line="417"/>
+        <location filename="../qml/SettingsDialog.qml" line="416"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="516"/>
         <location filename="../build/rel/PasswordManager_autogen/include/ui_settingsdialog.h" line="516"/>
         <source>Manage</source>

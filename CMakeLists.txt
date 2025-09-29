@@ -15,13 +15,21 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Network Lingu
 qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} translations/translation.ts translations/translation_ru.ts)
 # configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR} COPYONLY)
 
-# Manually specify the path to Crypto++ headers and libraries
-# Adjust these paths to where Crypto++ is installed on your system
-set(CRYPTOPP_INCLUDE_DIRS "/usr/include/cryptopp")  # Adjust to the correct include path
-set(CRYPTOPP_LIBRARIES "/usr/lib/libcryptopp.so")   # Adjust to the correct library path
+find_package(CryptoPP QUIET)
 
-# Add Crypto++ headers to the include directories
-include_directories(${CRYPTOPP_INCLUDE_DIRS})
+if(CryptoPP_FOUND)
+    message(STATUS "Found Crypto++: ${CryptoPP_INCLUDE_DIRS}, ${CryptoPP_LIBRARIES}")
+else()
+    # fallback: найти вручную
+    find_path(CRYPTOPP_INCLUDE_DIR cryptopp/cryptlib.h)
+    find_library(CRYPTOPP_LIBRARY cryptopp)
+    if(NOT CRYPTOPP_INCLUDE_DIR OR NOT CRYPTOPP_LIBRARY)
+        message(FATAL_ERROR "Could not find Crypto++ library")
+    endif()
+    set(CryptoPP_INCLUDE_DIRS ${CRYPTOPP_INCLUDE_DIR})
+    set(CryptoPP_LIBRARIES ${CRYPTOPP_LIBRARY})
+endif()
+
 set(PROJECT_SOURCES
     main.cpp
     common/mainwindow.cpp
@@ -97,8 +105,12 @@ qt_add_qml_module(PasswordManagerQML
         qml/PLoaderStorage.qml
         qml/ManageAccount.qml
 )
+
+target_include_directories(PasswordManager PRIVATE ${CryptoPP_INCLUDE_DIRS})
+
+
 # Link Crypto++ library (shared .so)
-target_link_libraries(PasswordManager PRIVATE ${CRYPTOPP_LIBRARIES} PasswordManagerQML)
+target_link_libraries(PasswordManager PRIVATE ${CRYPTOPP_LIBRARIES} PasswordManagerQML ${CryptoPP_LIBRARIES})
 
 
 
