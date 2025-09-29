@@ -104,6 +104,7 @@ qt_add_qml_module(PasswordManagerQML
         QML_FILES qml/Main.qml qml/PMenubar.qml qml/PMenu.qml qml/Notes.qml qml/InfoNote.qml qml/NoteCreator.qml qml/Welcome.qml qml/AppSettings.qml qml/PLoader.qml qml/SettingsDialog.qml qml/AuthDialog.qml
         qml/PLoaderStorage.qml
         qml/ManageAccount.qml
+        STATIC
 )
 
 target_include_directories(PasswordManager PRIVATE ${CryptoPP_INCLUDE_DIRS})
