@@ -20,6 +20,7 @@
 #include "storagemanager.h"
 #include "dotenv.h"
 #include <QtQml/qqml.h>
+#include "appcontrol.h"
 
 int main(int argc, char *argv[])
 {
@@ -69,9 +70,10 @@ int main(int argc, char *argv[])
 
         Clipboard clipboard;
         auto& ins = NoteController::instance();
+        auto& appControl = AppControl::instance();
         engine.rootContext()->setContextProperty("noteController", &ins);
         engine.rootContext()->setContextProperty("clipboard", &clipboard);
-
+        engine.rootContext()->setContextProperty("appControl", &appControl);
 
         AuthManager authManager;
         authManager.validateToken();

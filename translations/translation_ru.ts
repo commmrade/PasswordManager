@@ -990,7 +990,7 @@
         <location filename="../qml/SettingsDialog.qml" line="74"/>
         <location filename="../qml/SettingsDialog.qml" line="79"/>
         <location filename="../qml/SettingsDialog.qml" line="96"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="73"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="75"/>
         <location filename="../dialogs/settingsdialog.cpp" line="167"/>
         <location filename="../dialogs/settingsdialog.cpp" line="186"/>
         <location filename="../dialogs/settingsdialog.cpp" line="197"/>
@@ -1276,30 +1276,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="529"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="530"/>
         <location filename="../build/Desktop_Qt_6_8_1-Release/qml/SettingsDialog.qml" line="518"/>
-        <location filename="../qml/SettingsDialog.qml" line="529"/>
+        <location filename="../qml/SettingsDialog.qml" line="530"/>
         <source>Resetting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="533"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="534"/>
         <location filename="../build/Desktop_Qt_6_8_1-Release/qml/SettingsDialog.qml" line="522"/>
-        <location filename="../qml/SettingsDialog.qml" line="533"/>
+        <location filename="../qml/SettingsDialog.qml" line="534"/>
         <source>Are you sure, that you want to reset the app? It will delete settings, storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="585"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="586"/>
         <location filename="../build/Desktop_Qt_6_8_1-Release/qml/SettingsDialog.qml" line="571"/>
-        <location filename="../qml/SettingsDialog.qml" line="585"/>
+        <location filename="../qml/SettingsDialog.qml" line="586"/>
         <source>Could not save the storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="595"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="596"/>
         <location filename="../build/Desktop_Qt_6_8_1-Release/qml/SettingsDialog.qml" line="581"/>
-        <location filename="../qml/SettingsDialog.qml" line="595"/>
+        <location filename="../qml/SettingsDialog.qml" line="596"/>
         <source>Select a location</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1396,32 +1396,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="62"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="64"/>
         <source>Confirm Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="63"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="65"/>
         <source>Are you sure you want to reset the app?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="74"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="76"/>
         <source>Application could not be reset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="93"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="95"/>
         <source>Save storage file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="100"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="102"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="101"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="103"/>
         <source>Could not save storage file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1452,18 +1452,18 @@
     </message>
     <message>
         <location filename="../dialogs/settingsdialog.cpp" line="215"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="232"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="248"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="233"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="250"/>
         <source>Restart the app to apply settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="231"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="232"/>
         <source>Theme changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="247"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="249"/>
         <source>GUI type changed</source>
         <translation type="unfinished"></translation>
     </message>

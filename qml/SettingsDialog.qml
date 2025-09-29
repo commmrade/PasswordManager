@@ -520,7 +520,8 @@ Dialog {
         }
 
         onAccepted: {
-            Qt.quit()
+            // Qt.quit()
+            appControl.restartApp()
         }
     }
 

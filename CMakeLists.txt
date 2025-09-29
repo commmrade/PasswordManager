@@ -62,6 +62,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         common/settingscontroller.h common/settingscontroller.cpp
         common/dotenv.h common/dotenv.cpp
         dialogs/manageaccountdialog.h dialogs/manageaccountdialog.cpp dialogs/manageaccountdialog.ui
+        common/appcontrol.h common/appcontrol.cpp
     )
 
 else()

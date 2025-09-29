@@ -14,6 +14,8 @@
 #include <QInputDialog>
 #include "notecontroller.h"
 #include "manageaccountdialog.h"
+#include <QProcess>
+#include "appcontrol.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -159,8 +161,6 @@ void SettingsDialog::on_logOutButton_clicked()
 }
 
 
-
-
 void SettingsDialog::on_loadStorageButton_clicked()
 {
     QMessageBox msgBox(this);
@@ -216,7 +216,8 @@ void SettingsDialog::on_languageBox_textChanged(const QString &language)
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
     if (msgBox.exec() == QMessageBox::Yes) {
-        QApplication::quit();
+        // restartApp();
+        AppControl::instance().restartApp();
     }
     qDebug() << "Language box changed";
 }
@@ -233,7 +234,8 @@ void SettingsDialog::on_themeBox_textChanged(const QString &theme)
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
     if (msgBox.exec() == QMessageBox::Yes) {
-        QApplication::quit();
+        // QApplication::quit();
+        AppControl::instance().restartApp();
     }
 }
 
@@ -249,7 +251,8 @@ void SettingsDialog::on_typeBox_textChanged(const QString &type)
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
     if (msgBox.exec() == QMessageBox::Yes) {
-        QApplication::quit();
+        AppControl::instance().restartApp();
+        // QApplication::quit();
     }
 }
 
