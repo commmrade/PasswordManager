@@ -25,8 +25,9 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setOrganizationName("klewy");
     QCoreApplication::setOrganizationDomain("klewy.com");
-    QCoreApplication::setApplicationName("Password Manager");
+    QCoreApplication::setApplicationName("PasswordManager");
 
+    qDebug() << "UPDATE CODE FJFFJLKDDJKL:FDSJKL:FFJKL:FKL:JDSFDJKL:F";
 
     QSettings settings;
     auto guiType = settings.value("gui/type", "Widgets");
@@ -41,7 +42,7 @@ int main(int argc, char *argv[])
         QGuiApplication app(argc, argv);
         app.setOrganizationName("klewy");
         app.setOrganizationDomain("klewy.com");
-        app.setApplicationName("Password Manager");
+        app.setApplicationName("PasswordManager");
 
         QTranslator translator;
 

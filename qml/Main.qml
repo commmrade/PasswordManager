@@ -12,7 +12,7 @@ Window {
     visible: true
     color: AppSettings.gui.theme === "Dark" ? "#292828" : "#F7F7F7"
     //color: "#292828"
-    title: qsTr("Password Manager")
+    title: qsTr("PasswordManager")
 
     Component.onCompleted: {
         if (AppSettings.general.firstTime === true) {

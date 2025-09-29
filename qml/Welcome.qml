@@ -78,7 +78,7 @@ Item {
 
             Label {
                 anchors.centerIn: parent
-                text: qsTr("Password Manager")
+                text: qsTr("PasswordManager")
                 font.pixelSize: 20
                 color: "white"
             }
