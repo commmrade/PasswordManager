@@ -15,7 +15,7 @@ Dialog {
     property alias email: emailField.text
     property alias password: passwordField.text
 
-    onClosed: reset()
+    onClosed: resetFields()
 
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
@@ -115,7 +115,7 @@ Dialog {
                         return
                     }
                     noteController.createNote(titleField.text, urlField.text, usernameField.text, emailField.text, passwordField.text)
-                    reset()
+                    resetFields()
                     root.close()
                 }
             }
@@ -124,7 +124,7 @@ Dialog {
                 text: qsTr("Close")
                 Material.elevation: 2
                 onClicked: {
-                    reset()
+                    resetFields()
                     root.close()
                 }
             }
@@ -149,7 +149,7 @@ Dialog {
         standardButtons: Dialog.Ok
     }
 
-    function reset() {
+    function resetFields() {
         titleField.text = ""
         urlField.text = ""
         usernameField.text = ""

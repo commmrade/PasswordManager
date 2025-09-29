@@ -202,15 +202,11 @@ void AuthManager::logOut()
 
     auto* reply = manager.post(request, jsonBytes);
     connect(reply, &QNetworkReply::finished, this, [this, reply] {
-        QSettings settings;
-        settings.remove("account/email");
-        settings.remove("account/refreshToken");
-        settings.remove("account/jwtToken");
-
         reply->deleteLater();
     });
-
-
+    settings.remove("account/email");
+    settings.remove("account/refreshToken");
+    settings.remove("account/jwtToken");
 }
 
 void AuthManager::validateToken()

@@ -70,7 +70,7 @@ Dialog {
 
                 ScrollView {
                     id: regScrollView
-                    anchors.fill: recReg
+                    // anchors.fill: recReg
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
@@ -170,7 +170,7 @@ Dialog {
 
                 ScrollView {
                     id: loginScrollView
-                    anchors.fill: recLogin
+                    // anchors.fill: recLogin
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff

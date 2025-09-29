@@ -24,12 +24,7 @@ ManageAccountDialog::~ManageAccountDialog()
 
 void ManageAccountDialog::on_logOutBtn_clicked()
 {
-    QSettings settings;
-    settings.remove("account/email");
-    settings.remove("account/refreshToken");
-    settings.remove("account/jwtToken");
-
-    // disableAccountSettings();
+    m_authManager.logOut();
     emit loggedOut();
     close();
 }
@@ -49,7 +44,7 @@ void ManageAccountDialog::on_changePassBtn_clicked()
     }
 
     if (newPass1.isNull() || newPass2.length() < 6) {
-        QMessageBox::critical(this, tr("Error"), tr("New password is too short, must be 6+ chalong"));
+        QMessageBox::critical(this, tr("Error"), tr("New password is too short, must be 6+ characters long"));
         return;
     }
 

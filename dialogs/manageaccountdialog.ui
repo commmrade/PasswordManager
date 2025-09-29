@@ -49,6 +49,12 @@
         <height>723</height>
        </rect>
       </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_10">
        <item>
         <widget class="QLabel" name="label">
@@ -88,6 +94,18 @@
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
             <widget class="QLabel" name="changePasswordTitle">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
              <property name="font">
               <font>
                <pointsize>14</pointsize>
@@ -122,6 +140,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="curPassEdit">
+           <property name="echoMode">
+            <enum>QLineEdit::EchoMode::Password</enum>
+           </property>
            <property name="placeholderText">
             <string>password...</string>
            </property>
@@ -174,6 +195,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="newPassEdit">
+           <property name="echoMode">
+            <enum>QLineEdit::EchoMode::Password</enum>
+           </property>
            <property name="placeholderText">
             <string>password..</string>
            </property>
@@ -226,6 +250,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="newPassEdit2">
+           <property name="echoMode">
+            <enum>QLineEdit::EchoMode::Password</enum>
+           </property>
            <property name="placeholderText">
             <string>password..</string>
            </property>

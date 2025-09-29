@@ -11,9 +11,9 @@ import StorageManager
 Dialog {
     id: root
     modal: true
-    Layout.maximumWidth: 900  // Set maximum width to 600
-    Layout.maximumHeight: 600  // Set maximum width to 600
-    Layout.fillWidth: true    // Make the dialog take all available width
+    // Layout.maximumWidth: 900  // Set maximum width to 600
+    // Layout.maximumHeight: 600  // Set maximum width to 600
+    // Layout.fillWidth: true    // Make the dialog take all available width
     Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
     Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
@@ -54,6 +54,15 @@ Dialog {
                 storageErrorDialog.text = "Please, log in again"
                 storageErrorDialog.open()
             }
+        }
+    }
+
+    Connections {
+        target: manageAccountDialog
+
+        function onLoggedOut() {
+            console.log("OUT LOGGED");
+            disableAccount()
         }
     }
 
@@ -404,11 +413,13 @@ Dialog {
                 }
 
                 Button {
-                    text: qsTr("Log Out")
+                    // text: qsTr("Log Out")
+                    text: qsTr("Manage")
 
                     onClicked: {
-                        authManager.logOut()
-                        disableAccount()
+                        // authManager.logOut()
+                        // disableAccount()
+                        manageAccountDialog.open()
                     }
                 }
             }
@@ -533,7 +544,6 @@ Dialog {
 
     PLoader {
         id: pLoader;
-        anchors.centerIn: root
         height: root.height - 100
         width: root.width - 100
         x: (parent.width - width) / 2
@@ -549,14 +559,18 @@ Dialog {
 
         authManager: root.authManager
 
-        anchors.centerIn: root
-
         width: root.width
         height: root.height
 
         onAccepted: {
             enableAccount()
         }
+    }
+
+    ManageAccount {
+        id: manageAccountDialog
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
     }
 
     Dialog {
