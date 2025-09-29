@@ -28,8 +28,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("klewy.com");
     QCoreApplication::setApplicationName("PasswordManager");
 
-    qDebug() << "UPDATE CODE FJFFJLKDDJKL:FDSJKL:FFJKL:FKL:JDSFDJKL:F";
-
     QSettings settings;
     auto guiType = settings.value("gui/type", "Widgets");
 

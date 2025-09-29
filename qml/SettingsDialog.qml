@@ -61,7 +61,6 @@ Dialog {
         target: manageAccountDialog
 
         function onLoggedOut() {
-            console.log("OUT LOGGED");
             disableAccount()
         }
     }

@@ -21,7 +21,6 @@ Window {
             welcomeWidget.destroy()
             notesView.visible = true
         }
-        console.log(AppSettings.security.password)
     }
 
 
