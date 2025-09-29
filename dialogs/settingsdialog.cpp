@@ -13,6 +13,7 @@
 #include <QTranslator>
 #include <QInputDialog>
 #include "notecontroller.h"
+#include "manageaccountdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -108,7 +109,8 @@ void SettingsDialog::enableAccountSettings()
 {
     ui->accountDescription->setVisible(true);
     ui->accountTitle->setVisible(true);
-    ui->logOutButton->setVisible(true);
+    // ui->logOutButton->setVisible(true);
+    ui->manageAccBtn->setVisible(true);
 
     ui->uploadButton->setVisible(true);
     ui->uploadDescription->setVisible(true);
@@ -124,7 +126,7 @@ void SettingsDialog::disableAccountSettings()
 {
     ui->accountDescription->setVisible(false);
     ui->accountTitle->setVisible(false);
-    ui->logOutButton->setVisible(false);
+    ui->manageAccBtn->setVisible(false);
 
     ui->uploadButton->setVisible(false);
     ui->uploadDescription->setVisible(false);
@@ -251,4 +253,14 @@ void SettingsDialog::on_typeBox_textChanged(const QString &type)
     }
 }
 
+
+
+void SettingsDialog::on_manageAccBtn_clicked()
+{
+    ManageAccountDialog accountDialog(this);
+    connect(&accountDialog, &ManageAccountDialog::loggedOut, this, [this] {
+        disableAccountSettings();
+    });
+    accountDialog.exec();
+}
 

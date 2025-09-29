@@ -13,6 +13,7 @@ public:
 
     Q_INVOKABLE void registerUser(const QString& username, const QString& email, const QString& password);
     Q_INVOKABLE void loginUser(const QString& email, const QString& password);
+    Q_INVOKABLE void changePassword(const QString& password, const QString& newPassword);
 
     Q_INVOKABLE void updateToken();
 

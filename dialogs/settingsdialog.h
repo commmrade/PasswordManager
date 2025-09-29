@@ -52,6 +52,8 @@ private slots:
     void on_languageBox_textChanged(const QString& language);
     void on_themeBox_textChanged(const QString& theme);
     void on_typeBox_textChanged(const QString& type);
+    void on_manageAccBtn_clicked();
+
 private:
     Ui::SettingsDialog *ui;
     AuthManager authManager{};

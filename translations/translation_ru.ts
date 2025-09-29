@@ -386,6 +386,133 @@
     </message>
 </context>
 <context>
+    <name>ManageAccountDialog</name>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="14"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="292"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="74"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="293"/>
+        <source>Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="97"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="294"/>
+        <source>Change your password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="117"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="295"/>
+        <source>Current Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="126"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="296"/>
+        <source>password...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="157"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="297"/>
+        <source>New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="169"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="298"/>
+        <source>You should remember this one, i think</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="178"/>
+        <location filename="../dialogs/manageaccountdialog.ui" line="230"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="299"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="302"/>
+        <source>password..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="209"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="300"/>
+        <source>New Password v2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="221"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="301"/>
+        <source>Can never be too careful, right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="252"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="303"/>
+        <source>Change Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="277"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="304"/>
+        <source>Scary section</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="300"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="305"/>
+        <source>Log Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="312"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="306"/>
+        <source>Bye bye, see you</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.ui" line="334"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_manageaccountdialog.h" line="307"/>
+        <source>Log out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.cpp" line="16"/>
+        <location filename="../dialogs/manageaccountdialog.cpp" line="47"/>
+        <location filename="../dialogs/manageaccountdialog.cpp" line="52"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.cpp" line="47"/>
+        <source>New password fields do not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.cpp" line="52"/>
+        <source>New password is too short, must be 6+ chalong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.cpp" line="13"/>
+        <source>Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.cpp" line="13"/>
+        <source>Successfully changed the user password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/manageaccountdialog.cpp" line="16"/>
+        <source>Could not change password: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NoteCreateDialog</name>
     <message>
         <location filename="../dialogs/notecreatedialog.cpp" line="22"/>
@@ -742,11 +869,11 @@
         <location filename="../qml/SettingsDialog.qml" line="65"/>
         <location filename="../qml/SettingsDialog.qml" line="70"/>
         <location filename="../qml/SettingsDialog.qml" line="87"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="72"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="165"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="184"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="195"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="201"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="73"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="167"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="186"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="197"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="203"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
@@ -754,7 +881,7 @@
         <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="75"/>
         <location filename="../build/Desktop_Qt_6_8_1-Release/qml/SettingsDialog.qml" line="75"/>
         <location filename="../qml/SettingsDialog.qml" line="75"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="166"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="168"/>
         <source>Are you sure you want to load the storage backup? It will overwrite the current storage</source>
         <translation type="unfinished"></translation>
     </message>
@@ -967,9 +1094,7 @@
     <message>
         <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="407"/>
         <location filename="../build/Desktop_Qt_6_8_1-Release/qml/SettingsDialog.qml" line="407"/>
-        <location filename="../dialogs/settingsdialog.ui" line="547"/>
         <location filename="../qml/SettingsDialog.qml" line="407"/>
-        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="516"/>
         <location filename="../build/Desktop_Qt_6_8_1-Release/PasswordManager_autogen/include/ui_settingsdialog.h" line="516"/>
         <source>Log Out</source>
         <translation type="unfinished"></translation>
@@ -1144,74 +1269,80 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="61"/>
-        <source>Confirm Reset</source>
+        <location filename="../dialogs/settingsdialog.ui" line="547"/>
+        <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="516"/>
+        <source>Manage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dialogs/settingsdialog.cpp" line="62"/>
+        <source>Confirm Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/settingsdialog.cpp" line="63"/>
         <source>Are you sure you want to reset the app?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="73"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="74"/>
         <source>Application could not be reset.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="92"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="93"/>
         <source>Save storage file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="99"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="100"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="100"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="101"/>
         <source>Could not save storage file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="170"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="172"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="170"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="172"/>
         <source>Enter the master password of your backup:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="185"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="187"/>
         <source>Are you sure you want to upload the storage backup? It will overwrite the backup storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="201"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="203"/>
         <source>Please, log in again!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="212"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="214"/>
         <source>Language changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="213"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="230"/>
-        <location filename="../dialogs/settingsdialog.cpp" line="246"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="215"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="232"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="248"/>
         <source>Restart the app to apply settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="229"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="231"/>
         <source>Theme changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/settingsdialog.cpp" line="245"/>
+        <location filename="../dialogs/settingsdialog.cpp" line="247"/>
         <source>GUI type changed</source>
         <translation type="unfinished"></translation>
     </message>

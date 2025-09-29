@@ -61,6 +61,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         common/loadercontroller.h common/loadercontroller.cpp
         common/settingscontroller.h common/settingscontroller.cpp
         common/dotenv.h common/dotenv.cpp
+        dialogs/manageaccountdialog.h dialogs/manageaccountdialog.cpp dialogs/manageaccountdialog.ui
     )
 
 else()
@@ -92,7 +93,7 @@ qt_add_qml_module(PasswordManagerQML
         URI PasswordManager
         VERSION 1.0
         QML_FILES qml/Main.qml qml/PMenubar.qml qml/PMenu.qml qml/Notes.qml qml/InfoNote.qml qml/NoteCreator.qml qml/Welcome.qml qml/AppSettings.qml qml/PLoader.qml qml/SettingsDialog.qml qml/AuthDialog.qml
-        qml/PLoaderStorage.qml
+        qml/PLoaderStorage.qml qml/ManageAccount.qml
 )
 # Link Crypto++ library (shared .so)
 target_link_libraries(PasswordManager PRIVATE ${CRYPTOPP_LIBRARIES} PasswordManagerQML)

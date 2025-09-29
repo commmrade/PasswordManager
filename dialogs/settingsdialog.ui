@@ -539,12 +539,12 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="logOutButton">
+          <widget class="QPushButton" name="manageAccBtn">
            <property name="enabled">
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>Log Out</string>
+            <string>Manage</string>
            </property>
           </widget>
          </item>

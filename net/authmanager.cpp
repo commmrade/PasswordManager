@@ -107,6 +107,45 @@ void AuthManager::loginUser(const QString& email, const QString& password) {
     });
 }
 
+void AuthManager::changePassword(const QString &password, const QString &newPassword)
+{
+    QSettings settings;
+    auto jwtToken = settings.value("account/jwtToken").toString();
+    if (jwtToken.isEmpty()) {
+        return;
+    }
+
+    auto backendUrl = qgetenv("BACKEND_URL");
+
+    QNetworkRequest req{QUrl{backendUrl + "/reset"}};
+    req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    req.setRawHeader("Authorization", "Bearer " + jwtToken.toUtf8());
+
+    QJsonObject jsonObj;
+    jsonObj["password"] = password;
+    jsonObj["new_password"] = newPassword;
+    QJsonDocument jsonDoc{jsonObj};
+    QByteArray jsonBytes = jsonDoc.toJson();
+
+    auto* reply = manager.post(req, jsonBytes);
+    connect(reply, &QNetworkReply::finished, this, [this, reply]{
+        if (reply->error() == QNetworkReply::NoError) {
+            qDebug() << "SUCCESSFULLY UPDATED PASSWORD";
+            emit successAuth();
+        } else {
+            int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+            if (statusCode != 0) {
+                QJsonDocument jsonDoc = QJsonDocument::fromJson(reply->readAll());
+                QJsonObject jsonObj = jsonDoc.object();
+                QString errorMessage = jsonObj["error_msg"].toString();
+                emit errorAuth(statusCode, errorMessage);
+            } else {
+                emit errorAuth(statusCode, "Server is offline");
+            }
+        }
+    });
+}
+
 void AuthManager::updateToken() {
     QSettings settings;
     auto refreshToken = settings.value("account/refreshToken").toString();
