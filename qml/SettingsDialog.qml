@@ -37,6 +37,7 @@ Dialog {
 
         function onSuccess() {
             noteController.resetStorage()
+            successUploadStorageDialog.open()
         }
 
         function onError(statusCode, errorMessage) {
@@ -112,13 +113,7 @@ Dialog {
             storageManager.saveStorage()
         }
     }
-    // Settings {
-    //     id: guiSettings
-    //     category: "gui"
-    //     property string language: "English"
-    //     property string type: "Widgets"
-    //     property string theme: "Dark"
-    // }
+
     Settings {
         id: accountSettings
         category: "account"
@@ -632,6 +627,22 @@ Dialog {
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
         }
+    }
+
+    Dialog {
+        id: successUploadStorageDialog
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+        title: qsTr("Success")
+        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+
+        Text {
+            text: qsTr("You have successfully uploaded your storage to the cloud.")
+            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+        }
+        standardButtons: Dialog.Ok
     }
 
     FileDialog {

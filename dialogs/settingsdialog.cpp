@@ -42,8 +42,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     QObject::connect(ui->guiThemeBox, &QComboBox::currentTextChanged, this, &SettingsDialog::on_themeBox_textChanged);
     QObject::connect(ui->guiTypeBox, &QComboBox::currentTextChanged, this, &SettingsDialog::on_typeBox_textChanged);
 
-    QObject::connect(&storageManager, &StorageManager::success, this, []() {
+    QObject::connect(&storageManager, &StorageManager::success, this, [this]() {
         NoteController::instance().resetStorage();
+        QMessageBox::information(this, tr("Success"), tr("You have successfully uploaded your storage to the cloud."));
     });
     QObject::connect(&storageManager, &StorageManager::error, this, &SettingsDialog::on_request_error);
 
