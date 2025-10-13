@@ -1016,15 +1016,15 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="76"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="81"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="98"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="77"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="82"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="99"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="73"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="78"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="95"/>
-        <location filename="../qml/SettingsDialog.qml" line="76"/>
-        <location filename="../qml/SettingsDialog.qml" line="81"/>
-        <location filename="../qml/SettingsDialog.qml" line="98"/>
+        <location filename="../qml/SettingsDialog.qml" line="77"/>
+        <location filename="../qml/SettingsDialog.qml" line="82"/>
+        <location filename="../qml/SettingsDialog.qml" line="99"/>
         <location filename="../dialogs/settingsdialog.cpp" line="75"/>
         <location filename="../dialogs/settingsdialog.cpp" line="183"/>
         <location filename="../dialogs/settingsdialog.cpp" line="202"/>
@@ -1034,96 +1034,96 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="86"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="87"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="83"/>
-        <location filename="../qml/SettingsDialog.qml" line="86"/>
+        <location filename="../qml/SettingsDialog.qml" line="87"/>
         <location filename="../dialogs/settingsdialog.cpp" line="184"/>
         <source>Are you sure you want to load the storage backup? It will overwrite the current storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="104"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="105"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="101"/>
-        <location filename="../qml/SettingsDialog.qml" line="104"/>
+        <location filename="../qml/SettingsDialog.qml" line="105"/>
         <source>Are you sure you want to upload the storage? It will overwrite the backup storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="163"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="169"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="160"/>
-        <location filename="../qml/SettingsDialog.qml" line="163"/>
+        <location filename="../qml/SettingsDialog.qml" line="169"/>
         <source>GENERAL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="184"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="190"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="181"/>
         <location filename="../dialogs/settingsdialog.ui" line="97"/>
-        <location filename="../qml/SettingsDialog.qml" line="184"/>
+        <location filename="../qml/SettingsDialog.qml" line="190"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="510"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="487"/>
         <source>GUI type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="190"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="196"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="187"/>
         <location filename="../dialogs/settingsdialog.ui" line="109"/>
-        <location filename="../qml/SettingsDialog.qml" line="190"/>
+        <location filename="../qml/SettingsDialog.qml" line="196"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="511"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="488"/>
         <source>PM offers different types of rendering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="221"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="225"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="218"/>
         <location filename="../dialogs/settingsdialog.ui" line="156"/>
-        <location filename="../qml/SettingsDialog.qml" line="221"/>
+        <location filename="../qml/SettingsDialog.qml" line="225"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="515"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="492"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="227"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="231"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="224"/>
         <location filename="../dialogs/settingsdialog.ui" line="168"/>
-        <location filename="../qml/SettingsDialog.qml" line="227"/>
+        <location filename="../qml/SettingsDialog.qml" line="231"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="516"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="493"/>
         <source>Interface is available in different languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="258"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="260"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="255"/>
         <location filename="../dialogs/settingsdialog.ui" line="215"/>
-        <location filename="../qml/SettingsDialog.qml" line="258"/>
+        <location filename="../qml/SettingsDialog.qml" line="260"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="520"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="497"/>
         <source>Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="264"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="266"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="261"/>
         <location filename="../dialogs/settingsdialog.ui" line="227"/>
-        <location filename="../qml/SettingsDialog.qml" line="264"/>
+        <location filename="../qml/SettingsDialog.qml" line="266"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="521"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="498"/>
         <source>There are several themes. You can manually edit them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="288"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="300"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="289"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="301"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="285"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="297"/>
         <location filename="../dialogs/settingsdialog.ui" line="274"/>
         <location filename="../dialogs/settingsdialog.ui" line="308"/>
-        <location filename="../qml/SettingsDialog.qml" line="288"/>
-        <location filename="../qml/SettingsDialog.qml" line="300"/>
+        <location filename="../qml/SettingsDialog.qml" line="289"/>
+        <location filename="../qml/SettingsDialog.qml" line="301"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="525"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="527"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="502"/>
@@ -1132,27 +1132,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="294"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="295"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="291"/>
         <location filename="../dialogs/settingsdialog.ui" line="286"/>
-        <location filename="../qml/SettingsDialog.qml" line="294"/>
+        <location filename="../qml/SettingsDialog.qml" line="295"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="526"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="503"/>
         <source>Reset all settings and storages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="310"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="311"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="307"/>
-        <location filename="../qml/SettingsDialog.qml" line="310"/>
+        <location filename="../qml/SettingsDialog.qml" line="311"/>
         <source>ENCRYPTION</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="328"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="340"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="467"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="479"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="329"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="341"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="468"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="480"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="325"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="337"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="464"/>
@@ -1160,10 +1160,10 @@
         <location filename="../dialogs/settingsdialog.ui" line="392"/>
         <location filename="../dialogs/settingsdialog.ui" line="617"/>
         <location filename="../dialogs/settingsdialog.ui" line="651"/>
-        <location filename="../qml/SettingsDialog.qml" line="328"/>
-        <location filename="../qml/SettingsDialog.qml" line="340"/>
-        <location filename="../qml/SettingsDialog.qml" line="467"/>
-        <location filename="../qml/SettingsDialog.qml" line="479"/>
+        <location filename="../qml/SettingsDialog.qml" line="329"/>
+        <location filename="../qml/SettingsDialog.qml" line="341"/>
+        <location filename="../qml/SettingsDialog.qml" line="468"/>
+        <location filename="../qml/SettingsDialog.qml" line="480"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="531"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="543"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="545"/>
@@ -1174,62 +1174,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="334"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="335"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="331"/>
-        <location filename="../qml/SettingsDialog.qml" line="334"/>
+        <location filename="../qml/SettingsDialog.qml" line="335"/>
         <source>Load your storage from a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="355"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="356"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="352"/>
         <location filename="../dialogs/settingsdialog.ui" line="410"/>
-        <location filename="../qml/SettingsDialog.qml" line="355"/>
+        <location filename="../qml/SettingsDialog.qml" line="356"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="532"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="509"/>
         <source>Export storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="361"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="362"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="358"/>
         <location filename="../dialogs/settingsdialog.ui" line="422"/>
-        <location filename="../qml/SettingsDialog.qml" line="361"/>
+        <location filename="../qml/SettingsDialog.qml" line="362"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="533"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="510"/>
         <source>Export storage so you can use it on another device (Don&apos;t forget the password)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="367"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="368"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="364"/>
         <location filename="../dialogs/settingsdialog.ui" line="447"/>
-        <location filename="../qml/SettingsDialog.qml" line="367"/>
+        <location filename="../qml/SettingsDialog.qml" line="368"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="534"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="511"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="377"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="378"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="374"/>
-        <location filename="../qml/SettingsDialog.qml" line="377"/>
+        <location filename="../qml/SettingsDialog.qml" line="378"/>
         <source>ACCOUNT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="389"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="390"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="386"/>
-        <location filename="../qml/SettingsDialog.qml" line="389"/>
+        <location filename="../qml/SettingsDialog.qml" line="390"/>
         <source>Authenticate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="406"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="407"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="403"/>
         <location filename="../dialogs/settingsdialog.ui" line="474"/>
         <location filename="../dialogs/settingsdialog.ui" line="507"/>
-        <location filename="../qml/SettingsDialog.qml" line="406"/>
+        <location filename="../qml/SettingsDialog.qml" line="407"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="535"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="537"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="512"/>
@@ -1238,24 +1238,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="412"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="413"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="409"/>
         <location filename="../dialogs/settingsdialog.ui" line="522"/>
-        <location filename="../qml/SettingsDialog.qml" line="412"/>
+        <location filename="../qml/SettingsDialog.qml" line="413"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="538"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="515"/>
         <source>Do stuff with your account</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="438"/>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="450"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="439"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="451"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="435"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="447"/>
         <location filename="../dialogs/settingsdialog.ui" line="565"/>
         <location filename="../dialogs/settingsdialog.ui" line="599"/>
-        <location filename="../qml/SettingsDialog.qml" line="438"/>
-        <location filename="../qml/SettingsDialog.qml" line="450"/>
+        <location filename="../qml/SettingsDialog.qml" line="439"/>
+        <location filename="../qml/SettingsDialog.qml" line="451"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="540"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="542"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="517"/>
@@ -1264,73 +1264,73 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="444"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="445"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="441"/>
         <location filename="../dialogs/settingsdialog.ui" line="577"/>
-        <location filename="../qml/SettingsDialog.qml" line="444"/>
+        <location filename="../qml/SettingsDialog.qml" line="445"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="541"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="518"/>
         <source>Upload your storage to the cloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="473"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="474"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="470"/>
         <location filename="../dialogs/settingsdialog.ui" line="629"/>
-        <location filename="../qml/SettingsDialog.qml" line="473"/>
+        <location filename="../qml/SettingsDialog.qml" line="474"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="544"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="521"/>
         <source>Load your storage from the cloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="498"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="502"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="486"/>
         <location filename="../dialogs/settingsdialog.ui" line="679"/>
-        <location filename="../qml/SettingsDialog.qml" line="498"/>
+        <location filename="../qml/SettingsDialog.qml" line="502"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="546"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="532"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="554"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="510"/>
-        <location filename="../qml/SettingsDialog.qml" line="532"/>
+        <location filename="../qml/SettingsDialog.qml" line="554"/>
         <source>Setting Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="540"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="562"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="518"/>
-        <location filename="../qml/SettingsDialog.qml" line="540"/>
+        <location filename="../qml/SettingsDialog.qml" line="562"/>
         <source>Settings have been changed. Restart to apply them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="551"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="573"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="529"/>
-        <location filename="../qml/SettingsDialog.qml" line="551"/>
+        <location filename="../qml/SettingsDialog.qml" line="573"/>
         <source>Resetting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="555"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="577"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="533"/>
-        <location filename="../qml/SettingsDialog.qml" line="555"/>
+        <location filename="../qml/SettingsDialog.qml" line="577"/>
         <source>Are you sure, that you want to reset the app? It will delete settings, storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="607"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="629"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="585"/>
-        <location filename="../qml/SettingsDialog.qml" line="607"/>
+        <location filename="../qml/SettingsDialog.qml" line="629"/>
         <source>Could not save the storage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="617"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="639"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="595"/>
-        <location filename="../qml/SettingsDialog.qml" line="617"/>
+        <location filename="../qml/SettingsDialog.qml" line="639"/>
         <source>Select a location</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1419,18 +1419,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="505"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="509"/>
         <location filename="../dialogs/settingsdialog.ui" line="686"/>
-        <location filename="../qml/SettingsDialog.qml" line="505"/>
+        <location filename="../qml/SettingsDialog.qml" line="509"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="547"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="419"/>
+        <location filename="../build/Desktop-Debug/qml/SettingsDialog.qml" line="420"/>
         <location filename="../cmake-build-debug/qml/SettingsDialog.qml" line="416"/>
         <location filename="../dialogs/settingsdialog.ui" line="547"/>
-        <location filename="../qml/SettingsDialog.qml" line="419"/>
+        <location filename="../qml/SettingsDialog.qml" line="420"/>
         <location filename="../build/Desktop-Debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="539"/>
         <location filename="../cmake-build-debug/PasswordManager_autogen/include/ui_settingsdialog.h" line="516"/>
         <source>Manage</source>
