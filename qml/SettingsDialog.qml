@@ -18,6 +18,9 @@ Dialog {
     Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
     Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
 
+    property bool guiTypeChanged: false
+    property bool languageChanged: false
+    property bool themeChanged: false
 
     property AuthManager authManager: AuthManager{}
     property StorageManager storageManager: StorageManager {}
@@ -197,6 +200,7 @@ Dialog {
                     Layout.maximumHeight: 50
                     onActivated: (index) => {
                         if (index !== guiTypeBoxPrevIndex) {
+                            // root.guiTypeChanged = true
                             let val = guiTypeBox.textAt(index)
                             AppSettings.gui.type = val
                             guiTypeBoxPrevIndex = index
@@ -481,13 +485,32 @@ Dialog {
                 }
             }
 
-            Button {
-                id: closeBtn
-                text: qsTr("Close")
-                onClicked: {
-                    root.close()
+            RowLayout {
+                id: btnsRow
+                Layout.fillWidth: true
+                spacing: 10
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Button {
+                    id: closeBtn
+                    text: qsTr("Close")
+                    onClicked: {
+                        root.close()
+                    }
+                }
+                Button {
+                    id: applyBtn
+                    text: qsTr("Apply")
+                    onClicked: {
+                        console.log("TODO Apply button")
+                    }
                 }
             }
+
+
         }
     }
 

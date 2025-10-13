@@ -18,35 +18,19 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog() override;
 
-
-
     enum GUITypes {
         Widgets,
         Quick,
     };
 
 private slots:
-    // void on_guiTypeBox_activated(int index);
-
-    // void on_languageBox_activated(int index);
-
     void on_resetButton_clicked();
-
     void on_loadButton_clicked();
-
     void on_exportButton_clicked();
-
-
-    // void on_guiThemeBox_activated(int index);
-
     void on_authButton_clicked();
-
     void on_logOutButton_clicked();
-
     void on_loadStorageButton_clicked();
-
     void on_uploadButton_clicked();
-
     void on_request_error(int statusCode, const QString &errorMsg);
 
     void on_languageBox_textChanged(const QString& language);
@@ -54,16 +38,24 @@ private slots:
     void on_typeBox_textChanged(const QString& type);
     void on_manageAccBtn_clicked();
 
+    void on_applyButton_clicked();
+
+    void on_closeButton_clicked();
+
 private:
     Ui::SettingsDialog *ui;
     AuthManager authManager{};
     StorageManager storageManager{};
 
     SettingsController settingsController;
-
+    bool m_guiTypeChanged{false};
+    bool m_languageChanged{false};
+    bool m_themeChanged{false};
+    bool m_restartRequired{false};
 
     void enableAccountSettings();
     void disableAccountSettings();
+    void applyGeneralSettings();
 };
 
 #endif // SETTINGSDIALOG_H

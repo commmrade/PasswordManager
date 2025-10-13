@@ -217,7 +217,6 @@ void SqlNoteModel::removeFromCache(int id)
 
 QSqlDatabase SqlNoteModel::makeDatabase()
 {
-    qDebug() << "make db";
     const QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
     QDir dir(appDataLoc);
