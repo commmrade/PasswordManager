@@ -6,6 +6,7 @@
 #include <QCloseEvent>
 #include <QSettings>
 #include "loaderpasswords.h"
+#include "settingsvalues.h"
 
 SecretPassWidget::SecretPassWidget(QWidget *parent)
     : QDialog(parent)
@@ -40,7 +41,7 @@ void SecretPassWidget::closeEvent(QCloseEvent *event)
         int ret = msgBox.exec();
         if (ret == QMessageBox::Yes) {
             QSettings settings;
-            settings.setValue("security/password", ui->passwordEdit->text().toUtf8());
+            settings.setValue(SettingsNames::SECURITY_PASSWORD, ui->passwordEdit->text().toUtf8());
             event->accept();
         } else {
             event->ignore();
@@ -48,7 +49,7 @@ void SecretPassWidget::closeEvent(QCloseEvent *event)
     } else {
         QSettings settings;
         if (!isLoaded) {
-            settings.setValue("security/password", ui->passwordEdit->text().toUtf8());
+            settings.setValue(SettingsNames::SECURITY_PASSWORD, ui->passwordEdit->text().toUtf8());
         }
         event->accept();
     }

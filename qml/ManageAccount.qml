@@ -14,9 +14,9 @@ Dialog {
     // Layout.maximumWidth: 900  // Set maximum width to 600
     // Layout.maximumHeight: 600  // Set maximum width to 600
     // Layout.fillWidth: true    // Make the dialog take all available width
-    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+    Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+    Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+    Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
     signal loggedOut()
     property AuthManager authManager: AuthManager{}
     onClosed: resetFields()
@@ -211,9 +211,9 @@ Dialog {
 
     Dialog {
         id: infoDialog
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
         title: infoTitle
         standardButtons: Dialog.Ok
 

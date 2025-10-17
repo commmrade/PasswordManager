@@ -34,10 +34,9 @@ Dialog {
         clearFields()
     }
 
-
-    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+    Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+    Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+    Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
     contentItem: RowLayout {
         anchors.fill: parent
@@ -49,7 +48,7 @@ Dialog {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#333232" : "#F1F1F1"
             Layout.topMargin: 75
             Layout.leftMargin: 50
             Layout.bottomMargin: 20
@@ -123,9 +122,9 @@ Dialog {
 
         Dialog {
             id: errorDialog
-            Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-            Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-            Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+            Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+            Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+            Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
             title: qsTr("Warning")
             standardButtons: Dialog.Ok
             Text {
@@ -136,9 +135,9 @@ Dialog {
 
         MessageDialog {
             id: authErrorDialog
-            Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-            Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-            Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+            Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+            Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+            Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
             title: qsTr("Warning")
         }
 
@@ -152,7 +151,7 @@ Dialog {
             Layout.rightMargin: 50
             Layout.bottomMargin: 20
 
-            color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#333232" : "#F1F1F1"
 
             radius: 20
             border.color: "#555"

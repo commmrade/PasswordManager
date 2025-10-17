@@ -21,6 +21,7 @@
 #include "dotenv.h"
 #include <QtQml/qqml.h>
 #include "appcontrol.h"
+#include "settingsvalues.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,7 +30,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("PasswordManager");
 
     QSettings settings;
-    auto guiType = settings.value("gui/type", "Widgets");
+    int guiType = settings.value(SettingsNames::GUI_TYPE, SettingsValues::GUI_TYPE_WIDGETS).toInt();
 
     QString appDataLoc = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkdir(appDataLoc);
@@ -37,7 +38,7 @@ int main(int argc, char *argv[])
 
     DotEnv{}; // Loads env variables
 
-    if (guiType == "Quick") {
+    if (guiType == SettingsValues::GUI_TYPE_QUICK) {
         QGuiApplication app(argc, argv);
         app.setOrganizationName("klewy");
         app.setOrganizationDomain("klewy.com");
@@ -45,8 +46,8 @@ int main(int argc, char *argv[])
 
         QTranslator translator;
 
-        QString language = settings.value("gui/language", "English").toString();
-        if (language == "Russian") {
+        int language = settings.value(SettingsNames::GUI_LANGUAGE, SettingsValues::GUI_LANGUAGE_ENGLISH).toInt();
+        if (language == SettingsValues::GUI_LANGUAGE_RUSSIAN) {
             if (!translator.load(":/translation_ru.qm")) {
                 qDebug() << "Could not load translation";
             }
@@ -83,8 +84,8 @@ int main(int argc, char *argv[])
         QApplication a(argc, argv);
         QTranslator translator;
 
-        QString language = settings.value("gui/language", "English").toString();
-        if (language == "Russian") {
+        int language = settings.value(SettingsNames::GUI_LANGUAGE, SettingsValues::GUI_LANGUAGE_ENGLISH).toInt();
+        if (language == SettingsValues::GUI_LANGUAGE_RUSSIAN) {
             if (!translator.load(":/translation_ru.qm")) {
                 qDebug() << "Could not load translation";
             }
@@ -92,8 +93,8 @@ int main(int argc, char *argv[])
         a.installTranslator(&translator);
 
 
-        QString themeStr = settings.value("gui/theme", "Dark").toString();
-        QString themeLoc = themeStr == "Dark" ? ":/qss/generalDark.qss" : ":/qss/generalLight.qss";
+        int themeStr = settings.value(SettingsNames::GUI_THEME, SettingsValues::GUI_THEME_DARK).toInt();
+        QString themeLoc = themeStr == SettingsValues::GUI_THEME_DARK ? ":/qss/generalDark.qss" : ":/qss/generalLight.qss";
 
 
         QFile file(themeLoc);
@@ -107,11 +108,11 @@ int main(int argc, char *argv[])
         a.setStyle(QStyleFactory::create("Fusion"));
 
 
-        auto isFirstTime = settings.value("firstTime", true).toBool();
+        auto isFirstTime = settings.value(SettingsNames::FIRST_TIME, true).toBool();
         if (isFirstTime) {
             SecretPassWidget w;
             w.exec();
-            settings.setValue("firstTime", false);
+            settings.setValue(SettingsNames::FIRST_TIME, false);
         }
 
         MainWindow w;

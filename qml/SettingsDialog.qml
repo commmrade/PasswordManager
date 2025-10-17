@@ -14,9 +14,9 @@ Dialog {
     // Layout.maximumWidth: 900  // Set maximum width to 600
     // Layout.maximumHeight: 600  // Set maximum width to 600
     // Layout.fillWidth: true    // Make the dialog take all available width
-    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+    Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+    Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+    Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
     property bool guiTypeChanged: false
     property bool languageChanged: false
@@ -72,21 +72,21 @@ Dialog {
 
     MessageDialog {
         id: storageErrorDialog
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
         title: qsTr("Warning")
     }
 
     Dialog {
         id: loadWarningDialog
         title: qsTr("Warning")
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
         Text {
             text: qsTr("Are you sure you want to load the storage backup? It will overwrite the current storage")
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
         }
 
         standardButtons: MessageDialog.Ok | MessageDialog.Cancel
@@ -99,12 +99,12 @@ Dialog {
         id: uploadWarningDialog
         title: qsTr("Warning")
         y: (parent.height - height) / 2
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
         Text {
             text: qsTr("Are you sure you want to upload the storage? It will overwrite the backup storage")
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
             wrapMode: Text.WordWrap
         }
 
@@ -130,9 +130,10 @@ Dialog {
     property int languageBoxPrevIndex
     property int themeBoxPrevIndex
     Component.onCompleted: {
-        guiTypeBox.currentIndex = guiTypeBox.indexOfValue(AppSettings.gui.type)
-        languageBox.currentIndex = languageBox.indexOfValue(AppSettings.gui.language)
-        themeBox.currentIndex = themeBox.indexOfValue(AppSettings.gui.theme)
+        // TODO: FIX THIS
+        guiTypeBox.currentIndex = AppSettings.gui.type
+        languageBox.currentIndex = AppSettings.gui.language
+        themeBox.currentIndex = AppSettings.gui.theme
         guiTypeBoxPrevIndex = guiTypeBox.currentIndex
         languageBoxPrevIndex = languageBox.currentIndex
         themeBoxPrevIndex = themeBox.currentIndex
@@ -197,7 +198,7 @@ Dialog {
                     Item { Layout.fillWidth: true }  // Spacer
                     ComboBox {
                         id: guiTypeBox
-                        model: ["Widgets", "Quick"]
+                        model: [qsTr("Widgets"), qsTr("Quick")]
                         Layout.maximumHeight: 50
                         onActivated: (index) => {
                             if (index !== guiTypeBoxPrevIndex) {
@@ -232,7 +233,7 @@ Dialog {
 
                     ComboBox {
                         id: languageBox
-                        model: ["English", "Russian"]
+                        model: [qsTr("English"), qsTr("Russian")]
                         Layout.maximumHeight: 50
                         onActivated: (index) => {
                             if (index !== languageBoxPrevIndex) {
@@ -265,7 +266,7 @@ Dialog {
 
                     ComboBox {
                         id: themeBox
-                        model: ["Dark", "Light"]
+                        model: [qsTr("Dark"), qsTr("Light")]
                         Layout.maximumHeight: 50
                         onActivated: (index) => {
                             themeChanged = true
@@ -513,15 +514,15 @@ Dialog {
 
     function applyGeneralSettings() {
         if (guiTypeChanged) {
-            let val = guiTypeBox.currentText
+            let val = guiTypeBox.currentIndex
             AppSettings.gui.type = val
         }
         if (themeChanged) {
-            let val = themeBox.currentText
+            let val = themeBox.currentIndex
             AppSettings.gui.theme = val
         }
         if (languageChanged) {
-            let val = languageBox.currentText
+            let val = languageBox.currentIndex
             AppSettings.gui.language = val
         }
 
@@ -548,12 +549,12 @@ Dialog {
         id: changePopup
         title: qsTr("Setting Changed")
         standardButtons: MessageDialog.Ok | MessageDialog.Close
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
         Text {
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
             text: qsTr("Settings have been changed. Restart to apply them?")
         }
 
@@ -568,13 +569,13 @@ Dialog {
         title: qsTr("Resetting")
 
         Text {
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
             text: qsTr("Are you sure, that you want to reset the app? It will delete settings, storage")
         }
         standardButtons: MessageDialog.Ok | MessageDialog.Close
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
         onAccepted: {
             settingsController.resetApp();
@@ -616,13 +617,13 @@ Dialog {
         id: errorDialog
 
 
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
         standardButtons: Dialog.Ok
         Text {
             text: qsTr("Could not save the storage")
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
             font.pixelSize: 16
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
@@ -634,13 +635,13 @@ Dialog {
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
         title: qsTr("Success")
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
         Text {
             text: qsTr("You have successfully uploaded your storage to the cloud.")
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
         }
         standardButtons: Dialog.Ok
     }

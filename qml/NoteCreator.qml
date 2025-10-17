@@ -17,9 +17,9 @@ Dialog {
 
     onClosed: resetFields()
 
-    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+    Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+    Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+    Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
     ColumnLayout {
         anchors.fill: parent
@@ -29,7 +29,7 @@ Dialog {
         Text {
             id: titleText
             text: qsTr("Create new note")
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
             font.pixelSize: 24
             font.bold: true
             Layout.alignment: Qt.AlignHCenter
@@ -52,8 +52,8 @@ Dialog {
                     placeholderText: qsTr("Title")
                     Layout.fillWidth: true
                     Layout.maximumHeight: 50
-                    Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
-                    Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                    Material.background: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#403F3F" : "#FFFFFF"
+                    Material.foreground: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                 }
 
                 TextField {
@@ -61,8 +61,8 @@ Dialog {
                     placeholderText: qsTr("Url")
                     Layout.fillWidth: true
                     Layout.maximumHeight: 50
-                    Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
-                    Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                    Material.background: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#403F3F" : "#FFFFFF"
+                    Material.foreground: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                 }
 
                 TextField {
@@ -70,8 +70,8 @@ Dialog {
                     placeholderText: qsTr("Username")
                     Layout.fillWidth: true
                     Layout.maximumHeight: 50
-                    Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
-                    Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                    Material.background: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#403F3F" : "#FFFFFF"
+                    Material.foreground: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                 }
 
                 TextField {
@@ -79,8 +79,8 @@ Dialog {
                     placeholderText: qsTr("Email")
                     Layout.fillWidth: true
                     Layout.maximumHeight: 50
-                    Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
-                    Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                    Material.background: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#403F3F" : "#FFFFFF"
+                    Material.foreground: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                 }
 
                 TextField {
@@ -88,8 +88,8 @@ Dialog {
                     placeholderText: qsTr("Password")
                     Layout.fillWidth: true
                     Layout.maximumHeight: 50
-                    Material.background: AppSettings.gui.theme === "Dark" ? "#403F3F" : "#FFFFFF"
-                    Material.foreground: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                    Material.background: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#403F3F" : "#FFFFFF"
+                    Material.foreground: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                 }
             }
         }
@@ -138,13 +138,13 @@ Dialog {
     Dialog {
         id: warningDialog
         title: qsTr("Title or Password Empty")
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
         Text {
             text: qsTr("Please, make sure both fields are filled with text.")
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
         }
         standardButtons: Dialog.Ok
     }

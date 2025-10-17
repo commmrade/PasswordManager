@@ -10,9 +10,9 @@ Dialog {
     id: root
     modal: true
     title: "File Selection" // Optional: adds a title to the dialog
-    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+    Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+    Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+    Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
     implicitWidth: 400
     implicitHeight: 200
@@ -111,13 +111,13 @@ Dialog {
     Dialog {
         id: errorDialog
 
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
         Text {
             text: qsTr("Could not load the storage")
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
             font.pixelSize: 16
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter

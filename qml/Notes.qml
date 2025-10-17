@@ -16,9 +16,9 @@ Item {
         id: iconManager
     }
 
-    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+    Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+    Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+    Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
     SplitView {
         id: splitView
@@ -47,14 +47,14 @@ Item {
                     delegate: Rectangle {
                         width: parent.width
                         height: 50
-                        color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
+                        color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#333232" : "#F1F1F1"
                         radius: 8
 
                         Text {
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.verticalCenter: parent.verticalCenter
                             text: model.title
-                            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                             font.pixelSize: 20
                             Layout.leftMargin: 10
                         }
@@ -87,9 +87,9 @@ Item {
                         // width: listView.width / 2 - 30
                         text: qsTr("Create")
                         Material.elevation: 2
-                        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-                        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-                        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+                        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+                        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+                        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
 
                         onClicked: {
@@ -100,9 +100,9 @@ Item {
                         id: deleteNoteBtn
                         text: qsTr("Delete")
                         Material.elevation: 2
-                        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-                        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-                        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+                        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+                        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+                        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
                         onClicked: {
                             if (infoNote.currentIndex !== -1) {
@@ -129,7 +129,7 @@ Item {
                 anchors.centerIn: parent
                 font.pointSize: 22
                 font.italic: true
-                color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
@@ -164,9 +164,9 @@ Item {
 
     Menu {
         id: contextMenu
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
         MenuItem {
             text: "Delete"

@@ -21,15 +21,15 @@ Item {
     signal urlFieldChanged(id: int, url: string)
     signal closeRequested()
 
-    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+    Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+    Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+    Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
     Rectangle {
         anchors.fill: root
         anchors.margins: 20
         radius: 20
-        color: AppSettings.gui.theme === "Dark" ? "#333232" : "#F1F1F1"
+        color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#333232" : "#F1F1F1"
 
         ColumnLayout {
             anchors.fill: parent
@@ -180,13 +180,13 @@ Item {
     Dialog {
         id: emptyDialog
         title: qsTr("Title or Password Empty")
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
         Text {
             text: qsTr("Please, make sure both fields are filled with text.")
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
         }
         standardButtons: Dialog.Ok
     }

@@ -8,15 +8,17 @@
 #include <QSettings>
 #include <QUrlQuery>
 #include "dotenv.h"
+#include "settingsvalues.h"
+
 AuthManager::AuthManager(QObject *parent)
     : QObject{parent}
 {
     QObject::connect(this, &AuthManager::errorAuth, this, [](int statusCode, const QString& message) {
         if (statusCode == 403) {
             QSettings settings;
-            settings.remove("account/email");
-            settings.remove("account/refreshToken");
-            settings.remove("account/jwtToken");
+            settings.remove(SettingsNames::ACCOUNT_EMAIL);
+            settings.remove(SettingsNames::ACCOUNT_REFRESHTOKEN);
+            settings.remove(SettingsNames::ACCOUNT_JWTTOKEN);
         }
     });
 }
@@ -44,9 +46,9 @@ void AuthManager::registerUser(const QString &username, const QString &email, co
 
             {
                 QSettings settings;
-                settings.setValue("account/jwtToken", std::move(jwtToken));
-                settings.setValue("account/refreshToken", std::move(refreshToken));
-                settings.setValue("account/email", std::move(email));
+                settings.setValue(SettingsNames::ACCOUNT_JWTTOKEN, std::move(jwtToken));
+                settings.setValue(SettingsNames::ACCOUNT_REFRESHTOKEN, std::move(refreshToken));
+                settings.setValue(SettingsNames::ACCOUNT_EMAIL, std::move(email));
             }
             emit successAuth();
         } else {
@@ -85,9 +87,9 @@ void AuthManager::loginUser(const QString& email, const QString& password) {
 
             {
                 QSettings settings;
-                settings.setValue("account/jwtToken", jwtToken);
-                settings.setValue("account/refreshToken", refreshToken);
-                settings.setValue("account/email", std::move(email));
+                settings.setValue(SettingsNames::ACCOUNT_JWTTOKEN, jwtToken);
+                settings.setValue(SettingsNames::ACCOUNT_REFRESHTOKEN, refreshToken);
+                settings.setValue(SettingsNames::ACCOUNT_EMAIL, std::move(email));
             }
             qDebug() << "scueess";
             emit successAuth();
@@ -110,7 +112,7 @@ void AuthManager::loginUser(const QString& email, const QString& password) {
 void AuthManager::changePassword(const QString &password, const QString &newPassword)
 {
     QSettings settings;
-    auto jwtToken = settings.value("account/jwtToken").toString();
+    auto jwtToken = settings.value(SettingsNames::ACCOUNT_JWTTOKEN).toString();
     if (jwtToken.isEmpty()) {
         return;
     }
@@ -148,7 +150,7 @@ void AuthManager::changePassword(const QString &password, const QString &newPass
 
 void AuthManager::updateToken() {
     QSettings settings;
-    auto refreshToken = settings.value("account/refreshToken").toString();
+    auto refreshToken = settings.value(SettingsNames::ACCOUNT_REFRESHTOKEN).toString();
     if (refreshToken.isEmpty()) {
         return;
     }
@@ -163,7 +165,7 @@ void AuthManager::updateToken() {
         QSettings settings;
         if (reply->error() == QNetworkReply::NoError) {
             auto bytes = reply->readAll();
-            settings.setValue("account/jwtToken", bytes);
+            settings.setValue(SettingsNames::ACCOUNT_JWTTOKEN, bytes);
             emit successAuth();
         } else {
             int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -172,9 +174,9 @@ void AuthManager::updateToken() {
             QString errorMessage = jsonObj["error_msg"].toString();
 
             if (statusCode == 403) {
-                settings.remove("account/jwtToken");
-                settings.remove("account/refreshToken");
-                settings.remove("account/email");
+                settings.remove(SettingsNames::ACCOUNT_JWTTOKEN);
+                settings.remove(SettingsNames::ACCOUNT_REFRESHTOKEN);
+                settings.remove(SettingsNames::ACCOUNT_EMAIL);
                 emit errorAuth(statusCode, errorMessage);
             }
             emit errorAuth(statusCode, errorMessage);
@@ -187,7 +189,7 @@ void AuthManager::updateToken() {
 void AuthManager::logOut()
 {
     QSettings settings;
-    auto refreshToken = settings.value("account/refreshToken", "").toString();
+    auto refreshToken = settings.value(SettingsNames::ACCOUNT_REFRESHTOKEN).toString();
     if (refreshToken.isEmpty()) {
         return;
     }
@@ -204,15 +206,15 @@ void AuthManager::logOut()
     connect(reply, &QNetworkReply::finished, this, [this, reply] {
         reply->deleteLater();
     });
-    settings.remove("account/email");
-    settings.remove("account/refreshToken");
-    settings.remove("account/jwtToken");
+    settings.remove(SettingsNames::ACCOUNT_EMAIL);
+    settings.remove(SettingsNames::ACCOUNT_REFRESHTOKEN);
+    settings.remove(SettingsNames::ACCOUNT_JWTTOKEN);
 }
 
 void AuthManager::validateToken()
 {
     QSettings settings;
-    auto jwtToken = settings.value("account/jwtToken").toString();
+    auto jwtToken = settings.value(SettingsNames::ACCOUNT_JWTTOKEN).toString();
     if (jwtToken.isEmpty()) {
         return;
     }

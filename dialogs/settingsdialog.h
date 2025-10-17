@@ -33,9 +33,10 @@ private slots:
     void on_uploadButton_clicked();
     void on_request_error(int statusCode, const QString &errorMsg);
 
-    void on_languageBox_textChanged(const QString& language);
-    void on_themeBox_textChanged(const QString& theme);
-    void on_typeBox_textChanged(const QString& type);
+    void on_languageBox_indexChanged(int index);
+    void on_themeBox_indexChanged(int index);
+    void on_typeBox_indexChanged(int index);
+
     void on_manageAccBtn_clicked();
 
     void on_applyButton_clicked();

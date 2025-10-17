@@ -13,9 +13,9 @@ Item {
     width: 600
     height: 400
 
-    Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-    Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-    Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+    Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+    Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+    Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
 
     PasswordGenerator {
         id: passwordGenerator
@@ -42,15 +42,15 @@ Item {
         y: root.height / 2  // Center vertically
         title: qsTr("Confirmation")
         modal: true
-        Material.theme: AppSettings.gui.theme === "Dark" ? Material.Dark : Material.Light
-        Material.accent: AppSettings.gui.theme === "Dark" ? Material.Purple : Material.LightBlue
-        Material.primary: AppSettings.gui.theme === "Dark" ? Material.Grey : Material.BlueGrey
+        Material.theme: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Dark : Material.Light
+        Material.accent: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Purple : Material.LightBlue
+        Material.primary: AppSettings.gui.theme === AppSettings.gui_theme_dark ? Material.Grey : Material.BlueGrey
         standardButtons: Dialog.Ok | Dialog.No
 
         Text {
             text: qsTr("Do you really want to close this? Save the password!")
             wrapMode: Text.Wrap
-            color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
             font.pixelSize: 16
         }
 
@@ -73,7 +73,7 @@ Item {
         Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
-            color: AppSettings.gui.theme === "Dark" ? "#393939" : "#E2E2E2"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#393939" : "#E2E2E2"
             radius: 10
 
             Label {
@@ -87,7 +87,7 @@ Item {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: AppSettings.gui.theme === "Dark" ? "#393939" : "#E2E2E2"
+            color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#393939" : "#E2E2E2"
             radius: 10
 
             ColumnLayout {
@@ -98,7 +98,7 @@ Item {
                 Label {
                     text: qsTr("Your password:")
                     font.pixelSize: 16
-                    color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                    color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                     Layout.alignment: Qt.AlignHCenter
                 }
                 Label {
@@ -111,14 +111,14 @@ Item {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 40
-                    color: AppSettings.gui.theme === "Dark" ? "#292828" : "#FFFFFF"
+                    color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#292828" : "#FFFFFF"
                     radius: 5
 
                     TextInput {
                         id: passwordText
                         text: ""
                         font.pixelSize: 14
-                        color: AppSettings.gui.theme === "Dark" ? "white" : "black"
+                        color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "white" : "black"
                         anchors.centerIn: parent
                         readOnly: true
                         selectByMouse: true

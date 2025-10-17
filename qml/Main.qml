@@ -10,7 +10,7 @@ Window {
     width: 1280
     height: 720
     visible: true
-    color: AppSettings.gui.theme === "Dark" ? "#292828" : "#F7F7F7"
+    color: AppSettings.gui.theme === AppSettings.gui_theme_dark ? "#292828" : "#F7F7F7"
     //color: "#292828"
     title: qsTr("PasswordManager")
 

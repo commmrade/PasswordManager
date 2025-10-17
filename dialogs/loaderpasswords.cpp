@@ -7,7 +7,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QStandardPaths>
-
+#include "settingsvalues.h"
 #include "notecontroller.h"
 
 LoaderPasswords::LoaderPasswords(QWidget *parent)
@@ -66,7 +66,7 @@ void LoaderPasswords::on_loadButton_clicked()
     file.close();
 
     QSettings settings;
-    settings.setValue("security/password", password.toUtf8());
+    settings.setValue(SettingsNames::SECURITY_PASSWORD, password.toUtf8());
     NoteController::instance().resetStorage(); // To update model, so the user sees new storage
     accept();
 }

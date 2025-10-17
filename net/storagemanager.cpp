@@ -7,6 +7,7 @@
 #include "consts.h"
 #include <QJsonDocument>
 #include <QNetworkReply>
+#include "settingsvalues.h"
 
 StorageManager::StorageManager(QObject *parent)
     : QObject{parent}
@@ -39,7 +40,7 @@ void StorageManager::saveStorage() {
     QNetworkRequest request(url);
 
     QSettings settings;
-    QString authToken = settings.value("account/jwtToken").toString();
+    QString authToken = settings.value(SettingsNames::ACCOUNT_JWTTOKEN).toString();
     if (authToken.isEmpty()) {
         return;
     }
@@ -77,7 +78,7 @@ void StorageManager::loadStorage(QString masterPassword) {
     QNetworkRequest request{url};
     QHttpHeaders headers;
     QSettings settings;
-    headers.append(QHttpHeaders::WellKnownHeader::Authorization, "Bearer " + settings.value("account/jwtToken").toString());
+    headers.append(QHttpHeaders::WellKnownHeader::Authorization, "Bearer " + settings.value(SettingsNames::ACCOUNT_JWTTOKEN).toString());
     request.setHeaders(headers);
 
     auto* reply = manager.get(request);
@@ -95,7 +96,7 @@ void StorageManager::loadStorage(QString masterPassword) {
                 storageFile.close();
 
                 QSettings settings;
-                settings.setValue("security/password", masterPassword);
+                settings.setValue(SettingsNames::SECURITY_PASSWORD, masterPassword);
 
                 emit success();
             }

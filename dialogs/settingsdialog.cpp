@@ -16,6 +16,7 @@
 #include "manageaccountdialog.h"
 #include <QProcess>
 #include "appcontrol.h"
+#include "settingsvalues.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -24,23 +25,23 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->setupUi(this);
     // Loading settings...
     QSettings settings;
-    QString language = settings.value("gui/language", "English").toString();
-    ui->languageBox->setCurrentText(language);
+    int language = settings.value(SettingsNames::GUI_LANGUAGE, SettingsValues::GUI_LANGUAGE_ENGLISH).toInt();
+    ui->languageBox->setCurrentIndex(language);
 
-    QString guiType = settings.value("gui/type", "Widgets").toString();
-    ui->guiTypeBox->setCurrentText(guiType);
+    int guiType = settings.value(SettingsNames::GUI_TYPE, SettingsValues::GUI_TYPE_WIDGETS).toInt();
+    ui->guiTypeBox->setCurrentIndex(guiType);
 
-    QString theme = settings.value("gui/theme", "Dark").toString();
-    ui->guiThemeBox->setCurrentText(theme);
-    if (settings.value("account/jwtToken").toString().isEmpty() && settings.value("account/refreshToken").toString().isEmpty()) { // If user doesn't have tokens set up - unauthorized (dumb but idc)
+    int theme = settings.value(SettingsNames::GUI_THEME, SettingsValues::GUI_THEME_DARK).toInt();
+    ui->guiThemeBox->setCurrentIndex(theme);
+    if (settings.value(SettingsNames::ACCOUNT_JWTTOKEN).toString().isEmpty() && settings.value(SettingsNames::ACCOUNT_REFRESHTOKEN).toString().isEmpty()) { // If user doesn't have tokens set up - unauthorized (dumb but idc)
         disableAccountSettings();
     } else {
         enableAccountSettings();
     }
 
-    QObject::connect(ui->languageBox, &QComboBox::currentTextChanged, this, &SettingsDialog::on_languageBox_textChanged);
-    QObject::connect(ui->guiThemeBox, &QComboBox::currentTextChanged, this, &SettingsDialog::on_themeBox_textChanged);
-    QObject::connect(ui->guiTypeBox, &QComboBox::currentTextChanged, this, &SettingsDialog::on_typeBox_textChanged);
+    QObject::connect(ui->languageBox, &QComboBox::currentIndexChanged, this, &SettingsDialog::on_languageBox_indexChanged);
+    QObject::connect(ui->guiThemeBox, &QComboBox::currentIndexChanged, this, &SettingsDialog::on_themeBox_indexChanged);
+    QObject::connect(ui->guiTypeBox, &QComboBox::currentIndexChanged, this, &SettingsDialog::on_typeBox_indexChanged);
 
     QObject::connect(&storageManager, &StorageManager::success, this, [this]() {
         NoteController::instance().resetStorage();
@@ -144,17 +145,17 @@ void SettingsDialog::disableAccountSettings()
 void SettingsDialog::applyGeneralSettings() {
     QSettings settings;
     if (m_languageChanged) {
-        auto language = ui->languageBox->currentText();
-        settings.setValue("gui/language", language);
+        int language = ui->languageBox->currentIndex();
+        settings.setValue(SettingsNames::GUI_LANGUAGE, language);
     }
     if (m_themeChanged) {
-        auto theme = ui->guiThemeBox->currentText();
-        settings.setValue("gui/theme", theme);
+        int theme = ui->guiThemeBox->currentIndex();
+        settings.setValue(SettingsNames::GUI_THEME, theme);
     }
     if (m_guiTypeChanged) {
         QSettings settings;
-        auto type = ui->guiTypeBox->currentText();
-        settings.setValue("gui/type", type);
+        int type = ui->guiTypeBox->currentIndex();
+        settings.setValue(SettingsNames::GUI_TYPE, type);
     }
 }
 
@@ -170,9 +171,9 @@ void SettingsDialog::on_authButton_clicked()
 void SettingsDialog::on_logOutButton_clicked()
 {
     QSettings settings;
-    settings.remove("account/email");
-    settings.remove("account/refreshToken");
-    settings.remove("account/jwtToken");
+    settings.remove(SettingsNames::ACCOUNT_EMAIL);
+    settings.remove(SettingsNames::ACCOUNT_REFRESHTOKEN);
+    settings.remove(SettingsNames::ACCOUNT_JWTTOKEN);
 
     disableAccountSettings();
 }
@@ -221,25 +222,23 @@ void SettingsDialog::on_request_error(int statusCode, const QString& errorMsg) {
     }
 }
 
-void SettingsDialog::on_languageBox_textChanged(const QString &language)
+void SettingsDialog::on_languageBox_indexChanged(int index)
 {
     m_languageChanged = true;
     m_restartRequired = true;
 }
 
-void SettingsDialog::on_themeBox_textChanged(const QString &theme)
+void SettingsDialog::on_themeBox_indexChanged(int index)
 {
     m_themeChanged = true;
     m_restartRequired = true;
 }
 
-void SettingsDialog::on_typeBox_textChanged(const QString &type)
+void SettingsDialog::on_typeBox_indexChanged(int index)
 {
     m_guiTypeChanged = true;
     m_restartRequired = true;
 }
-
-
 
 void SettingsDialog::on_manageAccBtn_clicked()
 {

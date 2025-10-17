@@ -11,10 +11,11 @@
 #include <QDebug>
 #include <QSettings>
 #include "passwordgenerator.h"
+#include "settingsvalues.h"
 
 Cipher::Cipher() {
     QSettings settings;
-    auto rawPassword = settings.value("security/password").toString().toUtf8();
+    auto rawPassword = settings.value(SettingsNames::SECURITY_PASSWORD).toString().toUtf8();
     key = CryptoPP::SecByteBlock{(const unsigned char*)rawPassword.constData(), static_cast<size_t>(rawPassword.size())};
 }
 
